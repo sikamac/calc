@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { ImportCalculator } from '../../components/calculator/ImportCalculator';
+
+const title = "Calculadora de Importaciones";
+const description = "Calculá todos los costos asociados a tu importación: derechos de aduana, IVA, tasa estadística y gastos de gestión.";
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  url={Astro.url}
+>
+  <Header />
+  <main class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          Calculadora de Importaciones
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Obtené un desglose detallado de todos los costos asociados a tu importación en Argentina. 
+          Incluye derechos de aduana, IVA, tasa estadística y gastos de gestión.
+        </p>
+      </div>
+
+      <ImportCalculator client:load />
+
+      <!-- Info Section -->
+      <div class="mt-16 max-w-4xl mx-auto">
+        <div class="bg-white rounded-xl shadow-sm p-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">
+            ¿Qué incluye el cálculo?
+          </h2>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">Impuestos y Tasas</h3>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Derechos de Importación (según NCM)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  IVA (21% sobre base imponible)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Tasa de Estadística (0.5%)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Gastos de gestión aduanera
+                </li>
+              </ul>
+            </div>
+            
+            <div class="space-y-4">
+              <h3 class="text-lg font-semibold text-primary">Categorías de Productos</h3>
+              <ul class="space-y-2 text-gray-600">
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Productos Generales (14%)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Tecnología/Electrónica (8%)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Textil/Indumentaria (35%)
+                </li>
+                <li class="flex items-start">
+                  <span class="text-accent mr-2">•</span>
+                  Maquinaria/Equipos (12%)
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p class="text-sm text-yellow-800">
+              <strong>⚠️ Importante:</strong> Esta calculadora proporciona estimaciones basadas en tasas generales. 
+              Para importaciones reales, consultá siempre con un despachante de aduanas o profesional del comercio exterior.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

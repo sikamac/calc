@@ -1,0 +1,265 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = "Calculadora de Importaciones Argentina";
+const description = "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más. Herramienta gratuita para importadores y despachantes.";
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  url={Astro.site}
+>
+  <Header />
+  <main>
+    <Hero />
+    
+    <!-- How It Works Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            ¿Cómo funciona la calculadora?
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Simple, rápida y precisa. Calculá todos los costos asociados a tu importación en 3 pasos.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <!-- Step 1 -->
+          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              1
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Ingresá los datos</h3>
+            <p class="text-gray-600">
+              Valor FOB, tipo de producto, país de origen y método de transporte.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              2
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Calculá automáticamente</h3>
+            <p class="text-gray-600">
+              Nuestro sistema aplica las tasas vigentes de AFIP y aduanas en tiempo real.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
+            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              3
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Obtené el desglose</h3>
+            <p class="text-gray-600">
+              Recibí un detalle completo de todos los impuestos y costos en pesos argentinos.
+            </p>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a 
+            href="/calculadora" 
+            class="btn btn-primary text-lg px-8 py-4 rounded-xl"
+          >
+            🚀 Probar Ahora
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keywords SEO Section 1 -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Información Clave sobre Importaciones en Argentina
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Conocé los aspectos más importantes del comercio exterior y despacho aduanero
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">📋 Despacho Aduanero</h3>
+            <p class="text-gray-600 mb-4">
+              Proceso obligatorio para todas las mercaderías que ingresan al país. Requiere contratar un despachante de aduanas matriculado.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• Declaración jurada de importación</li>
+              <li>• Clasificación arancelaria NCM</li>
+              <li>• Documentación requerida</li>
+              <li>• Plazos y vencimientos</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">📦 Valoración Aduanera</h3>
+            <p class="text-gray-600 mb-4">
+              Determinación del valor en aduana según normativa de la AFIP y acuerdos internacionales.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• Valor FOB y CIF</li>
+              <li>• Ajustes por condiciones de venta</li>
+              <li>• Métodos de valoración</li>
+              <li>• Precios de transferencia</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">🎯 Regímenes Especiales</h3>
+            <p class="text-gray-600 mb-4">
+              Beneficios arancelarios según origen de la mercadería y acuerdos comerciales vigentes.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• Mercosur y ALADI</li>
+              <li>• Origen no preferencial</li>
+              <li>• Certificados de origen</li>
+              <li>• Exenciones y reducciones</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">💰 Impuestos a la Importación</h3>
+            <p class="text-gray-600 mb-4">
+              Todos los tributos que se aplican a las operaciones de comercio exterior en Argentina.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• Derechos de importación</li>
+              <li>• IVA e impuestos internos</li>
+              <li>• Tasa estadística</li>
+              <li>• Percepciones y retenciones</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">🚛 Logística y Transporte</h3>
+            <p class="text-gray-600 mb-4">
+              Opciones de transporte internacional y cálculo de costos logísticos.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• Transporte marítimo</li>
+              <li>• Transporte aéreo</li>
+              <li>• Seguro de carga</li>
+              <li>• Incoterms 2020</li>
+            </ul>
+          </div>
+
+          <div class="p-6 bg-gray-50 rounded-xl">
+            <h3 class="text-xl font-bold text-primary mb-3">⚖️ Normativa y Compliance</h3>
+            <p class="text-gray-600 mb-4">
+              Cumplimiento regulatorio y obligaciones ante organismos de control.
+            </p>
+            <ul class="text-sm text-gray-600 space-y-1">
+              <li>• AFIP y Aduana</li>
+              <li>• Normas técnicas IRAM</li>
+              <li>• SENASA y ANMAT</li>
+              <li>• Restricciones y prohibiciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a 
+            href="/calculadora" 
+            class="btn btn-primary text-lg px-8 py-4 rounded-xl"
+          >
+            Calcular Costos de Importación
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Keywords SEO Section 2 -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Calculadora de Aranceles Aduaneros Argentina
+            </h2>
+            <p class="text-lg text-gray-600 mb-6">
+              Nuestra herramienta especializada te permite estimar todos los costos asociados a tu importación, 
+              incluyendo derechos de aduana, impuestos y gastos logísticos.
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <span class="text-accent mr-3 mt-1">✓</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Cálculo de aranceles según NCM</h4>
+                  <p class="text-gray-600 text-sm">Posicionamiento arancelario correcto para tu producto</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-accent mr-3 mt-1">✓</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Estimación de impuestos AFIP</h4>
+                  <p class="text-gray-600 text-sm">IVA, Ganancias, IIBB y percepciones</p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <span class="text-accent mr-3 mt-1">✓</span>
+                <div>
+                  <h4 class="font-semibold text-gray-900">Análisis de costos logísticos</h4>
+                  <p class="text-gray-600 text-sm">Flete, seguro y gastos operativos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-xl p-8 shadow-lg">
+            <h3 class="text-xl font-bold text-center mb-6">¿Qué necesitás calcular?</h3>
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <div class="text-2xl mb-2">📊</div>
+                <div class="font-semibold">Aranceles</div>
+                <div class="text-sm text-gray-600">Tasas NCM</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <div class="text-2xl mb-2">💰</div>
+                <div class="font-semibold">Impuestos</div>
+                <div class="text-sm text-gray-600">IVA, IIBB, etc</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <div class="text-2xl mb-2">🚚</div>
+                <div class="font-semibold">Logística</div>
+                <div class="text-sm text-gray-600">Flete y seguro</div>
+              </div>
+              <div class="p-4 bg-gray-50 rounded-lg">
+                <div class="text-2xl mb-2">📈</div>
+                <div class="font-semibold">Margen</div>
+                <div class="text-sm text-gray-600">Precio de venta</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary text-white">
+      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          ¿Necesitás asesoramiento personalizado?
+        </h2>
+        <p class="text-xl text-blue-100 mb-8">
+          Nuestro equipo de expertos en comercio exterior te puede ayudar con tu importación.
+        </p>
+        <a 
+          href="mailto:contacto@tudominio.com" 
+          class="btn bg-accent hover:bg-orange-600 text-white text-lg px-8 py-4 rounded-xl inline-block"
+        >
+          📞 Contactar un Experto
+        </a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  url?: string;
+  locale?: string;
+}
+
+const { title, description, image = '/logo.svg', url, locale = 'es_AR' } = Astro.props;
+const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="language" content="es" />
+    <meta name="geo.region" content="AR" />
+    <meta name="geo.placename" content="Argentina" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={locale} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+    
+    <title>{siteTitle}</title>
+    
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    
+    <slot name="head" />
+  </head>
+  <body class="bg-white text-gray-900 antialiased">
+    <slot />
+  </body>
+</html>
