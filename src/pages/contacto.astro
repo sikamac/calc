@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = "Asesoramiento en Importaciones - GIST POINT";
+const description = "Contactate con expertos en comercio exterior de GIST POINT. Asesoramiento personalizado en importaciones, aranceles y despacho aduanero.";
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  url={Astro.url}
+>
+  <Header />
+  <main class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Hero Contact -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Asesoramiento en Importaciones
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Nuestro equipo de expertos en comercio exterior de <strong>GIST POINT S.A.S.</strong> 
+          te ayuda a resolver dudas específicas sobre tu operación de importación.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-12">
+        <!-- Info Contact -->
+        <div class="space-y-8">
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">
+              📞 ¿En qué podemos ayudarte?
+            </h2>
+            
+            <div class="space-y-4">
+              <div class="flex items-start">
+                <span class="text-accent text-2xl mr-4">🧮</span>
+                <div>
+                  <h3 class="font-semibold text-gray-900">Cálculos de costos</h3>
+                  <p class="text-gray-600 text-sm">Verificación de cálculos y escenarios alternativos</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <span class="text-accent text-2xl mr-4">📋</span>
+                <div>
+                  <h3 class="font-semibold text-gray-900">Clasificación NCM</h3>
+                  <p class="text-gray-600 text-sm">Asesoramiento en la correcta clasificación arancelaria</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <span class="text-accent text-2xl mr-4">📦</span>
+                <div>
+                  <h3 class="font-semibold text-gray-900">Despacho aduanero</h3>
+                  <p class="text-gray-600 text-sm">Proceso completo y documentación requerida</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <span class="text-accent text-2xl mr-4">💰</span>
+                <div>
+                  <h3 class="font-semibold text-gray-900">Optimización de costos</h3>
+                  <p class="text-gray-600 text-sm">Estrategias para reducir impuestos y gastos</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <span class="text-accent text-2xl mr-4">🌎</span>
+                <div>
+                  <h3 class="font-semibold text-gray-900">Orígenes y regimenes</h3>
+                  <p class="text-gray-600 text-sm">Beneficios arancelarios según origen del producto</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-primary text-white rounded-xl p-8">
+            <h3 class="text-xl font-bold mb-4">¿Por qué elegir GIST POINT?</h3>
+            <ul class="space-y-3">
+              <li class="flex items-center">
+                <span class="text-accent mr-3">✓</span>
+                Especialistas en comercio exterior argentino
+              </li>
+              <li class="flex items-center">
+                <span class="text-accent mr-3">✓</span>
+                Actualizados en normativa vigente
+              </li>
+              <li class="flex items-center">
+                <span class="text-accent mr-3">✓</span>
+                Soluciones personalizadas
+              </li>
+              <li class="flex items-center">
+                <span class="text-accent mr-3">✓</span>
+                Respuesta rápida y eficiente
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white rounded-xl p-8 shadow-sm">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">
+            📧 Envianos tu consulta
+          </h2>
+          
+          <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Nombre *</label>
+                <input 
+                  type="text" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                  placeholder="Tu nombre"
+                />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Apellido *</label>
+                <input 
+                  type="text" 
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                  placeholder="Tu apellido"
+                />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+              <input 
+                type="email" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                placeholder="tu@email.com"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Teléfono</label>
+              <input 
+                type="tel" 
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                placeholder="+54 11 XXXX-XXXX"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Tipo de consulta *</label>
+              <select 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+              >
+                <option value="">Seleccionar...</option>
+                <option value="calculos">Cálculos de importación</option>
+                <option value="ncm">Clasificación NCM</option>
+                <option value="despacho">Despacho aduanero</option>
+                <option value="optimizacion">Optimización de costos</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Mensaje *</label>
+              <textarea 
+                rows="5" 
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent resize-none"
+                placeholder="Describí tu consulta con detalle..."
+              ></textarea>
+            </div>
+
+            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p class="text-sm text-blue-800">
+                <strong>💡 Tip:</strong> Incluí el valor FOB, tipo de producto y origen para una respuesta más precisa.
+              </p>
+            </div>
+
+            <button 
+              type="submit" 
+              class="w-full btn btn-primary text-lg py-4 rounded-xl"
+            >
+              📤 Enviar Consulta
+            </button>
+          </form>
+
+          <div class="mt-8 pt-6 border-t border-gray-200">
+            <div class="text-center">
+              <p class="text-sm text-gray-600 mb-2">
+                ¿Preferís contactarte directamente?
+              </p>
+              <a 
+                href="mailto:consultas@gistpoint.com" 
+                class="text-accent font-semibold hover:text-orange-600 transition-colors"
+              >
+                consultas@gistpoint.com
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

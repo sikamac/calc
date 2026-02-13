@@ -1,0 +1,62 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-gray-900 text-white py-12" id="contacto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid md:grid-cols-3 gap-8">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <div class="flex items-center">
+          <div class="bg-white p-2 rounded-lg">
+            <img src="/logo.svg" alt="Logo GIST POINT" class="h-12 w-auto" />
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm">
+          <span class="font-bold text-white">GIST POINT S.A.S.</span><br/>
+          Especialistas en comercio exterior e importaciones en Argentina.
+        </p>
+        <p class="text-gray-400 text-sm">
+          Calculadora gratuita para determinar costos de importación en Argentina. 
+          Herramienta especializada para importadores y despachantes.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
+        <ul class="space-y-2">
+          <li><a href="/calculadora" class="text-gray-400 hover:text-white transition-colors">Calculadora de Importación</a></li>
+          <li><a href="/blog" class="text-gray-400 hover:text-white transition-colors">Guías de Importación</a></li>
+          <li><a href="/contacto" class="text-gray-400 hover:text-white transition-colors">Asesoramiento</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact CTA -->
+      <div>
+        <h3 class="text-lg font-semibold mb-4">¿Necesitás Ayuda?</h3>
+        <p class="text-gray-400 mb-4">
+          Contactate con nuestro equipo de expertos en importaciones de GIST POINT
+        </p>
+        <div class="space-y-3">
+          <a 
+            href="/contacto" 
+            class="block w-full text-center btn btn-primary whitespace-nowrap mb-2"
+          >
+            📧 Solicitar Asesoramiento
+          </a>
+          <a 
+            href="mailto:consultas@gistpoint.com" 
+            class="block text-center text-accent hover:text-orange-600 transition-colors font-medium"
+          >
+            consultas@gistpoint.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom -->
+            <div class="mt-12 pt-8 border-t border-gray-800 text-center text-sm text-gray-400">
+              <p>&copy; {currentYear} GIST POINT S.A.S. - Calculadora de Importaciones Argentina. Todos los derechos reservados.</p>
+            </div>  </div>
+</footer>
