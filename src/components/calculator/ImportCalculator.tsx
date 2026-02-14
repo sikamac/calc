@@ -384,7 +384,7 @@ export const ImportCalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">IVA Adicional</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">IVA adicional</label>
                     <select
                       value={tipoIVAAdicional}
                       onChange={(e) => setTipoIVAAdicional(e.target.value as '10' | '20')}
@@ -449,7 +449,7 @@ export const ImportCalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Costo Transferencia Bancaria (USD)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Costo transferencia bancaria (USD)</label>
                     <input
                       type="number"
                       value={costoTransferenciaBancaria}
@@ -461,7 +461,7 @@ export const ImportCalculator: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Gastos Despachante (USD)</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Gastos despachante (USD)</label>
                     <input
                       type="number"
                       value={gastosDespachante}
@@ -510,7 +510,7 @@ export const ImportCalculator: React.FC = () => {
                           <span className="font-medium text-orange-600">{formatCurrency(calculo.tasaEstadistica)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b-2 border-green-300">
-                          <span className="font-semibold">Base para Impuestos</span>
+                          <span className="font-semibold">Base para impuestos</span>
                           <span className="font-semibold">{formatCurrency(calculo.baseIVA)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-green-200">
@@ -518,7 +518,7 @@ export const ImportCalculator: React.FC = () => {
                           <span className="font-medium text-red-600">{formatCurrency(calculo.iva)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-green-200">
-                          <span className="text-gray-700">IVA Adicional ({tipoIVAAdicional}% del IVA)</span>
+                          <span className="text-gray-700">IVA adicional ({tipoIVAAdicional}% del IVA)</span>
                           <span className="font-medium text-red-600">{formatCurrency(calculo.ivaAdicional)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-green-200">
@@ -530,11 +530,11 @@ export const ImportCalculator: React.FC = () => {
                           <span className="font-medium text-red-600">{formatCurrency(calculo.percepcionIB)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-green-200">
-                          <span className="text-gray-700">Costo Transferencia Bancaria</span>
+                          <span className="text-gray-700">Costo transferencia bancaria</span>
                           <span className="font-medium">{formatCurrency(calculo.costoTransferenciaBancaria)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b-2 border-green-400">
-                          <span className="text-gray-700">Gastos Despachante</span>
+                          <span className="text-gray-700">Gastos despachante</span>
                           <span className="font-medium">{formatCurrency(calculo.gastosDespachante)}</span>
                         </div>
                         <div className="flex justify-between py-3 bg-green-100 rounded-lg px-4 mt-4">
@@ -680,7 +680,7 @@ export const ImportCalculator: React.FC = () => {
                       <span className="font-medium text-green-600">{calculoVenta.margenNeto.toFixed(2)}%</span>
                     </div>
                     <div className="flex justify-between py-3 bg-purple-100 rounded-lg px-4 mt-4">
-                      <span className="font-bold text-lg text-purple-900">Total Recibido</span>
+                      <span className="font-bold text-lg text-purple-900">Total recibido</span>
                       <span className="font-bold text-lg text-purple-900">{formatCurrency(calculoVenta.totalRecibido)}</span>
                     </div>
                   </div>
@@ -707,7 +707,7 @@ export const ImportCalculator: React.FC = () => {
                       <span>{formatCurrency(calculoVenta.comisionVenta)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Honorarios Socios</span>
+                      <span className="text-gray-600">Honorarios socios</span>
                       <span>{formatCurrency(calculoVenta.honorariosSocios)}</span>
                     </div>
                   </div>
