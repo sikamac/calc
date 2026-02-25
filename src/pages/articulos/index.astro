@@ -1,0 +1,115 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+
+const title = "Guías de importación Argentina - Blog especializado";
+const description = "Guías completas y actualizadas sobre importaciones en Argentina. Aprendé sobre aranceles, despacho aduanero, impuestos y logística.";
+
+const articulosCollection = await getCollection('articulos');
+const guias = articulosCollection
+  .map(entry => ({
+    slug: entry.id.replace(/\.md$/, ''),
+    title: entry.data.title,
+    excerpt: entry.data.description,
+    date: entry.data.date,
+    category: entry.data.category,
+  }))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
+---
+
+<BaseLayout 
+  title={title}
+  description={description}
+  url={Astro.url.href}
+>
+  <Header />
+  <main class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Hero Blog -->
+      <div class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          Guías de Importación Argentina
+        </h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
+          Recursos especializados para importadores, despachantes y empresas que comercian con el exterior. 
+          Guías prácticas, actualizaciones normativas y consejos de expertos.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <a href="/calculadora" class="btn btn-primary">
+            🧮 Ir a Calculadora
+          </a>
+          <a href="/contacto" class="btn btn-outline">
+            📞 Consultar Experto
+          </a>
+        </div>
+      </div>
+
+      <!-- Categorías -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12">
+        {['Todas', ...new Set(guias.map(g => g.category))].map((cat) => (
+          <button 
+            class="px-4 py-2 bg-white border border-gray-300 rounded-full text-sm font-medium text-gray-700 hover:bg-primary hover:text-white hover:border-primary transition-colors"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Lista de Guías -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {guias.map((guia) => (
+          <article class="bg-white rounded-xl shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+            <div class="p-6">
+              <div class="flex items-center mb-3">
+                <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-full">
+                  {guia.category}
+                </span>
+              </div>
+              
+              <h2 class="text-xl font-bold text-gray-900 mb-3">
+                {guia.title}
+              </h2>
+              
+              <p class="text-gray-600 mb-4">
+                {guia.excerpt}
+              </p>
+              
+              <div class="flex items-center justify-between">
+                <time class="text-sm text-gray-500">
+                  {new Date(guia.date).toLocaleDateString('es-AR', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                  })}
+                </time>
+                <a 
+                  href={`/articulos/${guia.slug}`}
+                  class="text-accent font-semibold hover:text-orange-600 transition-colors"
+                >
+                  Leer más →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- CTA -->
+      <div class="mt-16 bg-primary text-white rounded-2xl p-8 text-center">
+        <h3 class="text-2xl font-bold mb-4">
+          ¿Necesitás asesoramiento personalizado?
+        </h3>
+        <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
+          Nuestro equipo de expertos en comercio exterior te puede ayudar con dudas específicas 
+          sobre tu operación de importación.
+        </p>
+        <a href="/contacto" class="btn bg-accent hover:bg-orange-600 text-white px-8 py-3 rounded-xl">
+          Contactar un Experto
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

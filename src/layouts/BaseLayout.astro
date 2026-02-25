@@ -7,10 +7,42 @@ interface Props {
   image?: string;
   url?: string;
   locale?: string;
+  type?: 'website' | 'article';
 }
 
-const { title, description, image = '/logo.svg', url, locale = 'es_AR' } = Astro.props;
+const { 
+  title, 
+  description, 
+  image = '/logo.svg', 
+  url, 
+  locale = 'es_AR',
+  type = 'website'
+} = Astro.props;
+
 const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
+const siteUrl = Astro.site?.href || 'https://gistpoint.com';
+const canonicalUrl = url || siteUrl;
+const fullImageUrl = image?.startsWith('http') ? image : `${siteUrl}${image}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculadora de Importaciones Argentina",
+  "description": "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más.",
+  "url": siteUrl,
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "GIST POINT S.A.S.",
+    "email": "consultas@gistpoint.com"
+  }
+};
 ---
 
 <!doctype html>
@@ -22,25 +54,31 @@ const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
     <meta name="language" content="es" />
     <meta name="geo.region" content="AR" />
     <meta name="geo.placename" content="Argentina" />
+    <meta name="robots" content="index, follow" />
+    
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={url} />
-    <meta property="og:image" content={image} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={fullImageUrl} />
     <meta property="og:locale" content={locale} />
+    <meta property="og:site_name" content="Calculadora de Importaciones Argentina" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={image} />
+    <meta name="twitter:image" content={fullImageUrl} />
     
     <title>{siteTitle}</title>
     
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href="/sitemap-0.xml" />
+    
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     
     <slot name="head" />
   </head>

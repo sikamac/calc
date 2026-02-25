@@ -4,21 +4,21 @@ import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
 import { ImportCalculator } from '../../components/calculator/ImportCalculator';
 
-const title = "Calculadora de Importaciones";
+const title = "Calculadora de importaciones";
 const description = "Calculá todos los costos asociados a tu importación: derechos de aduana, IVA, tasa estadística y gastos de gestión.";
 ---
 
 <BaseLayout 
   title={title}
   description={description}
-  url={Astro.url}
+  url={Astro.url.href}
 >
   <Header />
   <main class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          Calculadora de Importaciones
+          Calculadora de importaciones
         </h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Obtené un desglose detallado de todos los costos asociados a tu importación en Argentina. 
@@ -37,11 +37,11 @@ const description = "Calculá todos los costos asociados a tu importación: dere
           
           <div class="grid md:grid-cols-2 gap-6">
             <div class="space-y-4">
-              <h3 class="text-lg font-semibold text-primary">Impuestos y Tasas</h3>
+              <h3 class="text-lg font-semibold text-primary">Impuestos y tasas</h3>
               <ul class="space-y-2 text-gray-600">
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Derechos de Importación (según NCM)
+                  Derechos de importación (según NCM)
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
@@ -49,7 +49,7 @@ const description = "Calculá todos los costos asociados a tu importación: dere
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Tasa de Estadística (0.5%)
+                  Tasa de estadística (0.5%)
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
@@ -59,23 +59,23 @@ const description = "Calculá todos los costos asociados a tu importación: dere
             </div>
             
             <div class="space-y-4">
-              <h3 class="text-lg font-semibold text-primary">Categorías de Productos</h3>
+              <h3 class="text-lg font-semibold text-primary">Categorías de productos</h3>
               <ul class="space-y-2 text-gray-600">
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Productos Generales (14%)
+                  Productos generales (14%)
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Tecnología/Electrónica (8%)
+                  Tecnología/electrónica (8%)
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Textil/Indumentaria (35%)
+                  Textil/indumentaria (35%)
                 </li>
                 <li class="flex items-start">
                   <span class="text-accent mr-2">•</span>
-                  Maquinaria/Equipos (12%)
+                  Maquinaria/equipos (12%)
                 </li>
               </ul>
             </div>
