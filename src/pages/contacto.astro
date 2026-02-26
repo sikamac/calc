@@ -3,14 +3,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 
-const title = "Asesoramiento en Importaciones - GIST POINT";
+const title = "Asesoramiento en importaciones - GIST POINT";
 const description = "Contactate con expertos en comercio exterior de GIST POINT. Asesoramiento personalizado en importaciones, aranceles y despacho aduanero.";
 ---
 
 <BaseLayout 
   title={title}
   description={description}
-  url={Astro.url}
+  url={Astro.url.href}
 >
   <Header />
   <main class="py-16 bg-gray-50">
@@ -18,7 +18,7 @@ const description = "Contactate con expertos en comercio exterior de GIST POINT.
       <!-- Hero Contact -->
       <div class="text-center mb-16">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-          Asesoramiento en Importaciones
+          Asesoramiento en importaciones
         </h1>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto">
           Nuestro equipo de expertos en comercio exterior de <strong>GIST POINT S.A.S.</strong> 

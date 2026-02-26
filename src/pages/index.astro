@@ -11,7 +11,7 @@ const description = "Calculá al instante los costos de importación en Argentin
 <BaseLayout 
   title={title}
   description={description}
-  url={Astro.site}
+  url={Astro.url.href}
 >
   <Header />
   <main>
@@ -79,9 +79,9 @@ const description = "Calculá al instante los costos de importación en Argentin
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Información Clave sobre Importaciones en Argentina
-          </h2>
+           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Información clave sobre importaciones en Argentina
+            </h2>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             Conocé los aspectos más importantes del comercio exterior y despacho aduanero
           </p>
@@ -89,7 +89,7 @@ const description = "Calculá al instante los costos de importación en Argentin
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">📋 Despacho Aduanero</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">📋 Despacho aduanero</h3>
             <p class="text-gray-600 mb-4">
               Proceso obligatorio para todas las mercaderías que ingresan al país. Requiere contratar un despachante de aduanas matriculado.
             </p>
@@ -102,7 +102,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           </div>
 
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">📦 Valoración Aduanera</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">📦 Valoración aduanera</h3>
             <p class="text-gray-600 mb-4">
               Determinación del valor en aduana según normativa de la AFIP y acuerdos internacionales.
             </p>
@@ -115,7 +115,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           </div>
 
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">🎯 Regímenes Especiales</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">🎯 Regímenes especiales</h3>
             <p class="text-gray-600 mb-4">
               Beneficios arancelarios según origen de la mercadería y acuerdos comerciales vigentes.
             </p>
@@ -128,7 +128,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           </div>
 
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">💰 Impuestos a la Importación</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">💰 Impuestos a la importación</h3>
             <p class="text-gray-600 mb-4">
               Todos los tributos que se aplican a las operaciones de comercio exterior en Argentina.
             </p>
@@ -141,7 +141,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           </div>
 
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">🚛 Logística y Transporte</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">🚛 Logística y transporte</h3>
             <p class="text-gray-600 mb-4">
               Opciones de transporte internacional y cálculo de costos logísticos.
             </p>
@@ -154,7 +154,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           </div>
 
           <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">⚖️ Normativa y Compliance</h3>
+            <h3 class="text-xl font-bold text-primary mb-3">⚖️ Normativa y compliance</h3>
             <p class="text-gray-600 mb-4">
               Cumplimiento regulatorio y obligaciones ante organismos de control.
             </p>
@@ -184,7 +184,7 @@ const description = "Calculá al instante los costos de importación en Argentin
         <div class="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Calculadora de Aranceles Aduaneros Argentina
+              Calculadora de aranceles aduaneros Argentina
             </h2>
             <p class="text-lg text-gray-600 mb-6">
               Nuestra herramienta especializada te permite estimar todos los costos asociados a tu importación, 
@@ -253,7 +253,7 @@ const description = "Calculá al instante los costos de importación en Argentin
           Nuestro equipo de expertos en comercio exterior te puede ayudar con tu importación.
         </p>
         <a 
-          href="mailto:contacto@tudominio.com" 
+          href="mailto:consultas@gistpoint.com" 
           class="btn bg-accent hover:bg-orange-600 text-white text-lg px-8 py-4 rounded-xl inline-block"
         >
           📞 Contactar un Experto
