@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://gistpoint.com',
+  site: 'https://calculadoraimportacion.com.ar',
   integrations: [
     react(),
     tailwind({
