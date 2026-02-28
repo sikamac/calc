@@ -41,9 +41,9 @@ El NCM es un sistema de 8 dígitos que clasifica todas las mercaderías que se c
 
 ## Cómo Encontrar tu Código NCM
 
-### Método 1: Buscador Oficial AFIP
+### Método 1: Buscador Oficial ARCA
 
-1. Entrá a [Buscador NCM AFIP](https://www.afip.gob.ar/adicuad/NCMArancel/)
+1. Entrá a [Buscador NCM ARCA](https://www.arca.gob.ar/adicuad/NCMArancel/)
 2. Escribí una descripción en español
 3. Navegá el árbol de clasificaciones
 4. Verificá la nota explicativa del capítulo
@@ -220,7 +220,7 @@ Presentá una **"Consulta de Clasificación"** ante Aduana:
 ### Opción 2: Opinión Vinculante
 
 Para importaciones grandes o recurrentes:
-- Opinión vinculante ante AFIP
+- Opinión vinculante ante ARCA
 - Válida por 3 años
 - Costo: aprox. USD 500
 
@@ -235,7 +235,7 @@ En **GIST POINT S.A.S.** te ayudamos con:
 
 El NCM se actualiza cada 6 meses. Es importante:
 
-✅ **Suscribirte** a alertas de AFIP  
+✅ **Suscribirte** a alertas de ARCA  
 ✅ **Revisar** antes de cada importación  
 ✅ **Actualizar** tus códigos registrados  
 

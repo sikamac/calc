@@ -12,7 +12,7 @@ tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]
 
 Si estás leyendo esto, probablemente estés considerando realizar tu primera importación en Argentina y no sabés por dónde empezar. No te preocupés, en GIST POINT te guiamos en cada paso del proceso.
 
-## Paso 1: Registración ante AFIP
+## Paso 1: Registración ante ARCA
 
 Antes de pensar en traer cualquier producto, necesitás estar registrado como importador.
 
@@ -22,7 +22,7 @@ Antes de pensar en traer cualquier producto, necesitás estar registrado como im
 - Inscripción en **Registro de Importadores**
 
 ### Cómo hacerlo:
-1. Ingresá a [AFIP web](https://www.afip.gob.ar)
+1. Ingresá a [ARCA web](https://www.arca.gob.ar)
 2. Con tu Clave Fiscal, accedé a "Registro de Importadores"
 3. Completá el formulario 460/J
 4. Presentá la documentación requerida
@@ -37,7 +37,7 @@ El **Código NCM** (Nomenclatura Común del Mercosur) es fundamental. Determina:
 - Requisitos especiales (SENASA, ANMAT, etc.)
 
 ### Cómo encontrarlo:
-- Usá la [consulta de NCM en AFIP](https://www.afip.gob.ar/adicuad/NCMArancel/)
+- Usá la [consulta de NCM en ARCA](https://www.arca.gob.ar/adicuad/NCMArancel/)
 - Contratá un despachante para asesorarte
 - Usá nuestra calculadora con categorías predefinidas
 
@@ -151,7 +151,7 @@ Una vez liberada:
 
 | Etapa | Tiempo Estimado |
 |-------|----------------|
-| Registración AFIP | 5-10 días |
+| Registración ARCA | 5-10 días |
 | Búsqueda proveedor | 15-30 días |
 | Transporte marítimo | 30-60 días |
 | Despacho aduanero | 3-7 días |

@@ -169,8 +169,8 @@ export const ImportCalculator: React.FC = () => {
     const tolerance = 0.0001;
 
     while (iterations < maxIterations && Math.abs(margenNetoCalculado - margenNetoDeseadoDecimal) > tolerance) {
-      // Gross profit based on deductible cost (for AFIP calculation)
-      const margenCalculadoAFIP = precioVenta - costoDeducibleGanancias;
+       // Gross profit based on deductible cost (for ARCA calculation)
+      const margenCalculadoARCA = precioVenta - costoDeducibleGanancias;
 
       const iibbComercioCalculado = (precioVenta * 3) / 100;
       const iibbIndustriaCalculado = (precioVenta * 1.5) / 100;
