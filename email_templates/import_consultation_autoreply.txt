@@ -1,0 +1,17 @@
+Estimado/a {{first_name}} {{last_name}},
+
+Gracias por contactarnos. Hemos recibido su consulta sobre importaciones y nos pondremos en contacto con usted a la brevedad.
+
+Los datos que proporcionó son:
+- Email: {{email}}
+- Teléfono: {{phone}}
+- Tipo de consulta: {{query_type}}
+
+Nuestro equipo de expertos analizará su solicitud y le responderá en un plazo máximo de 24 horas hábiles.
+
+Si tiene alguna pregunta adicional, no dude en escribirnos a consultas@gistpoint.com
+
+Atentamente,
+El equipo de GIST POINT S.A.S.
+---
+Este es un mensaje automático. Por favor, no responda a este email.

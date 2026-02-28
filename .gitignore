@@ -70,8 +70,11 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env.test
+vendor/
+email_templates/*.log
+contact-submissions.log
+config/*.env
+.env
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
