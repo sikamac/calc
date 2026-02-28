@@ -1,6 +1,6 @@
 # 🚀 Deploy en Cloudflare Pages - GIST POINT
 
-Guía paso a paso para desplegar la calculadora de importaciones en Cloudflare Pages.
+Guía paso a paso para desplegar la calculadora de importaciones en Cloudflare Pages, incluyendo configuración del backend PHP.
 
 ## 📋 Configuración de Build
 
@@ -9,17 +9,34 @@ Guía paso a paso para desplegar la calculadora de importaciones en Cloudflare P
 npm run build
 ```
 
-**Alternativa (si falla por dependencias):**
-```bash
-npm install && npm run build
-```
+**Funcionamiento del comando:**
+1. Construye la aplicación Astro
+2. Instala dependencias PHP con Composer
+3. Copia archivos backend al directorio dist/
+4. Prepara todo para el deploy
 
 ### Directorio de Salida (Build Output)
 ```
 /dist
 ```
 
-**Nota:** Astro genera automáticamente la carpeta `dist/` en la raíz del proyecto.
+**Estructura del dist/ generado:**
+```
+dist/
+├── _astro/                 # Assets estáticos (JS, CSS, imágenes)
+├── articulos/              # Páginas de blog
+├── calculadora/            # Calculadora principal
+├── contacto/               # Formulario de contacto
+├── config/                 # Configuración (variables de entorno)
+├── email_templates/        # Plantillas de emails
+├── vendor/                 # Dependencias PHP (PHPMailer + phpdotenv)
+├── form-handler.php        # Manejador del formulario
+├── index.html              # Página de inicio
+├── logo.svg                # Logo
+├── robots.txt              # Robots.txt
+├── sitemap-0.xml           # Sitemap
+└── sitemap-index.xml       # Índice del sitemap
+```
 
 ---
 
@@ -60,10 +77,37 @@ NPM_VERSION = 10
 - ✅ **Node.js:** Versión 20
 - ✅ **Root directory:** `/` (raíz del proyecto)
 
-**Environment variables (si necesitás):**
+### Paso 4: Variables de Entorno (Backend PHP)
+
+Configurar **variables secretas** en Cloudflare Pages → Settings → Environment variables. Estas variables se usan para el envío de emails.
+
+**Variables Obligatorias (SMTP):**
 ```bash
-PUBLIC_CONTACT_EMAIL = consultas@gistpoint.com
-PUBLIC_SITE_URL = https://tudominio.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_ENCRYPTION=tls
+SENDER_SMTP_USER=tu-email@gmail.com
+SENDER_SMTP_PASS=tu-contraseña-app
+IMPORT_FROM_NAME=GIST POINT S.A.S.
+IMPORT_TO_ADDRESS=consultas@gistpoint.com
+```
+
+**Variables Opcionales:**
+```bash
+RATE_LIMIT_SECONDS=30
+SESSION_TIMEOUT=1800
+LOG_FILE=contact-submissions.log
+LOG_LEVEL=info
+ENABLE_AUTOREPLY=true
+ENABLE_ADMIN_EMAIL=true
+ENABLE_LOGGING=true
+DEBUG=false
+ERROR_REPORTING=1
+```
+
+**PHP Version (Requerido):**
+```bash
+PHP_VERSION=8.1
 ```
 
 ---
@@ -71,28 +115,45 @@ PUBLIC_SITE_URL = https://tudominio.com
 ## 📁 Estructura de Carpetas para Cloudflare
 
 ```
-C:\Kaold\P\Impo\calc\  ← Root del proyecto
+/home/km/Proyectos/calc/  ← Root del proyecto
 ├── dist/                 ← Build output (generado automáticamente)
 │   ├── index.html
 │   ├── calculadora/
 │   │   └── index.html
-│   ├── blog/
+│   ├── articulos/         ← Páginas de blog
 │   │   └── index.html
-│   │   └── 2024-02-15-paso-a-paso-importar-primera-vez/
+│   │   └── paso-a-paso-importar-primera-vez/
 │   │       └── index.html
-│   │   └── 2024-02-10-ncm-clasificacion-arancelaria/
+│   │   └── ncm-clasificacion-arancelaria/
 │   │       └── index.html
 │   ├── contacto/
 │   │   └── index.html
+│   ├── config/            ← Configuración (variables de entorno)
+│   │   └── .env.example
+│   ├── email_templates/   ← Plantillas de emails
+│   │   └── import_consultation_admin.txt
+│   │   └── import_consultation_autoreply.txt
+│   ├── vendor/            ← Dependencias PHP
+│   ├── form-handler.php   ← Manejador del formulario
 │   └── _astro/           ← Assets estáticos (JS, CSS, imágenes)
-├── src/
-├── public/
+├── src/                   ← Código fuente de Astro
+├── public/                ← Archivos estáticos
 ├── package.json
-├── astro.config.mjs
-└── ...otros archivos de configuración
+├── composer.json          ← Dependencies PHP
+├── composer.lock          ← Versiones exactas de dependencias
+├── composer.phar          ← Composer local
+├── form-handler.php       ← Manejador del formulario
+└── astro.config.mjs
 ```
 
-**IMPORTANTE:** No subas la carpeta `dist/` a Git. Ya está en `.gitignore`.
+**Archivos a ignorar (gitignore):**
+```
+vendor/
+email_templates/*.log
+contact-submissions.log
+config/*.env
+.env
+```
 
 ---
 
@@ -189,6 +250,22 @@ npm install
 **Solución:**
 - Verificar que el build output sea `/dist`
 - Asegurar que `astro.config.mjs` tenga `output: 'static'`
+- Verificar que el archivo `form-handler.php` esté en la raíz de dist/
+
+### Error: "PHP Fatal error"
+
+**Solución:**
+- Verificar que PHP_VERSION esté configurado a 8.1
+- Verificar que el vendor folder exista en dist/vendor/
+- Verificar que las variables de entorno estén definidas
+
+### Error: "SMTP Connection Failed"
+
+**Solución:**
+- Verificar credenciales SMTP en Cloudflare Pages
+- Usar App Password para Gmail (no contraseña normal)
+- Verificar que el puerto 587 esté abierto
+- Probar con SMTP_ENCRYPTION=tls
 
 ---
 
@@ -252,14 +329,30 @@ const email = import.meta.env.PUBLIC_CONTACT_EMAIL;
 
 ## ✅ Checklist Pre-Deploy
 
+### General
 - [ ] `npm run build` funciona localmente
 - [ ] Carpeta `dist/` se genera correctamente
 - [ ] `.gitignore` incluye `dist/`
 - [ ] `package.json` tiene script "build"
 - [ ] `astro.config.mjs` configurado correctamente
-- [ ] Variables de entorno definidas (si aplica)
+
+### Backend PHP
+- [ ] `composer install` funciona
+- [ ] Vendor folder se crea en dist/
+- [ ] Form-handler.php está en dist/
+- [ ] Email templates están en dist/email_templates/
+- [ ] Config folder está en dist/config/
+
+### Variables de Entorno
+- [ ] Variables SMTP definidas en Cloudflare Pages
+- [ ] PHP_VERSION=8.1 definido
+- [ ] Credenciales de SMTP son válidas (App Password para Gmail)
+
+### Deploy
 - [ ] Dominio personalizado configurado (opcional)
 - [ ] SSL habilitado
+- [ ] Build command correcto: `npm run build`
+- [ ] Output directory: `/dist`
 
 ---
 
