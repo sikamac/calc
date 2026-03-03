@@ -1,5 +1,5 @@
 ---
-title: "Cómo Importar por Primera Vez: Guía Paso a Paso"
+title: "Cómo importar por primera vez: Guía paso a paso"
 date: 2024-02-15
 category: "Iniciación"
 image: "/images/guides/primera-importacion.jpg"
@@ -8,11 +8,11 @@ author: "Equipo de GIST POINT"
 tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]
 ---
 
-# Cómo Importar por Primera Vez: Guía Paso a Paso
+# Cómo importar por primera vez: Guía paso a paso
 
 Si estás leyendo esto, probablemente estés considerando realizar tu primera importación en Argentina y no sabés por dónde empezar. No te preocupés, en GIST POINT te guiamos en cada paso del proceso.
 
-## Paso 1: Registración ante AFIP
+## Paso 1: Registración ante ARCA
 
 Antes de pensar en traer cualquier producto, necesitás estar registrado como importador.
 
@@ -22,7 +22,7 @@ Antes de pensar en traer cualquier producto, necesitás estar registrado como im
 - Inscripción en **Registro de Importadores**
 
 ### Cómo hacerlo:
-1. Ingresá a [AFIP web](https://www.afip.gob.ar)
+1. Ingresá a [ARCA web](https://www.arca.gob.ar)
 2. Con tu Clave Fiscal, accedé a "Registro de Importadores"
 3. Completá el formulario 460/J
 4. Presentá la documentación requerida
@@ -37,13 +37,13 @@ El **Código NCM** (Nomenclatura Común del Mercosur) es fundamental. Determina:
 - Requisitos especiales (SENASA, ANMAT, etc.)
 
 ### Cómo encontrarlo:
-- Usá la [consulta de NCM en AFIP](https://www.afip.gob.ar/adicuad/NCMArancel/)
+- Usá la [consulta de NCM en ARCA](https://www.arca.gob.ar/adicuad/NCMArancel/)
 - Contratá un despachante para asesorarte
 - Usá nuestra calculadora con categorías predefinidas
 
 > **Tip:** Un código NCM incorrecto puede generar multas y demoras
 
-## Paso 3: Elegir Proveedor y Condiciones de Compra
+## Paso 3: Elegir proveedor y condiciones de compra
 
 ### Aspectos clave a negociar:
 - **Precio FOB** (precio en origen)
@@ -53,7 +53,7 @@ El **Código NCM** (Nomenclatura Común del Mercosur) es fundamental. Determina:
 
 > **Importante:** Pedí siempre proforma con todos los detalles
 
-## Paso 4: Calcular Costos Totales
+## Paso 4: Calcular costos totales
 
 Usá nuestra **calculadora de importaciones** para estimar:
 - Valor CIF (costo + flete + seguro)
@@ -73,7 +73,7 @@ IVA: 21%
 
 **Costo total estimado:** ~USD 1,650
 
-## Paso 5: Contratar Despachante de Aduanas
+## Paso 5: Contratar despachante de aduanas
 
 Es **obligatorio** para la mayoría de las operaciones.
 
@@ -132,14 +132,14 @@ Una vez liberada:
 - Realizar conciliación bancaria
 - Presentar declaraciones juradas correspondientes
 
-## Costos Ocultos que Debes Considerar
+## Costos ocultos que debes considerar
 
 ⚠️ **Almacenamiento en puerto:** Si no retirás rápido  
 ⚠️ **Gastos bancarios:** Transferencias internacionales  
 ⚠️ **Inspecciones:** SENASA, ANMAT pueden generar costos  
 ⚠️ **Demoras:** Penalidades por demora en documentación  
 
-## Tips para tu Primera Importación
+## Tips para tu primera importación
 
 ✅ **Empezá pequeño:** No hagas tu primera importación de USD 50,000  
 ✅ **Asesorate:** Un buen despachante vale su peso en oro  
@@ -147,11 +147,11 @@ Una vez liberada:
 ✅ **Tené margen:** Los imprevistos existen, preparate  
 ✅ **Documentá todo:** Cada email, cada cambio  
 
-## Cronograma Estimado
+## Cronograma estimado
 
 | Etapa | Tiempo Estimado |
 |-------|----------------|
-| Registración AFIP | 5-10 días |
+| Registración ARCA | 5-10 días |
 | Búsqueda proveedor | 15-30 días |
 | Transporte marítimo | 30-60 días |
 | Despacho aduanero | 3-7 días |

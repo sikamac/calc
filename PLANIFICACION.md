@@ -570,7 +570,7 @@ Thumbs.db
 
 1. **Login/Registro:** Guardar cálculos
 2. **PDF Export:** Exportar desglose
-3. **API AFIP:** Tasas en tiempo real
+3. **API ARCA:** Tasas en tiempo real
 4. **Newsletter:** Suscripción a noticias
 5. **Chatbot:** Asistencia IA
 6. **Multi-idioma:** Portugués (Mercosur)

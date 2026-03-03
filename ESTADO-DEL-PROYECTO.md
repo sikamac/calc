@@ -97,7 +97,7 @@ Proyecto web completo para calculadora de costos de importación en Argentina, c
 9. A/B testing de CTA
 
 ### **Largo Plazo (1 mes)**
-10. API con tasas AFIP en tiempo real
+10. API con tasas ARCA en tiempo real
 11. Sistema de login para guardar cálculos
 12. Exportar PDF de desglose
 

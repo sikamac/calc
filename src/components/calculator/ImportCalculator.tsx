@@ -34,8 +34,8 @@ interface VentaCalculation {
   precioVentaConIVA: number;
   baseImponibleGanancias: number;
   gananciaImponible: number;
-  iibbComercio: number;
-  iibbIndustria: number;
+  iibbProvincial: number;
+  iibbMunicipal: number;
   impuestoGananciasVenta: number;
   comisionVenta: number;
   gastosFijos: number;
@@ -52,36 +52,41 @@ export const ImportCalculator: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('importacion');
   
   const [valorFOB, setValorFOB] = useState<number>(1000);
-  const [tasaArancel, setTasaArancel] = useState<number>(35);
+  const [tasaArancel, setTasaArancel] = useState<number>(18);
   const [tasaAntidumping, setTasaAntidumping] = useState<number>(0);
   const [tasaIVA, setTasaIVA] = useState<number>(21);
-  const [tipoIVAAdicional, setTipoIVAAdicional] = useState<'10' | '20'>('10');
+  const [tipoIVAAdicional, setTipoIVAAdicional] = useState<'0' | '10' | '20'>('20');
   const [tasaGanancias, setTasaGanancias] = useState<number>(6);
   const [tasaPercepcionIB, setTasaPercepcionIB] = useState<number>(3);
   const [flete, setFlete] = useState<number>(0);
   const [seguro, setSeguro] = useState<number>(0);
   const [costoTransferenciaBancaria, setCostoTransferenciaBancaria] = useState<number>(0);
   const [gastosDespachante, setGastosDespachante] = useState<number>(0);
+  const [costoDepositoFiscal, setCostoDepositoFiscal] = useState<number>(0);
   const [calculo, setCalculo] = useState<ImportCalculation | null>(null);
   
-  const [margenNetoDeseado, setMargenNetoDeseado] = useState<number>(20);
+  const [margenNetoDeseado, setMargenNetoDeseado] = useState<number>(10);
   const [comisionVenta, setComisionVenta] = useState<number>(0);
   const [gastosFijos, setGastosFijos] = useState<number>(0);
-  const [porcentajeHonorariosSocios, setPorcentajeHonorariosSocios] = useState<number>(25);
+  const [porcentajeHonorariosSocios, setPorcentajeHonorariosSocios] = useState<number>(0);
+  const [tasaIIBBProvincial, setTasaIIBBProvincial] = useState<number>(3);
+  const [tasaIIBBMunicipal, setTasaIIBBMunicipal] = useState<number>(1.5);
   const [calculoVenta, setCalculoVenta] = useState<VentaCalculation | null>(null);
 
   useEffect(() => {
     calcularImportacion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [valorFOB, tasaArancel, tasaAntidumping, tasaIVA, tipoIVAAdicional,
-      tasaGanancias, tasaPercepcionIB, flete, seguro, costoTransferenciaBancaria, gastosDespachante]);
+      tasaGanancias, tasaPercepcionIB, flete, seguro, costoTransferenciaBancaria, 
+      gastosDespachante, costoDepositoFiscal]);
 
   useEffect(() => {
     if (calculo) {
       calcularVenta();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [calculo, margenNetoDeseado, comisionVenta, gastosFijos, porcentajeHonorariosSocios]);
+  }, [calculo, margenNetoDeseado, comisionVenta, gastosFijos, porcentajeHonorariosSocios,
+      tasaIIBBProvincial, tasaIIBBMunicipal]);
 
   const calcularImportacion = () => {
     const valorFOBNumerico = valorFOB || 0;
@@ -112,7 +117,7 @@ export const ImportCalculator: React.FC = () => {
 
     const ivaCalculado = (baseDerechos * tasaIVA) / 100;
 
-    // IVA Adicional: 10% o 20% sobre la base imponible
+    // IVA Adicional: 0%, 10% o 20% sobre la base imponible
     const ivaAdicionalCalculado = (baseDerechos * parseFloat(tipoIVAAdicional)) / 100;
 
     const impuestoGananciasCalculado = (baseDerechos * tasaGanancias) / 100;
@@ -121,7 +126,7 @@ export const ImportCalculator: React.FC = () => {
 
     const costoFinal = baseDerechos + ivaCalculado + ivaAdicionalCalculado +
                       impuestoGananciasCalculado + percepcionIBCalculada +
-                      costoTransferenciaBancaria + gastosDespachante;
+                      costoTransferenciaBancaria + gastosDespachante + costoDepositoFiscal;
 
     const costoTotalEnFOB = valorFOBNumerico > 0 ? costoFinal / valorFOBNumerico : 0;
 
@@ -147,8 +152,8 @@ export const ImportCalculator: React.FC = () => {
   const calcularVenta = () => {
     if (!calculo) return;
 
-    // Deductible import costs (flete, seguro, transferencia, despachante) - operating expenses only
-    const gastosOperativosImportacion = flete + seguro + costoTransferenciaBancaria + gastosDespachante;
+    // Deductible import costs (flete, seguro, transferencia, despachante, deposito fiscal) - operating expenses only
+    const gastosOperativosImportacion = flete + seguro + costoTransferenciaBancaria + gastosDespachante + costoDepositoFiscal;
 
     // Import taxes (NOT deductible for income tax): arancel, antidumping, tasa estadistica, IVA, IVA adicional, ganancias, IIBB
     const impuestosImportacion = calculo.arancel + calculo.derechoAntidumping + calculo.tasaEstadistica +
@@ -169,12 +174,12 @@ export const ImportCalculator: React.FC = () => {
     const tolerance = 0.0001;
 
     while (iterations < maxIterations && Math.abs(margenNetoCalculado - margenNetoDeseadoDecimal) > tolerance) {
-      // Gross profit based on deductible cost (for AFIP calculation)
-      const margenCalculadoAFIP = precioVenta - costoDeducibleGanancias;
+       // Gross profit based on deductible cost (for ARCA calculation)
+      const margenCalculadoARCA = precioVenta - costoDeducibleGanancias;
 
-      const iibbComercioCalculado = (precioVenta * 3) / 100;
-      const iibbIndustriaCalculado = (precioVenta * 1.5) / 100;
-      const totalIIBB = iibbComercioCalculado + iibbIndustriaCalculado;
+      const iibbProvincialCalculado = (precioVenta * tasaIIBBProvincial) / 100;
+      const iibbMunicipalCalculado = (precioVenta * tasaIIBBMunicipal) / 100;
+      const totalIIBB = iibbProvincialCalculado + iibbMunicipalCalculado;
 
       const comisionCalculada = (precioVenta * comisionVenta) / 100;
 
@@ -211,9 +216,9 @@ export const ImportCalculator: React.FC = () => {
 
     // Recalculate all values with final price
     const margenCalculadoReal = precioVenta - calculo.costoFinal;
-    const iibbComercioCalculado = (precioVenta * 3) / 100;
-    const iibbIndustriaCalculado = (precioVenta * 1.5) / 100;
-    const totalIIBB = iibbComercioCalculado + iibbIndustriaCalculado;
+    const iibbProvincialCalculado = (precioVenta * tasaIIBBProvincial) / 100;
+    const iibbMunicipalCalculado = (precioVenta * tasaIIBBMunicipal) / 100;
+    const totalIIBB = iibbProvincialCalculado + iibbMunicipalCalculado;
     const comisionCalculada = (precioVenta * comisionVenta) / 100;
 
     // Income tax base: Gross Profit (based on deductible cost) - Fixed Costs - Commission - Socios' Fees (capped at 25%)
@@ -263,8 +268,8 @@ export const ImportCalculator: React.FC = () => {
       precioVentaConIVA,
       baseImponibleGanancias,
       gananciaImponible: baseImponibleGanancias,
-      iibbComercio: iibbComercioCalculado,
-      iibbIndustria: iibbIndustriaCalculado,
+      iibbProvincial: iibbProvincialCalculado,
+      iibbMunicipal: iibbMunicipalCalculado,
       impuestoGananciasVenta: impuestoGananciasVentaCalculado,
       comisionVenta: comisionCalculada,
       gastosFijos,
@@ -297,7 +302,7 @@ export const ImportCalculator: React.FC = () => {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               }`}
             >
-              📦 Costos de Importación
+              📦 Costos de importación
             </button>
             <button
               onClick={() => setActiveTab('venta')}
@@ -308,7 +313,7 @@ export const ImportCalculator: React.FC = () => {
                   : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
               } ${!calculo ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              💰 Precio de Venta
+              💰 Precio de venta
             </button>
           </nav>
         </div>
@@ -319,7 +324,7 @@ export const ImportCalculator: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Inputs */}
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">📊 Datos de Importación</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">📊 Datos de importación</h3>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Valor FOB (USD)</label>
@@ -333,7 +338,7 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Impuestos Aduaneros</h4>
+                  <h4 className="font-semibold text-primary">Impuestos aduaneros</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -353,7 +358,7 @@ export const ImportCalculator: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Derecho Antidumping ({tasaAntidumping}%)
+                      Derecho antidumping ({tasaAntidumping}%)
                     </label>
                     <input
                       type="range"
@@ -369,7 +374,7 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Impuestos al Valor</h4>
+                  <h4 className="font-semibold text-primary">Impuestos al valor</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">IVA</label>
@@ -387,18 +392,19 @@ export const ImportCalculator: React.FC = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">IVA adicional</label>
                     <select
                       value={tipoIVAAdicional}
-                      onChange={(e) => setTipoIVAAdicional(e.target.value as '10' | '20')}
+                      onChange={(e) => setTipoIVAAdicional(e.target.value as '0' | '10' | '20')}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
                     >
+                      <option value="0">0% (Exento)</option>
                       <option value="10">10% del IVA General</option>
                       <option value="20">20% del IVA General</option>
                     </select>
-                    <div className="text-sm text-gray-500">Percepción de IVA (10-20% según producto)</div>
+                    <div className="text-sm text-gray-500">Percepción de IVA (0-20% según producto)</div>
                   </div>
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Impuesto a las Ganancias ({tasaGanancias}%)
+                      Impuesto a las ganancias ({tasaGanancias}%)
                     </label>
                     <input
                       type="number"
@@ -411,7 +417,7 @@ export const ImportCalculator: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Ingresos Brutos ({tasaPercepcionIB}%)
+                      Ingresos brutos ({tasaPercepcionIB}%)
                     </label>
                     <input
                       type="number"
@@ -424,7 +430,7 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Gastos Adicionales</h4>
+                  <h4 className="font-semibold text-primary">Gastos adicionales</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Flete (USD)</label>
@@ -470,6 +476,22 @@ export const ImportCalculator: React.FC = () => {
                       placeholder="Ej: 100"
                     />
                   </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Depósito fiscal/manejo y documentación (USD)
+                      <span className="ml-1 text-blue-500 cursor-help" title="Gastos de deposito fiscal, manejo de mercadería y documentación que no estén incluidos en el costo del despachante o flete">
+                        ?
+                      </span>
+                    </label>
+                    <input
+                      type="number"
+                      value={costoDepositoFiscal}
+                      onChange={(e) => setCostoDepositoFiscal(parseFloat(e.target.value) || 0)}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      placeholder="Ej: 50"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -478,7 +500,7 @@ export const ImportCalculator: React.FC = () => {
                 {calculo && (
                   <>
                     <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-                      <h4 className="text-lg font-bold text-green-900 mb-4">✅ Resumen de Costos</h4>
+                      <h4 className="text-lg font-bold text-green-900 mb-4">✅ Resumen de costos</h4>
                       
                       <div className="space-y-3">
                         <div className="flex justify-between py-2 border-b border-green-200">
@@ -554,7 +576,7 @@ export const ImportCalculator: React.FC = () => {
 
                     {/* Distribution Chart */}
                     <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                      <h4 className="text-lg font-bold text-blue-900 mb-4">📊 Distribución de Costos</h4>
+                      <h4 className="text-lg font-bold text-blue-900 mb-4">📊 Distribución de costos</h4>
                       
                       <div className="space-y-4">
                         {[
@@ -600,11 +622,14 @@ export const ImportCalculator: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Inputs Venta */}
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">💼 Datos de Venta</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">💼 Datos de venta</h3>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Margen Neto Deseado (%)
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Margen neto deseado (%)
+                    <span className="ml-1 text-blue-500 cursor-help" title="Margen neto: ganancia después de todos los impuestos y gastos. Diferente del margen bruto (sin impuestos).">
+                      ?
+                    </span>
                   </label>
                   <input
                     type="number"
@@ -612,12 +637,17 @@ export const ImportCalculator: React.FC = () => {
                     onChange={(e) => setMargenNetoDeseado(parseFloat(e.target.value) || 0)}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
                   />
-                  <div className="text-sm text-gray-500">Margen de ganancia neta deseado</div>
+                  <div className="text-sm text-gray-500">
+                    Margen de ganancia neta deseado. 
+                    <a href="/articulos/diferencia-margen-bruto-neto" className="text-blue-600 hover:text-blue-800 ml-1">
+                      ¿Qué es la diferencia entre margen bruto y neto?
+                    </a>
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Comisión de Venta (%)
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Comisión de venta (%)
                   </label>
                   <input
                     type="number"
@@ -628,8 +658,8 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Gastos Fijos (USD)
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Gastos fijos (USD)
                   </label>
                   <input
                     type="number"
@@ -640,8 +670,8 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Honorarios Socios (%)
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Honorarios socios (%)
                   </label>
                   <input
                     type="number"
@@ -651,6 +681,34 @@ export const ImportCalculator: React.FC = () => {
                   />
                   <div className="text-sm text-gray-500">Máximo deducible: 25%</div>
                 </div>
+
+                 <div className="space-y-4">
+                    <h4 className="font-semibold text-primary">Tasas de IIBB</h4>
+                    
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        IIBB Provincial (%)
+                      </label>
+                      <input
+                        type="number"
+                        value={tasaIIBBProvincial}
+                        onChange={(e) => setTasaIIBBProvincial(parseFloat(e.target.value) || 0)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        IIBB Municipal (%)
+                      </label>
+                      <input
+                        type="number"
+                        value={tasaIIBBMunicipal}
+                        onChange={(e) => setTasaIIBBMunicipal(parseFloat(e.target.value) || 0)}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      />
+                    </div>
+                  </div>
               </div>
 
               {/* Results Venta */}
@@ -691,12 +749,12 @@ export const ImportCalculator: React.FC = () => {
                   
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">IIBB Comercio (3%)</span>
-                      <span>{formatCurrency(calculoVenta.iibbComercio)}</span>
+                      <span className="text-gray-600">IIBB Provincial</span>
+                      <span>{formatCurrency(calculoVenta.iibbProvincial)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">IIBB Industria (1.5%)</span>
-                      <span>{formatCurrency(calculoVenta.iibbIndustria)}</span>
+                      <span className="text-gray-600">IIBB Municipal</span>
+                      <span>{formatCurrency(calculoVenta.iibbMunicipal)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Impuesto Ganancias (30%)</span>
