@@ -1,5 +1,5 @@
 ---
-title: "Código NCM: Clasificación Arancelaria Completa"
+title: "Código NCM: Clasificación arancelaria completa"
 date: 2024-02-10
 category: "Aranceles"
 image: "/images/guides/ncm-clasificacion.jpg"
@@ -8,7 +8,7 @@ author: "Equipo de GIST POINT"
 tags: ["NCM", "clasificación arancelaria", "código arancelario", "Mercosur"]
 ---
 
-# Código NCM: Clasificación Arancelaria Completa
+# Código NCM: Clasificación arancelaria completa
 
 El **Código NCM** (Nomenclatura Común del Mercosur) es el sistema de clasificación de mercaderías más importante para el comercio exterior en Argentina. Una clasificación incorrecta puede generar multas, demoras y problemas legales.
 
@@ -41,30 +41,30 @@ El NCM es un sistema de 8 dígitos que clasifica todas las mercaderías que se c
 
 ## Cómo Encontrar tu Código NCM
 
-### Método 1: Buscador Oficial ARCA
+### Método 1: Buscador oficial ARCA
 
 1. Entrá a [Buscador NCM ARCA](https://www.arca.gob.ar/adicuad/NCMArancel/)
 2. Escribí una descripción en español
 3. Navegá el árbol de clasificaciones
 4. Verificá la nota explicativa del capítulo
 
-### Método 2: Por Similitud
+### Método 2: Por similitud
 
 Si ya importaste productos similares:
 1. Revisá tu DJAI anterior
 2. Verificá el código usado
 3. Confirmá que sigue vigente
 
-### Método 3: Asesoramiento Profesional
+### Método 3: Asesoramiento profesional
 
 Consultá con:
 - Despachante de aduanas matriculado
 - Estudios especializados en comercio exterior
 - **GIST POINT S.A.S.** para productos complejos
 
-## Ejemplos Prácticos de Clasificación
+## Ejemplos prácticos de clasificación
 
-### Ejemplo 1: Laptop para Uso Personal
+### Ejemplo 1: Laptop para uso personal
 
 **Descripción:** Computadora portátil, marca Dell, modelo XPS 13
 
@@ -96,7 +96,7 @@ Consultá con:
 
 **Arancel:** 35% (Protección a industria textil local)
 
-### Ejemplo 3: Motor Eléctrico Industrial
+### Ejemplo 3: Motor eléctrico industrial
 
 **Descripción:** Motor trifásico, 5 HP, para maquinaria industrial
 
@@ -119,19 +119,19 @@ Consultá con:
 - Función/principio de funcionamiento
 - Grado de elaboración
 
-### 2. **Uso Previsto**
+### 2. **Uso previsto**
 - ¿Para qué se va a usar principalmente?
 - ¿El uso determina las características esenciales?
 
-### 3. **Notas Explicativas**
+### 3. **Notas explicativas**
 Cada capítulo tiene notas que excluyen o incluyen productos específicos.
 
 #### Ejemplo de nota excluyente:
 > "Este capítulo no comprende los artículos de la partida 95.03 (juguetes)"
 
-## Casos Complicados y Criterios Especiales
+## Casos complicados y criterios especiales
 
-### Caso 1: Producto Multifunción
+### Caso 1: Producto multifunción
 
 **Ejemplo:** Impresora multifunción (imprime, escanea, copia)
 
@@ -147,7 +147,7 @@ Cada capítulo tiene notas que excluyen o incluyen productos específicos.
 
 **Código:** **8205.90.00** (Sets de herramientas)
 
-### Caso 3: Productos Incompletos
+### Caso 3: Productos incompletos
 
 **Ejemplo:** Celular sin batería
 
@@ -167,16 +167,16 @@ Cada capítulo tiene notas que excluyen o incluyen productos específicos.
 - Consultá clasificaciones previas
 - Verificá decisiones de clasificación
 
-### 3. **Nuestro Asesoramiento**
+### 3. **Nuestro asesoramiento**
 En **GIST POINT S.A.S.** ofrecemos:
 - Clasificación NCM confirmada
 - Justificación técnica
 - Respaldo para Aduana
 - Actualizaciones de normativa
 
-## Errores Comunes que Debes Evitar
+## Errores comunes que debes evitar
 
-### ❌ Error 1: Clasificar por el Nombre Comercial
+### ❌ Error 1: Clasificar por el nombre comercial
 ```
 Producto: "iPhone"
 Error: Buscar "iPhone" en el buscador
@@ -190,14 +190,14 @@ Error: No leer notas de exclusión
 Correcto: Verificar si las partes están incluidas o excluidas
 ```
 
-### ❌ Error 3: No Considerar el Estado del Producto
+### ❌ Error 3: No considerar el estado del producto
 ```
 Producto: Ropa usada
 Error: Clasificar como ropa nueva
 Correcto: 6309.00.00 (Prendas usadas)
 ```
 
-## Documentación que Debes Tener
+## Documentación que debes tener
 
 Para justificar tu clasificación NCM:
 
@@ -210,7 +210,7 @@ Para justificar tu clasificación NCM:
 
 ## Qué Hacer si Tenés Dudas
 
-### Opción 1: Consulta Previa con Aduana
+### Opción 1: Consulta previa con Aduana
 
 Presentá una **"Consulta de Clasificación"** ante Aduana:
 - Descripción completa
@@ -224,7 +224,7 @@ Para importaciones grandes o recurrentes:
 - Válida por 3 años
 - Costo: aprox. USD 500
 
-### Opción 3: Asesoramiento Profesional
+### Opción 3: Asesoramiento profesional
 
 En **GIST POINT S.A.S.** te ayudamos con:
 - Análisis de producto complejo
