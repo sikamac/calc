@@ -24,6 +24,16 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   build: {
-    inlineStylesheets: 'always'
+    inlineStylesheets: 'always',
+    assets: 'assets'
+  },
+  vite: {
+    build: {
+      rollupOptions: {
+        input: {
+          main: './src/_worker.js'
+        }
+      }
+    }
   }
 });
