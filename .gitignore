@@ -70,7 +70,7 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
-vendor/
+
 email_templates/*.log
 contact-submissions.log
 config/*.env

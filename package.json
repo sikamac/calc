@@ -5,9 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && cp form-handler.php dist/ && php composer.phar install --no-dev && cp -r vendor dist/ && cp -r email_templates dist/ && cp -r config dist/",
+    "build": "astro build",
     "preview": "astro preview",
-    "dev-with-php": "astro build && cp form-handler.php dist/ && php composer.phar install --no-dev && cp -r vendor dist/ && cp -r email_templates dist/ && cp -r config dist/ && concurrently \"astro dev\" \"cd dist && php -S localhost:8080\"",
     "astro": "astro"
   },
   "dependencies": {
