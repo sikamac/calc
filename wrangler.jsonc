@@ -1,0 +1,9 @@
+{
+  "name": "calc",
+  "compatibility_date": "2026-03-06",
+  "main": "dist/_worker.js",
+  "assets": {
+    "directory": "dist",
+    "binding": "ASSETS"
+  }
+}
