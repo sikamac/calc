@@ -1,5 +1,4 @@
-// Cloudflare Pages Function - Contact Form Handler
-// Envía datos a Google Apps Script para guardar en Sheet y enviar email
+import type { APIRoute } from 'astro';
 
 interface FormData {
   first_name: string;
@@ -10,28 +9,18 @@ interface FormData {
   message: string;
 }
 
-interface Env {
-  GOOGLE_SCRIPT_URL: string;
-}
-
-// Rate limiting usando KV (opcional, si tenés KV configurado)
-async function checkRateLimit(request: Request, env: Env): Promise<boolean> {
-  // Por ahora, validación básica con timestamp
-  // TODO: Agregar KV store para rate limiting más robusto
-  return true;
-}
-
-export async function POST(request: Request, env: Env) {
+export const POST: APIRoute = async ({ request }) => {
   try {
     // Validar origen
     const origin = request.headers.get('Origin') || '';
     const allowedOrigins = [
-      'https://calculadoraimportacion.com.ar',
-      'https://www.calculadoraimportacion.com.ar',
-      'http://localhost:4321', // para desarrollo
+      'calculadoraimportacion.com.ar',
+      'www.calculadoraimportacion.com.ar',
+      'localhost:4321',
     ];
 
-    if (!allowedOrigins.some(o => origin.includes(o.replace('https://', '').replace('http://', '')))) {
+    const originHost = origin.replace('https://', '').replace('http://', '');
+    if (!allowedOrigins.some(o => originHost.includes(o))) {
       return new Response(JSON.stringify({ error: 'Origin not allowed' }), {
         status: 403,
         headers: { 'Content-Type': 'application/json' }
@@ -75,8 +64,8 @@ export async function POST(request: Request, env: Env) {
       });
     }
 
-    // Enviar a Google Apps Script
-    const scriptUrl = env.GOOGLE_SCRIPT_URL;
+    // Obtener URL del Google Script desde variables de entorno
+    const scriptUrl = import.meta.env.GOOGLE_SCRIPT_URL;
     
     if (!scriptUrl) {
       console.error('GOOGLE_SCRIPT_URL no configurado');
@@ -86,6 +75,7 @@ export async function POST(request: Request, env: Env) {
       });
     }
 
+    // Enviar a Google Apps Script
     const response = await fetch(scriptUrl, {
       method: 'POST',
       headers: {
@@ -125,9 +115,9 @@ export async function POST(request: Request, env: Env) {
       headers: { 'Content-Type': 'application/json' }
     });
   }
-}
+};
 
-export async function OPTIONS(request: Request) {
+export const OPTIONS: APIRoute = async ({ request }) => {
   const origin = request.headers.get('Origin') || '*';
   return new Response(null, {
     status: 204,
@@ -137,4 +127,4 @@ export async function OPTIONS(request: Request) {
       'Access-Control-Allow-Headers': 'Content-Type',
     }
   });
-}
+};
