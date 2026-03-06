@@ -9,7 +9,12 @@ interface FormData {
   message: string;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+interface CloudflareEnv {
+  GOOGLE_SCRIPT_URL: string;
+  [key: string]: string;
+}
+
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
     // Validar origen
     const origin = request.headers.get('Origin') || '';
@@ -64,8 +69,9 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    // Obtener URL del Google Script desde variables de entorno
-    const scriptUrl = import.meta.env.GOOGLE_SCRIPT_URL;
+    // Obtener URL del Google Script desde variables de entorno de Cloudflare
+    const env = locals.runtime?.env as CloudflareEnv | undefined;
+    const scriptUrl = env?.GOOGLE_SCRIPT_URL || import.meta.env.GOOGLE_SCRIPT_URL;
     
     if (!scriptUrl) {
       console.error('GOOGLE_SCRIPT_URL no configurado');
