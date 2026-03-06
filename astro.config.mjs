@@ -26,14 +26,5 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
     assets: 'assets'
-  },
-  vite: {
-    build: {
-      rollupOptions: {
-        input: {
-          main: './src/_worker.js'
-        }
-      }
-    }
   }
 });
