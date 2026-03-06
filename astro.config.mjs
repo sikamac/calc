@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
+import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://calculadoraimportacion.com.ar',
@@ -21,7 +22,10 @@ export default defineConfig({
       },
     }),
   ],
-  output: 'static',
+  output: 'server',
+  adapter: cloudflare({
+    imageService: 'passthrough',
+  }),
   trailingSlash: 'never',
   build: {
     inlineStylesheets: 'always',
