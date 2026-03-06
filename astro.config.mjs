@@ -3,8 +3,11 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
+import cloudflare from '@astrojs/cloudflare';
+
 export default defineConfig({
   site: 'https://calculadoraimportacion.com.ar',
+
   integrations: [
     react(),
     tailwind({
@@ -21,10 +24,14 @@ export default defineConfig({
       },
     }),
   ],
+
   output: 'static',
   trailingSlash: 'never',
+
   build: {
     inlineStylesheets: 'always',
     assets: 'assets'
-  }
+  },
+
+  adapter: cloudflare()
 });
