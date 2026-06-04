@@ -165,7 +165,7 @@ En **GIST POINT S.A.S.** te asesoramos en tu primera importación:
 - Recomendación de despachantes
 - Optimización de impuestos
 
-📧 **Contactanos:** consultas@gistpoint.com  
+📧 **Contactanos:** info@gist-point.com  
 🌐 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
 
 ---

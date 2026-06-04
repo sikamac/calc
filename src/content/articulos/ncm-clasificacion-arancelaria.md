@@ -280,7 +280,7 @@ En **GIST POINT S.A.S.** ofrecemos:
 🔄 **Actualizaciones** cuando cambie la normativa  
 💡 **Capacitación** para tu equipo  
 
-**Contactanos:** consultas@gistpoint.com  
+**Contactanos:** info@gist-point.com  
 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
 
 ---

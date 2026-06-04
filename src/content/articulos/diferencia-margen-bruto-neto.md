@@ -169,5 +169,5 @@ Nuestro equipo de expertos te puede ayudar a:
 - Clasificar correctamente tu producto en NCM
 - Negociar con proveedores
 
-📧 **Contactanos:** consultas@gistpoint.com  
+📧 **Contactanos:** info@gist-point.com  
 🌐 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
