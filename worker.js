@@ -79,6 +79,15 @@ async function handleContact(request, env) {
     });
   }
 
+  if (nameTrimmed.length > 200 || emailTrimmed.length > 254 ||
+      (subjectTrimmed && subjectTrimmed.length > 500) || messageTrimmed.length > 5000 ||
+      (companyTrimmed && companyTrimmed.length > 200) || (phoneTrimmed && phoneTrimmed.length > 50)) {
+    return new Response(JSON.stringify({ error: 'input_too_long' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   // fix #5 (continued): regex runs on the already-trimmed value
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
     return new Response(JSON.stringify({ error: 'invalid_email' }), {
@@ -134,7 +143,7 @@ async function handleContact(request, env) {
     await env.EMAIL.send({
       to: 'gistpoint.international@gmail.com',
       from: { email: 'info@gist-point.com', name: 'GIST POINT' },
-      subject: `Nuevo contacto: ${subjectTrimmed}`,
+      subject: `Nuevo contacto: ${subjectTrimmed.replace(/[\r\n]/g, ' ')}`,
       // fix #1: all user values are HTML-escaped before interpolation
       html: `<p><b>Nombre:</b> ${escapeHtml(nameTrimmed)}<br><b>Email:</b> ${escapeHtml(emailTrimmed)}<br><b>Empresa:</b> ${escapeHtml(companyTrimmed ?? '—')}<br><b>Teléfono:</b> ${escapeHtml(phoneTrimmed ?? '—')}<br><b>Asunto:</b> ${escapeHtml(subjectTrimmed)}<br><b>Mensaje:</b><br>${escapeHtml(messageTrimmed)}</p>`,
       text: `Nombre: ${nameTrimmed}\nEmail: ${emailTrimmed}\nEmpresa: ${companyTrimmed ?? '—'}\nTeléfono: ${phoneTrimmed ?? '—'}\nAsunto: ${subjectTrimmed}\nMensaje:\n${messageTrimmed}`,
