@@ -1,10 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-primary: #003366;
+  --color-secondary: #0066CC;
+  --color-accent: #FF6600;
+  --font-sans: Inter, system-ui, sans-serif;
+}
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: Inter, system-ui, sans-serif;
     scroll-behavior: smooth;
   }
 }
@@ -13,16 +19,57 @@
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
   }
-  
+
   .btn-primary {
     @apply bg-accent hover:bg-orange-600 text-white;
   }
-  
+
   .btn-secondary {
     @apply bg-secondary hover:bg-blue-700 text-white;
   }
-  
+
   .btn-outline {
     @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
   }
+}
+
+/* Typography plugin customizations (equivalent to old tailwind.config.mjs) */
+.prose {
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #003366;
+  --tw-prose-links: #FF6600;
+  --tw-prose-bold: #003366;
+  --tw-prose-code: #003366;
+  --tw-prose-quotes: #374151;
+  --tw-prose-quote-borders: #FF6600;
+  --tw-prose-bullets: #FF6600;
+  --tw-prose-counters: #FF6600;
+  --tw-prose-th-borders: #e5e7eb;
+  --tw-prose-td-borders: #e5e7eb;
+  --tw-prose-hr: #e5e7eb;
+  max-width: none;
+}
+
+.prose code::before,
+.prose code::after {
+  content: '';
+}
+
+.prose :not(pre) > code {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 400;
+  color: #003366;
+}
+
+.prose thead {
+  background-color: #f3f4f6;
+  color: #003366;
+}
+
+.prose blockquote {
+  background-color: #fff7ed;
+  padding: 1rem 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
