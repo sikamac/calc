@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS impocalc_contacts (
   subject    TEXT     NOT NULL,
   message    TEXT     NOT NULL,
   lang       TEXT     NOT NULL DEFAULT 'es',
-  created_at TEXT     NOT NULL
+  created_at TEXT     NOT NULL DEFAULT (datetime('now'))
 );

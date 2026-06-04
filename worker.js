@@ -1,3 +1,15 @@
+// ---------------------------------------------------------------------------
+// HTML helper – fix #1: escape all user-supplied values in the email body
+// ---------------------------------------------------------------------------
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -34,16 +46,63 @@ async function handleLeads(request, env) {
 }
 
 async function handleContact(request, env) {
-  const data = await request.json();
+  // fix #2: guard against empty body or non-JSON Content-Type
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'invalid_json' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   const { name, email, phone, company, subject, message, lang } = data;
   const turnstileToken = data['cf-turnstile-response'];
 
-  const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ secret: env.TURNSTILE_SECRET, response: turnstileToken }),
-  });
-  const verification = await verifyRes.json();
+  // fix #5: trim all fields once so every subsequent use is consistent
+  const nameTrimmed    = name?.trim()    || '';
+  const emailTrimmed   = email?.trim()   || '';
+  const subjectTrimmed = subject?.trim() || '';
+  const messageTrimmed = message?.trim() || '';
+  const phoneTrimmed   = phone?.trim()   || null;
+  const companyTrimmed = company?.trim() || null;
+
+  // fix #7: allowlist lang to prevent arbitrary strings reaching the DB
+  const safeLang = ['es', 'en'].includes(lang) ? lang : 'es';
+
+  // fix #6: run cheap field checks BEFORE the external Turnstile call
+  if (!nameTrimmed || !emailTrimmed || !subjectTrimmed || !messageTrimmed) {
+    return new Response(JSON.stringify({ error: 'missing_fields' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  // fix #5 (continued): regex runs on the already-trimmed value
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailTrimmed)) {
+    return new Response(JSON.stringify({ error: 'invalid_email' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  // fix #3: guard against Turnstile siteverify being temporarily unreachable
+  let verification;
+  try {
+    const verifyRes = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ secret: env.TURNSTILE_SECRET, response: turnstileToken }),
+    });
+    verification = await verifyRes.json();
+  } catch {
+    return new Response(JSON.stringify({ error: 'captcha_failed' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
   if (!verification.success) {
     return new Response(JSON.stringify({ error: 'captcha_failed' }), {
       status: 400,
@@ -51,39 +110,34 @@ async function handleContact(request, env) {
     });
   }
 
-  if (!name?.trim() || !email?.trim() || !subject?.trim() || !message?.trim()) {
-    return new Response(JSON.stringify({ error: 'missing_fields' }), {
-      status: 400,
+  // fix #4: guard against DB failures returning an HTML 500
+  try {
+    await env.DB.prepare(
+      "INSERT INTO impocalc_contacts (name, email, phone, company, subject, message, lang, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))"
+    ).bind(
+      nameTrimmed,
+      emailTrimmed,
+      phoneTrimmed,
+      companyTrimmed,
+      subjectTrimmed,
+      messageTrimmed,
+      safeLang           // fix #7: use allowlisted value
+    ).run();
+  } catch {
+    return new Response(JSON.stringify({ error: 'db_error' }), {
+      status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
-
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return new Response(JSON.stringify({ error: 'invalid_email' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  await env.DB.prepare(
-    "INSERT INTO impocalc_contacts (name, email, phone, company, subject, message, lang, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, datetime('now'))"
-  ).bind(
-    name.trim(),
-    email.trim(),
-    phone?.trim() || null,
-    company?.trim() || null,
-    subject.trim(),
-    message.trim(),
-    lang || 'es'
-  ).run();
 
   try {
     await env.EMAIL.send({
       to: 'gistpoint.international@gmail.com',
       from: { email: 'info@gist-point.com', name: 'GIST POINT' },
-      subject: `Nuevo contacto: ${subject.trim()}`,
-      html: `<p><b>Nombre:</b> ${name.trim()}<br><b>Email:</b> ${email.trim()}<br><b>Empresa:</b> ${company?.trim() || '—'}<br><b>Teléfono:</b> ${phone?.trim() || '—'}<br><b>Asunto:</b> ${subject.trim()}<br><b>Mensaje:</b><br>${message.trim()}</p>`,
-      text: `Nombre: ${name.trim()}\nEmail: ${email.trim()}\nEmpresa: ${company?.trim() || '—'}\nTeléfono: ${phone?.trim() || '—'}\nAsunto: ${subject.trim()}\nMensaje:\n${message.trim()}`,
+      subject: `Nuevo contacto: ${subjectTrimmed}`,
+      // fix #1: all user values are HTML-escaped before interpolation
+      html: `<p><b>Nombre:</b> ${escapeHtml(nameTrimmed)}<br><b>Email:</b> ${escapeHtml(emailTrimmed)}<br><b>Empresa:</b> ${escapeHtml(companyTrimmed ?? '—')}<br><b>Teléfono:</b> ${escapeHtml(phoneTrimmed ?? '—')}<br><b>Asunto:</b> ${escapeHtml(subjectTrimmed)}<br><b>Mensaje:</b><br>${escapeHtml(messageTrimmed)}</p>`,
+      text: `Nombre: ${nameTrimmed}\nEmail: ${emailTrimmed}\nEmpresa: ${companyTrimmed ?? '—'}\nTeléfono: ${phoneTrimmed ?? '—'}\nAsunto: ${subjectTrimmed}\nMensaje:\n${messageTrimmed}`,
     });
   } catch (e) {
     console.error('Email notification failed:', e);
