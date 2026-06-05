@@ -290,30 +290,30 @@ export const ImportCalculator: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+      <div className="bg-white rounded-2xl border border-[#DDE6F2] overflow-hidden" style={{boxShadow: '0 18px 45px rgba(8,28,58,0.08)'}}>
         {/* Tabs */}
-        <div className="border-b border-gray-200">
+        <div className="border-b border-[#DDE6F2]">
           <nav className="flex -mb-px">
             <button
               onClick={() => setActiveTab('importacion')}
               className={`py-4 px-6 text-center border-b-2 font-medium text-sm transition-colors ${
                 activeTab === 'importacion'
-                  ? 'border-accent text-accent'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-[#0074D9] text-[#0074D9]'
+                  : 'border-transparent text-[#5D6B82] hover:text-[#081C3A] hover:border-[#DDE6F2]'
               }`}
             >
-              📦 Costos de importación
+              Costos de importación
             </button>
             <button
               onClick={() => setActiveTab('venta')}
               disabled={!calculo}
               className={`py-4 px-6 text-center border-b-2 font-medium text-sm transition-colors ${
                 activeTab === 'venta'
-                  ? 'border-accent text-accent'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-[#0074D9] text-[#0074D9]'
+                  : 'border-transparent text-[#5D6B82] hover:text-[#081C3A] hover:border-[#DDE6F2]'
               } ${!calculo ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              💰 Precio de venta
+              Precio de venta
             </button>
           </nav>
         </div>
@@ -324,7 +324,7 @@ export const ImportCalculator: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Inputs */}
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">📊 Datos de importación</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Datos de importación</h3>
                 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Valor FOB (USD)</label>
@@ -332,13 +332,13 @@ export const ImportCalculator: React.FC = () => {
                     type="number"
                     value={valorFOB}
                     onChange={(e) => setValorFOB(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     placeholder="Ej: 1000"
                   />
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Impuestos aduaneros</h4>
+                  <h4 className="font-semibold text-[#00246B]">Impuestos aduaneros</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -374,14 +374,14 @@ export const ImportCalculator: React.FC = () => {
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Impuestos al valor</h4>
+                  <h4 className="font-semibold text-[#00246B]">Impuestos al valor</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">IVA</label>
                     <select
                       value={tasaIVA}
                       onChange={(e) => setTasaIVA(parseFloat(e.target.value))}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     >
                       <option value="21">21% (General)</option>
                       <option value="10.5">10.5% (Bienes de capital)</option>
@@ -393,7 +393,7 @@ export const ImportCalculator: React.FC = () => {
                     <select
                       value={tipoIVAAdicional}
                       onChange={(e) => setTipoIVAAdicional(e.target.value as '0' | '10' | '20')}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     >
                       <option value="0">0% (Exento)</option>
                       <option value="10">10% del IVA General</option>
@@ -410,7 +410,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={tasaGanancias}
                       onChange={(e) => setTasaGanancias(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     />
                     <div className="text-sm text-gray-500">Anticipo de Ganancias (6-11%)</div>
                   </div>
@@ -423,14 +423,14 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={tasaPercepcionIB}
                       onChange={(e) => setTasaPercepcionIB(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     />
                     <div className="text-sm text-gray-500">3% comercio, 1.5% industria</div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-semibold text-primary">Gastos adicionales</h4>
+                  <h4 className="font-semibold text-[#00246B]">Gastos adicionales</h4>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Flete (USD)</label>
@@ -438,7 +438,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={flete}
                       onChange={(e) => setFlete(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       placeholder="Ej: 150"
                     />
                   </div>
@@ -449,7 +449,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={seguro}
                       onChange={(e) => setSeguro(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       placeholder="Ej: 50"
                     />
                   </div>
@@ -460,7 +460,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={costoTransferenciaBancaria}
                       onChange={(e) => setCostoTransferenciaBancaria(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       placeholder="Ej: 30"
                     />
                     <div className="text-sm text-gray-500">Comisión por transferencia internacional</div>
@@ -472,7 +472,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={gastosDespachante}
                       onChange={(e) => setGastosDespachante(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       placeholder="Ej: 100"
                     />
                   </div>
@@ -488,7 +488,7 @@ export const ImportCalculator: React.FC = () => {
                       type="number"
                       value={costoDepositoFiscal}
                       onChange={(e) => setCostoDepositoFiscal(parseFloat(e.target.value) || 0)}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                      className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       placeholder="Ej: 50"
                     />
                   </div>
@@ -499,74 +499,74 @@ export const ImportCalculator: React.FC = () => {
               <div className="space-y-6">
                 {calculo && (
                   <>
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-                      <h4 className="text-lg font-bold text-green-900 mb-4">✅ Resumen de costos</h4>
+                    <div className="bg-[#F3F7FC] border border-[#DDE6F2] rounded-xl p-6">
+                      <h4 className="text-lg font-bold text-[#081C3A] mb-4">Resumen de costos</h4>
                       
                       <div className="space-y-3">
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Valor FOB</span>
                           <span className="font-medium">{formatCurrency(calculo.valorFOB)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">+ Flete</span>
                           <span className="font-medium">{formatCurrency(calculo.flete)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">+ Seguro</span>
                           <span className="font-medium">{formatCurrency(calculo.seguro)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b-2 border-green-300">
+                        <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
                           <span className="font-semibold">Valor CIF</span>
                           <span className="font-semibold">{formatCurrency(calculo.valorFOB + calculo.flete + calculo.seguro)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Arancel ({tasaArancel}%)</span>
-                          <span className="font-medium text-orange-600">{formatCurrency(calculo.arancel)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.arancel)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Derecho Antidumping ({tasaAntidumping}%)</span>
-                          <span className="font-medium text-orange-600">{formatCurrency(calculo.derechoAntidumping)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.derechoAntidumping)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Tasa Estadística (0.5%)</span>
-                          <span className="font-medium text-orange-600">{formatCurrency(calculo.tasaEstadistica)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.tasaEstadistica)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b-2 border-green-300">
+                        <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
                           <span className="font-semibold">Base para impuestos</span>
                           <span className="font-semibold">{formatCurrency(calculo.baseIVA)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">IVA ({tasaIVA}%)</span>
-                          <span className="font-medium text-red-600">{formatCurrency(calculo.iva)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.iva)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">IVA adicional ({tipoIVAAdicional}% del IVA)</span>
-                          <span className="font-medium text-red-600">{formatCurrency(calculo.ivaAdicional)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.ivaAdicional)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Impuesto Ganancias ({tasaGanancias}%)</span>
-                          <span className="font-medium text-red-600">{formatCurrency(calculo.impuestoGanancias)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.impuestoGanancias)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Ingresos Brutos ({tasaPercepcionIB}%)</span>
-                          <span className="font-medium text-red-600">{formatCurrency(calculo.percepcionIB)}</span>
+                          <span className="font-medium text-[#0074D9]">{formatCurrency(calculo.percepcionIB)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b border-green-200">
+                        <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Costo transferencia bancaria</span>
                           <span className="font-medium">{formatCurrency(calculo.costoTransferenciaBancaria)}</span>
                         </div>
-                        <div className="flex justify-between py-2 border-b-2 border-green-400">
+                        <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
                           <span className="text-gray-700">Gastos despachante</span>
                           <span className="font-medium">{formatCurrency(calculo.gastosDespachante)}</span>
                         </div>
-                        <div className="flex justify-between py-3 bg-green-100 rounded-lg px-4 mt-4">
-                          <span className="font-bold text-lg text-green-900">💰 COSTO FINAL</span>
-                          <span className="font-bold text-lg text-green-900">{formatCurrency(calculo.costoFinal)}</span>
+                        <div className="flex justify-between py-3 bg-[#F3F7FC] rounded-lg px-4 mt-4">
+                          <span className="font-bold text-lg text-[#081C3A]">Costo final</span>
+                          <span className="font-bold text-lg text-[#0074D9]">{formatCurrency(calculo.costoFinal)}</span>
                         </div>
-                        <div className="mt-4 p-3 bg-green-100 rounded-lg">
+                        <div className="mt-4 p-3 bg-[#F3F7FC] rounded-lg">
                           <div className="flex justify-between">
-                            <span className="font-semibold">Costo total en FOB:</span>
-                            <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            <span className="font-semibold text-[#081C3A]">Costo total en FOB:</span>
+                            <span className="bg-[#00246B] text-white px-3 py-1 rounded-full text-sm font-bold">
                               {calculo.costoTotalEnFOB.toFixed(2)}x
                             </span>
                           </div>
@@ -575,22 +575,22 @@ export const ImportCalculator: React.FC = () => {
                     </div>
 
                     {/* Distribution Chart */}
-                    <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                      <h4 className="text-lg font-bold text-blue-900 mb-4">📊 Distribución de costos</h4>
+                    <div className="bg-[#F3F7FC] border border-[#DDE6F2] rounded-xl p-6">
+                      <h4 className="text-lg font-bold text-[#081C3A] mb-4">Distribución de costos</h4>
                       
                       <div className="space-y-4">
                         {[
-                          { label: 'Valor FOB', value: calculo.valorFOB, color: 'bg-blue-600' },
-                          { label: 'Arancel + Antidumping', value: calculo.arancel + calculo.derechoAntidumping, color: 'bg-orange-500' },
-                          { 
-                            label: 'Impuestos (IVA, IVA Adic, Ganancias, IIBB)', 
-                            value: calculo.iva + calculo.ivaAdicional + calculo.impuestoGanancias + calculo.percepcionIB, 
-                            color: 'bg-red-500' 
+                          { label: 'Valor FOB', value: calculo.valorFOB, color: 'bg-[#0074D9]' },
+                          { label: 'Arancel + Antidumping', value: calculo.arancel + calculo.derechoAntidumping, color: 'bg-[#00246B]' },
+                          {
+                            label: 'Impuestos (IVA, IVA Adic, Ganancias, IIBB)',
+                            value: calculo.iva + calculo.ivaAdicional + calculo.impuestoGanancias + calculo.percepcionIB,
+                            color: 'bg-[#001B4D]'
                           },
-                          { 
-                            label: 'Flete + Seguro + Otros', 
-                            value: calculo.flete + calculo.seguro + calculo.gastosDespachante + calculo.costoTransferenciaBancaria + calculo.tasaEstadistica, 
-                            color: 'bg-purple-500' 
+                          {
+                            label: 'Flete + Seguro + Otros',
+                            value: calculo.flete + calculo.seguro + calculo.gastosDespachante + calculo.costoTransferenciaBancaria + calculo.tasaEstadistica,
+                            color: 'bg-[#8FE3D5]'
                           },
                         ].map((item, index) => {
                           const percentage = (item.value / calculo.costoFinal) * 100;
@@ -622,7 +622,7 @@ export const ImportCalculator: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Inputs Venta */}
               <div className="space-y-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">💼 Datos de venta</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">Datos de venta</h3>
                 
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -635,7 +635,7 @@ export const ImportCalculator: React.FC = () => {
                     type="number"
                     value={margenNetoDeseado}
                     onChange={(e) => setMargenNetoDeseado(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                   />
                   <div className="text-sm text-gray-500">
                     Margen de ganancia neta deseado. 
@@ -653,7 +653,7 @@ export const ImportCalculator: React.FC = () => {
                     type="number"
                     value={comisionVenta}
                     onChange={(e) => setComisionVenta(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                   />
                 </div>
 
@@ -665,7 +665,7 @@ export const ImportCalculator: React.FC = () => {
                     type="number"
                     value={gastosFijos}
                     onChange={(e) => setGastosFijos(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                   />
                 </div>
 
@@ -677,13 +677,13 @@ export const ImportCalculator: React.FC = () => {
                     type="number"
                     value={porcentajeHonorariosSocios}
                     onChange={(e) => setPorcentajeHonorariosSocios(parseFloat(e.target.value) || 0)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                    className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                   />
                   <div className="text-sm text-gray-500">Máximo deducible: 25%</div>
                 </div>
 
                  <div className="space-y-4">
-                    <h4 className="font-semibold text-primary">Tasas de IIBB</h4>
+                    <h4 className="font-semibold text-[#00246B]">Tasas de IIBB</h4>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -693,7 +693,7 @@ export const ImportCalculator: React.FC = () => {
                         type="number"
                         value={tasaIIBBProvincial}
                         onChange={(e) => setTasaIIBBProvincial(parseFloat(e.target.value) || 0)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                        className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       />
                     </div>
 
@@ -705,7 +705,7 @@ export const ImportCalculator: React.FC = () => {
                         type="number"
                         value={tasaIIBBMunicipal}
                         onChange={(e) => setTasaIIBBMunicipal(parseFloat(e.target.value) || 0)}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent"
+                        className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                       />
                     </div>
                   </div>
@@ -713,39 +713,39 @@ export const ImportCalculator: React.FC = () => {
 
               {/* Results Venta */}
               <div className="space-y-6">
-                <div className="bg-purple-50 border border-purple-200 rounded-xl p-6">
-                  <h4 className="text-lg font-bold text-purple-900 mb-4">💰 Análisis de Venta</h4>
+                <div className="bg-[#F3F7FC] border border-[#DDE6F2] rounded-xl p-6">
+                  <h4 className="text-lg font-bold text-[#081C3A] mb-4">Análisis de venta</h4>
                   
                   <div className="space-y-3">
-                    <div className="flex justify-between py-2 border-b border-purple-200">
+                    <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Costo Unitario</span>
                       <span className="font-medium">{formatCurrency(calculoVenta.costoUnitario)}</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-purple-200">
+                    <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Precio de Venta</span>
-                      <span className="font-medium text-purple-600">{formatCurrency(calculoVenta.precioVenta)}</span>
+                      <span className="font-medium text-[#0074D9]">{formatCurrency(calculoVenta.precioVenta)}</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-purple-200">
+                    <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Precio + IVA</span>
-                      <span className="font-medium text-purple-600">{formatCurrency(calculoVenta.precioVentaConIVA)}</span>
+                      <span className="font-medium text-[#0074D9]">{formatCurrency(calculoVenta.precioVentaConIVA)}</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b-2 border-purple-300">
+                    <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
                       <span className="font-semibold">Precio en FOB</span>
                       <span className="font-semibold">{calculoVenta.precioVentaEnFOB.toFixed(2)}x</span>
                     </div>
-                    <div className="flex justify-between py-2 border-b border-purple-200">
+                    <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Margen Neto</span>
-                      <span className="font-medium text-green-600">{calculoVenta.margenNeto.toFixed(2)}%</span>
+                      <span className="font-medium text-[#0074D9]">{calculoVenta.margenNeto.toFixed(2)}%</span>
                     </div>
-                    <div className="flex justify-between py-3 bg-purple-100 rounded-lg px-4 mt-4">
-                      <span className="font-bold text-lg text-purple-900">Total recibido</span>
-                      <span className="font-bold text-lg text-purple-900">{formatCurrency(calculoVenta.totalRecibido)}</span>
+                    <div className="flex justify-between py-3 bg-[#F3F7FC] rounded-lg px-4 mt-4">
+                      <span className="font-bold text-lg text-[#081C3A]">Total recibido</span>
+                      <span className="font-bold text-lg text-[#0074D9]">{formatCurrency(calculoVenta.totalRecibido)}</span>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-gray-50 border border-gray-200 rounded-xl p-6">
-                  <h4 className="text-lg font-bold text-gray-900 mb-4">📊 Desglose Impuestos Venta</h4>
+                <div className="bg-[#F3F7FC] border border-[#DDE6F2] rounded-xl p-6">
+                  <h4 className="text-lg font-bold text-[#081C3A] mb-4">Desglose de impuestos — venta</h4>
                   
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
