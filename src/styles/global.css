@@ -2,9 +2,22 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
+  /* Legacy aliases — mantenidos para compatibilidad con prose de artículos */
   --color-primary: #003366;
   --color-secondary: #0066CC;
-  --color-accent: #FF6600;
+
+  /* GP design system */
+  --color-gp-navy:         #00246B;
+  --color-gp-blue:         #0074D9;
+  --color-gp-blue-dark:    #001B4D;
+  --color-gp-aqua:         #8FE3D5;
+  --color-gp-bg:           #F8FAFC;
+  --color-gp-surface:      #FFFFFF;
+  --color-gp-surface-soft: #F3F7FC;
+  --color-gp-text:         #081C3A;
+  --color-gp-text-muted:   #5D6B82;
+  --color-gp-border:       #DDE6F2;
+
   --font-sans: Inter, system-ui, sans-serif;
 }
 
@@ -13,37 +26,44 @@
     font-family: Inter, system-ui, sans-serif;
     scroll-behavior: smooth;
   }
+  h1, h2, h3, h4, button, nav a {
+    text-transform: none;
+  }
 }
 
 @layer components {
   .btn {
     @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-colors duration-200;
+    text-transform: none;
   }
-
   .btn-primary {
-    @apply bg-accent hover:bg-orange-600 text-white;
+    background: #001B4D;
+    color: #fff;
+    box-shadow: 0 10px 24px rgba(0, 36, 107, 0.18);
   }
-
+  .btn-primary:hover { background: #00246B; }
   .btn-secondary {
-    @apply bg-secondary hover:bg-blue-700 text-white;
+    background: #fff;
+    color: #00246B;
+    border: 1px solid #DDE6F2;
   }
-
+  .btn-secondary:hover { background: #F3F7FC; }
   .btn-outline {
-    @apply border-2 border-primary text-primary hover:bg-primary hover:text-white;
+    @apply border-2 border-[#00246B] text-[#00246B] hover:bg-[#00246B] hover:text-white;
   }
 }
 
-/* Typography plugin customizations (equivalent to old tailwind.config.mjs) */
+/* Prose — artículos del blog */
 .prose {
   --tw-prose-body: #374151;
-  --tw-prose-headings: #003366;
-  --tw-prose-links: #FF6600;
-  --tw-prose-bold: #003366;
-  --tw-prose-code: #003366;
+  --tw-prose-headings: #00246B;
+  --tw-prose-links: #0074D9;
+  --tw-prose-bold: #00246B;
+  --tw-prose-code: #00246B;
   --tw-prose-quotes: #374151;
-  --tw-prose-quote-borders: #FF6600;
-  --tw-prose-bullets: #FF6600;
-  --tw-prose-counters: #FF6600;
+  --tw-prose-quote-borders: #0074D9;
+  --tw-prose-bullets: #0074D9;
+  --tw-prose-counters: #0074D9;
   --tw-prose-th-borders: #e5e7eb;
   --tw-prose-td-borders: #e5e7eb;
   --tw-prose-hr: #e5e7eb;
@@ -60,16 +80,16 @@
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
   font-weight: 400;
-  color: #003366;
+  color: #00246B;
 }
 
 .prose thead {
   background-color: #f3f4f6;
-  color: #003366;
+  color: #00246B;
 }
 
 .prose blockquote {
-  background-color: #fff7ed;
+  background-color: #F3F7FC;
   padding: 1rem 1.5rem;
   border-radius: 0 0.5rem 0.5rem 0;
 }
