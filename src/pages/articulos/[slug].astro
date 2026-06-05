@@ -21,12 +21,10 @@ const title = `${entry.data.title} | GIST POINT`;
 const description = entry.data.description;
 
 const allArticles = await getCollection('articulos');
-const relatedArticles = allArticles
-  .filter(a => a.id !== entry.id)
-  .slice(0, 2);
+const relatedArticles = allArticles.filter(a => a.id !== entry.id).slice(0, 2);
 ---
 
-<BaseLayout 
+<BaseLayout
   title={title}
   description={description}
   url={Astro.url.href}
@@ -34,45 +32,38 @@ const relatedArticles = allArticles
   type="article"
 >
   <Header />
-  <main class="py-8 lg:py-12 bg-gray-50">
-    <article class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="lg:grid lg:grid-cols-12 lg:gap-12">
-        
+  <main style="background: #F8FAFC; padding: 32px 0 64px;">
+    <article style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+      <div class="lg:grid lg:grid-cols-12 lg:gap-10">
+
+        <!-- Contenido principal -->
         <div class="lg:col-span-8">
-          <article class="bg-white rounded-2xl shadow-sm overflow-hidden">
-            <header class="p-6 lg:p-10 border-b border-gray-100">
+          <article class="bg-white rounded-2xl border border-[#DDE6F2] overflow-hidden">
+            <header class="p-6 lg:p-10 border-b border-[#DDE6F2]">
               <div class="flex flex-wrap items-center gap-3 mb-4">
-                <span class="px-3 py-1 bg-accent/10 text-accent text-sm font-semibold rounded-full">
+                <span class="px-3 py-1 bg-[#0074D9]/10 text-[#0074D9] text-sm font-semibold rounded-full">
                   {entry.data.category}
                 </span>
-                <time class="text-gray-500 text-sm">
+                <time class="text-[#5D6B82] text-sm">
                   {new Date(entry.data.date).toLocaleDateString('es-AR', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
+                    year: 'numeric', month: 'long', day: 'numeric'
                   })}
                 </time>
               </div>
-              
-              <h1 class="text-3xl lg:text-4xl font-bold text-primary mb-4 leading-tight">
+              <h1 class="text-3xl lg:text-4xl font-bold text-[#00246B] mb-4 leading-tight">
                 {entry.data.title}
               </h1>
-              
-              <p class="text-lg text-gray-600 mb-6">
-                {entry.data.description}
-              </p>
-              
+              <p class="text-lg text-[#5D6B82] mb-6">{entry.data.description}</p>
               <div class="flex flex-wrap items-center gap-3">
                 <div class="flex items-center gap-2">
-                  <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white text-sm font-bold">
+                  <div class="w-8 h-8 bg-[#00246B] rounded-full flex items-center justify-center text-white text-sm font-bold">
                     GP
                   </div>
-                  <span class="text-sm font-medium text-gray-700">{entry.data.author}</span>
+                  <span class="text-sm font-medium text-[#081C3A]">{entry.data.author}</span>
                 </div>
-                
                 <div class="flex items-center gap-2 ml-auto">
                   {entry.data.tags.slice(0, 3).map((tag: string) => (
-                    <span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md font-medium">
+                    <span class="px-2 py-1 bg-[#F3F7FC] text-[#5D6B82] text-xs rounded-md font-medium">
                       #{tag}
                     </span>
                   ))}
@@ -87,93 +78,90 @@ const relatedArticles = allArticles
             </div>
           </article>
 
-          <div class="mt-8 bg-primary text-white rounded-2xl p-8 text-center">
-            <h2 class="text-2xl font-bold mb-4">
-              ¿Necesitás ayuda con tu importación?
-            </h2>
-            <p class="text-blue-100 mb-6 max-w-2xl mx-auto">
-              Nuestro equipo de expertos de GIST POINT puede ayudarte con dudas específicas 
-              sobre tu operación de importación.
+          <!-- CTA inline -->
+          <div style="background: linear-gradient(135deg, #001B4D 0%, #00246B 55%, #003C8F 100%);" class="mt-8 rounded-2xl p-8 text-center">
+            <h2 class="text-2xl font-bold text-white mb-3">¿Necesitás ayuda con tu importación?</h2>
+            <p class="text-white/75 mb-6 max-w-xl mx-auto text-sm">
+              Nuestro equipo de expertos de GIST POINT puede ayudarte con dudas específicas sobre tu operación.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/calculadora" class="btn bg-accent hover:bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold">
-                Usar Calculadora
+            <div class="flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="/calculadora" class="btn btn-secondary px-6 py-2.5 text-sm">
+                Usar calculadora
               </a>
-              <a href="/contacto" class="btn bg-white text-primary hover:bg-gray-100 px-6 py-3 rounded-xl font-semibold">
-                Contactar Experto
+              <a href="/contacto" class="btn" style="background:rgba(255,255,255,0.15); color:#fff; border:1px solid rgba(255,255,255,0.3);">
+                Contactar un experto
               </a>
             </div>
           </div>
         </div>
 
+        <!-- Sidebar -->
         <aside class="lg:col-span-4 mt-8 lg:mt-0">
-          <div class="sticky top-24 space-y-6">
-            <div class="bg-white rounded-2xl shadow-sm p-6">
-              <h3 class="text-lg font-bold text-primary mb-4">Sobre este artículo</h3>
+          <div class="sticky top-[96px] space-y-5">
+
+            <div class="bg-white rounded-2xl border border-[#DDE6F2] p-6">
+              <h3 class="text-base font-bold text-[#00246B] mb-4">Sobre este artículo</h3>
               <dl class="space-y-3 text-sm">
                 <div class="flex justify-between">
-                  <dt class="text-gray-500">Categoría</dt>
-                  <dd class="font-medium text-gray-900">{entry.data.category}</dd>
+                  <dt class="text-[#5D6B82]">Categoría</dt>
+                  <dd class="font-medium text-[#081C3A]">{entry.data.category}</dd>
                 </div>
                 <div class="flex justify-between">
-                  <dt class="text-gray-500">Autor</dt>
-                  <dd class="font-medium text-gray-900">{entry.data.author}</dd>
+                  <dt class="text-[#5D6B82]">Autor</dt>
+                  <dd class="font-medium text-[#081C3A]">{entry.data.author}</dd>
                 </div>
                 <div class="flex justify-between">
-                  <dt class="text-gray-500">Publicado</dt>
-                  <dd class="font-medium text-gray-900">
+                  <dt class="text-[#5D6B82]">Publicado</dt>
+                  <dd class="font-medium text-[#081C3A]">
                     {new Date(entry.data.date).toLocaleDateString('es-AR', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric'
+                      day: 'numeric', month: 'short', year: 'numeric'
                     })}
                   </dd>
                 </div>
               </dl>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm p-6">
-              <h3 class="text-lg font-bold text-primary mb-4">Herramientas</h3>
+            <div class="bg-white rounded-2xl border border-[#DDE6F2] p-6">
+              <h3 class="text-base font-bold text-[#00246B] mb-4">Herramientas</h3>
               <div class="space-y-3">
-                <a 
-                  href="/calculadora" 
-                  class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-accent/10 transition-colors group"
-                >
-                  <span class="text-2xl">🧮</span>
+                <a href="/calculadora" class="flex items-center gap-3 p-3 rounded-xl bg-[#F3F7FC] hover:bg-[#0074D9]/10 transition-colors group">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00246B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
                   <div>
-                    <div class="font-medium text-gray-900 group-hover:text-accent">Calculadora</div>
-                    <div class="text-xs text-gray-500">Calcular costos</div>
+                    <div class="font-medium text-[#081C3A] text-sm group-hover:text-[#0074D9]">Calculadora</div>
+                    <div class="text-xs text-[#5D6B82]">Calcular costos</div>
                   </div>
                 </a>
-                <a 
-                  href="/contacto" 
-                  class="flex items-center gap-3 p-3 rounded-xl bg-gray-50 hover:bg-accent/10 transition-colors group"
-                >
-                  <span class="text-2xl">📧</span>
+                <a href="/contacto" class="flex items-center gap-3 p-3 rounded-xl bg-[#F3F7FC] hover:bg-[#0074D9]/10 transition-colors group">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00246B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+                  </svg>
                   <div>
-                    <div class="font-medium text-gray-900 group-hover:text-accent">Consultar</div>
-                    <div class="text-xs text-gray-500">Asesoramiento experto</div>
+                    <div class="font-medium text-[#081C3A] text-sm group-hover:text-[#0074D9]">Consultar</div>
+                    <div class="text-xs text-[#5D6B82]">Asesoramiento experto</div>
                   </div>
                 </a>
               </div>
             </div>
 
             {relatedArticles.length > 0 && (
-              <div class="bg-white rounded-2xl shadow-sm p-6">
-                <h3 class="text-lg font-bold text-primary mb-4">Más artículos</h3>
-                <div class="space-y-4">
+              <div class="bg-white rounded-2xl border border-[#DDE6F2] p-6">
+                <h3 class="text-base font-bold text-[#00246B] mb-4">Más artículos</h3>
+                <div class="space-y-3">
                   {relatedArticles.map((article) => (
-                    <a 
+                    <a
                       href={`/articulos/${article.id.replace(/\.md$/, '')}`}
-                      class="block p-3 rounded-xl hover:bg-gray-50 transition-colors"
+                      class="block p-3 rounded-xl hover:bg-[#F3F7FC] transition-colors"
                     >
-                      <div class="text-xs text-accent font-medium mb-1">{article.data.category}</div>
-                      <div class="font-medium text-gray-900 text-sm line-clamp-2">{article.data.title}</div>
+                      <div class="text-xs text-[#0074D9] font-medium mb-1">{article.data.category}</div>
+                      <div class="font-medium text-[#081C3A] text-sm line-clamp-2">{article.data.title}</div>
                     </a>
                   ))}
                 </div>
               </div>
             )}
+
           </div>
         </aside>
       </div>
