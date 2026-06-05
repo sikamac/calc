@@ -4,11 +4,11 @@ import Header from '../components/layout/Header.astro';
 import Hero from '../components/sections/Hero.astro';
 import Footer from '../components/layout/Footer.astro';
 
-const title = "Calculadora de Importaciones Argentina";
+const title = "Calculadora de importaciones Argentina";
 const description = "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más. Herramienta gratuita para importadores y despachantes.";
 ---
 
-<BaseLayout 
+<BaseLayout
   title={title}
   description={description}
   url={Astro.url.href}
@@ -16,250 +16,298 @@ const description = "Calculá al instante los costos de importación en Argentin
   <Header />
   <main>
     <Hero />
-    
-    <!-- How It Works Section -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Sección 2: Costos que incluye -->
+    <section style="padding: 64px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            ¿Cómo funciona la calculadora?
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Simple, rápida y precisa. Calculá todos los costos asociados a tu importación en 3 pasos.
+          <h2 class="text-3xl font-bold text-[#081C3A] mb-3">Costos que incluye esta estimación</h2>
+          <p class="text-[#5D6B82] text-lg max-w-2xl mx-auto">
+            Nuestra calculadora tiene en cuenta todos los componentes del costo de importación.
           </p>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Step 1 -->
-          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
-            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              1
+        <div class="costs-grid">
+          <div class="cost-item">
+            <div class="cost-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="5" x2="5" y2="19"/>
+                <circle cx="6.5" cy="6.5" r="2.5"/>
+                <circle cx="17.5" cy="17.5" r="2.5"/>
+              </svg>
             </div>
-            <h3 class="text-xl font-semibold mb-2">Ingresá los datos</h3>
-            <p class="text-gray-600">
-              Valor FOB, tipo de producto, país de origen y método de transporte.
-            </p>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
-            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              2
+            <div>
+              <h3>Aranceles de importación</h3>
+              <p>Según clasificación arancelaria NCM y país de origen</p>
             </div>
-            <h3 class="text-xl font-semibold mb-2">Calculá automáticamente</h3>
-            <p class="text-gray-600">
-              Nuestro sistema aplica las tasas vigentes de ARCA y aduanas en tiempo real.
-            </p>
           </div>
-
-          <!-- Step 3 -->
-          <div class="text-center p-6 bg-white rounded-xl shadow-sm">
-            <div class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-              3
+          <div class="cost-item">
+            <div class="cost-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <line x1="10" y1="9" x2="8" y2="9"/>
+              </svg>
             </div>
-            <h3 class="text-xl font-semibold mb-2">Obtené el desglose</h3>
-            <p class="text-gray-600">
-              Recibí un detalle completo de todos los impuestos y costos en pesos argentinos.
-            </p>
+            <div>
+              <h3>Impuestos</h3>
+              <p>IVA, percepción de ganancias y otros tributos nacionales</p>
+            </div>
           </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a 
-            href="/calculadora" 
-            class="btn btn-primary text-lg px-8 py-4 rounded-xl"
-          >
-            🚀 Probar Ahora
-          </a>
+          <div class="cost-item">
+            <div class="cost-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+                <path d="M15 18H9"/>
+                <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+                <circle cx="17" cy="18" r="2"/>
+                <circle cx="7" cy="18" r="2"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Costos logísticos</h3>
+              <p>Flete internacional y seguro de la mercadería</p>
+            </div>
+          </div>
+          <div class="cost-item">
+            <div class="cost-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="16" height="20" x="4" y="2" rx="2" ry="2"/>
+                <path d="M9 22v-4h6v4"/>
+                <path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/>
+                <path d="M12 10h.01"/><path d="M12 14h.01"/>
+                <path d="M16 10h.01"/><path d="M16 14h.01"/>
+                <path d="M8 10h.01"/><path d="M8 14h.01"/>
+              </svg>
+            </div>
+            <div>
+              <h3>Gastos operativos</h3>
+              <p>Despacho, honorarios del despachante y costos portuarios</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Keywords SEO Section 1 -->
-    <section class="py-16 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Información clave sobre importaciones en Argentina
-            </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Conocé los aspectos más importantes del comercio exterior y despacho aduanero
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">📋 Despacho aduanero</h3>
-            <p class="text-gray-600 mb-4">
-              Proceso obligatorio para todas las mercaderías que ingresan al país. Requiere contratar un despachante de aduanas matriculado.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Declaración jurada de importación</li>
-              <li>• Clasificación arancelaria NCM</li>
-              <li>• Documentación requerida</li>
-              <li>• Plazos y vencimientos</li>
-            </ul>
-          </div>
-
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">📦 Valoración aduanera</h3>
-            <p class="text-gray-600 mb-4">
-              Determinación del valor en aduana según normativa de ARCA y acuerdos internacionales.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Valor FOB y CIF</li>
-              <li>• Ajustes por condiciones de venta</li>
-              <li>• Métodos de valoración</li>
-              <li>• Precios de transferencia</li>
-            </ul>
-          </div>
-
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">🎯 Regímenes especiales</h3>
-            <p class="text-gray-600 mb-4">
-              Beneficios arancelarios según origen de la mercadería y acuerdos comerciales vigentes.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Mercosur y ALADI</li>
-              <li>• Origen no preferencial</li>
-              <li>• Certificados de origen</li>
-              <li>• Exenciones y reducciones</li>
-            </ul>
-          </div>
-
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">💰 Impuestos a la importación</h3>
-            <p class="text-gray-600 mb-4">
-              Todos los tributos que se aplican a las operaciones de comercio exterior en Argentina.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Derechos de importación</li>
-              <li>• IVA e impuestos internos</li>
-              <li>• Tasa estadística</li>
-              <li>• Percepciones y retenciones</li>
-            </ul>
-          </div>
-
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">🚛 Logística y transporte</h3>
-            <p class="text-gray-600 mb-4">
-              Opciones de transporte internacional y cálculo de costos logísticos.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• Transporte marítimo</li>
-              <li>• Transporte aéreo</li>
-              <li>• Seguro de carga</li>
-              <li>• Incoterms 2020</li>
-            </ul>
-          </div>
-
-          <div class="p-6 bg-gray-50 rounded-xl">
-            <h3 class="text-xl font-bold text-primary mb-3">⚖️ Normativa y compliance</h3>
-            <p class="text-gray-600 mb-4">
-              Cumplimiento regulatorio y obligaciones ante organismos de control.
-            </p>
-            <ul class="text-sm text-gray-600 space-y-1">
-              <li>• ARCA y Aduana</li>
-              <li>• Normas técnicas IRAM</li>
-              <li>• SENASA y ANMAT</li>
-              <li>• Restricciones y prohibiciones</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a 
-            href="/calculadora" 
-            class="btn btn-primary text-lg px-8 py-4 rounded-xl"
-          >
-            Calcular Costos de Importación
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Keywords SEO Section 2 -->
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <!-- Sección 3: Tomá decisiones con números reales -->
+    <section style="padding: 72px 0; background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <div class="decisions-grid">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Calculadora de aranceles aduaneros Argentina
+            <h2 class="text-3xl font-bold text-[#081C3A] mb-6" style="letter-spacing:-0.02em;">
+              Tomá decisiones con números reales
             </h2>
-            <p class="text-lg text-gray-600 mb-6">
-              Nuestra herramienta especializada te permite estimar todos los costos asociados a tu importación, 
-              incluyendo derechos de aduana, impuestos y gastos logísticos.
+            <p class="text-[#5D6B82] text-lg leading-relaxed mb-8">
+              Nuestra calculadora te brinda una estimación completa y detallada para que planifiques tu importación con confianza.
             </p>
             <div class="space-y-4">
-              <div class="flex items-start">
-                <span class="text-accent mr-3 mt-1">✓</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Cálculo de aranceles según NCM</h4>
-                  <p class="text-gray-600 text-sm">Posicionamiento arancelario correcto para tu producto</p>
+              {[
+                'Estimaciones basadas en datos actualizados',
+                'Cálculo de todos los costos relevantes',
+                'Herramienta rápida, clara y confiable',
+              ].map((item) => (
+                <div class="flex items-start gap-3">
+                  <span class="text-[#0074D9] font-bold text-lg leading-none mt-0.5">✓</span>
+                  <span class="text-[#5D6B82]">{item}</span>
                 </div>
-              </div>
-              <div class="flex items-start">
-                <span class="text-accent mr-3 mt-1">✓</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Estimación de impuestos ARCA</h4>
-                  <p class="text-gray-600 text-sm">IVA, Ganancias, IIBB y percepciones</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <span class="text-accent mr-3 mt-1">✓</span>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Análisis de costos logísticos</h4>
-                  <p class="text-gray-600 text-sm">Flete, seguro y gastos operativos</p>
-                </div>
-              </div>
+              ))}
             </div>
+            <a href="/calculadora" class="btn btn-primary mt-8">
+              Ir a la calculadora →
+            </a>
           </div>
-          <div class="bg-white rounded-xl p-8 shadow-lg">
-            <h3 class="text-xl font-bold text-center mb-6">¿Qué necesitás calcular?</h3>
-            <div class="grid grid-cols-2 gap-4 text-center">
-              <div class="p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl mb-2">📊</div>
-                <div class="font-semibold">Aranceles</div>
-                <div class="text-sm text-gray-600">Tasas NCM</div>
+          <div>
+            <div class="example-card-big">
+              <p class="ecb-label">Ejemplo de estimación</p>
+              <div class="ecb-rows">
+                <div class="ecb-row"><span>Valor FOB</span><span class="ecb-val">USD 10.000</span></div>
+                <div class="ecb-row"><span>Flete y seguro</span><span class="ecb-val">USD 1.200</span></div>
+                <div class="ecb-row"><span>Aranceles (14%)</span><span class="ecb-val">USD 1.320</span></div>
+                <div class="ecb-row"><span>Impuestos (IVA + percepciones)</span><span class="ecb-val">USD 2.530</span></div>
+                <div class="ecb-row"><span>Gastos operativos</span><span class="ecb-val">USD 680</span></div>
+                <div class="ecb-row ecb-total"><span>Total estimado</span><span>ARS 16.940.000</span></div>
               </div>
-              <div class="p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl mb-2">💰</div>
-                <div class="font-semibold">Impuestos</div>
-                <div class="text-sm text-gray-600">IVA, IIBB, etc</div>
-              </div>
-              <div class="p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl mb-2">🚚</div>
-                <div class="font-semibold">Logística</div>
-                <div class="text-sm text-gray-600">Flete y seguro</div>
-              </div>
-              <div class="p-4 bg-gray-50 rounded-lg">
-                <div class="text-2xl mb-2">📈</div>
-                <div class="font-semibold">Margen</div>
-                <div class="text-sm text-gray-600">Precio de venta</div>
-              </div>
+              <p class="ecb-disclaimer">Valores ilustrativos · tasa de cambio USD 1.100</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 bg-primary text-white">
-      <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">
-          ¿Necesitás asesoramiento personalizado?
-        </h2>
-        <p class="text-xl text-blue-100 mb-8">
-          Nuestro equipo de expertos en comercio exterior te puede ayudar con tu importación.
-        </p>
-        <a
-          href="/contacto"
-          class="btn bg-accent hover:bg-orange-600 text-white text-lg px-8 py-4 rounded-xl inline-block"
-        >
-          📞 Contactar un Experto
-        </a>
+    <!-- Sección 4: Información clave (4 cards, sin emojis) -->
+    <section style="padding: 64px 0; background: #fff;">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-[#081C3A] mb-3">Información clave sobre importaciones</h2>
+          <p class="text-[#5D6B82] text-lg max-w-2xl mx-auto">
+            Conocé los aspectos más importantes del comercio exterior y el despacho aduanero en Argentina.
+          </p>
+        </div>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>Despacho aduanero</h3>
+            <p>Proceso obligatorio para todas las mercaderías que ingresan al país. Requiere un despachante de aduanas matriculado.</p>
+            <ul>
+              <li>Declaración jurada de importación</li>
+              <li>Clasificación arancelaria NCM</li>
+              <li>Documentación requerida</li>
+              <li>Plazos y vencimientos</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Impuestos a la importación</h3>
+            <p>Todos los tributos que se aplican a las operaciones de comercio exterior en Argentina.</p>
+            <ul>
+              <li>Derechos de importación</li>
+              <li>IVA e impuestos internos</li>
+              <li>Tasa estadística</li>
+              <li>Percepciones y retenciones</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Logística y transporte</h3>
+            <p>Opciones de transporte internacional y cálculo de costos logísticos para tu importación.</p>
+            <ul>
+              <li>Transporte marítimo y aéreo</li>
+              <li>Seguro de carga</li>
+              <li>Incoterms 2020</li>
+              <li>Valor FOB y CIF</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>Normativa y compliance</h3>
+            <p>Cumplimiento regulatorio y obligaciones ante los organismos de control en Argentina.</p>
+            <ul>
+              <li>ARCA y Aduana</li>
+              <li>Normas técnicas IRAM</li>
+              <li>SENASA y ANMAT</li>
+              <li>Restricciones y prohibiciones</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- Sección 5: CTA final -->
+    <section style="padding: 64px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <div class="cta-card">
+          <div class="cta-text">
+            <h2>¿Necesitás acompañamiento para tu importación?</h2>
+            <p>Nuestro equipo puede ayudarte a analizar tu caso particular y optimizar cada etapa del proceso.</p>
+          </div>
+          <a href="/contacto" class="btn btn-secondary cta-btn">
+            Solicitar asesoramiento →
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  /* Sección 2 — Costos */
+  .costs-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+  }
+  @media (max-width: 900px) { .costs-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .costs-grid { grid-template-columns: 1fr; } }
+  .cost-item {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+  .cost-icon {
+    width: 48px; height: 48px;
+    background: #F3F7FC;
+    border-radius: 14px;
+    color: #00246B;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .cost-item h3 { font-size: 15px; font-weight: 600; color: #081C3A; margin: 0 0 6px; }
+  .cost-item p  { font-size: 14px; color: #5D6B82; margin: 0; line-height: 1.5; }
+
+  /* Sección 3 — Decisions */
+  .decisions-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 900px) { .decisions-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+  .example-card-big {
+    background: #fff;
+    border: 1px solid #DDE6F2;
+    border-radius: 18px;
+    padding: 32px;
+    box-shadow: 0 12px 32px rgba(8,28,58,0.06);
+  }
+  .ecb-label { font-size: 11px; font-weight: 600; color: #5D6B82; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 20px; }
+  .ecb-rows { display: flex; flex-direction: column; }
+  .ecb-row {
+    display: flex; justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #F1F5F9;
+    font-size: 14px; color: #5D6B82;
+  }
+  .ecb-val { font-weight: 500; color: #081C3A; }
+  .ecb-total {
+    border-bottom: none; border-top: 2px solid #DDE6F2;
+    margin-top: 4px; padding-top: 14px;
+    font-size: 16px; font-weight: 700; color: #0074D9;
+  }
+  .ecb-total span:last-child { color: #0074D9; }
+  .ecb-disclaimer { font-size: 12px; color: #5D6B82; text-align: center; margin-top: 12px; }
+
+  /* Sección 4 — Info cards */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1024px) { .info-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px)  { .info-grid { grid-template-columns: 1fr; } }
+  .info-card {
+    border: 1px solid #DDE6F2;
+    border-radius: 12px;
+    padding: 24px;
+    background: #fff;
+  }
+  .info-card h3 { font-size: 15px; font-weight: 700; color: #00246B; margin: 0 0 10px; }
+  .info-card > p { font-size: 13px; color: #5D6B82; margin: 0 0 12px; line-height: 1.5; }
+  .info-card ul { list-style: none; padding: 0; margin: 0; }
+  .info-card ul li {
+    font-size: 13px; color: #5D6B82;
+    padding: 3px 0 3px 12px;
+    position: relative;
+  }
+  .info-card ul li::before {
+    content: '·';
+    position: absolute; left: 0;
+    color: #0074D9;
+  }
+
+  /* Sección 5 — CTA */
+  .cta-card {
+    background: linear-gradient(135deg, #001B4D 0%, #00246B 55%, #003C8F 100%);
+    border-radius: 18px;
+    padding: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  @media (max-width: 768px) { .cta-card { flex-direction: column; align-items: flex-start; } }
+  .cta-text h2 { font-size: 28px; font-weight: 700; color: #fff; margin: 0 0 12px; line-height: 1.2; }
+  .cta-text p  { color: rgba(255,255,255,0.75); margin: 0; font-size: 16px; max-width: 480px; }
+  .cta-btn { white-space: nowrap; flex-shrink: 0; }
+</style>
