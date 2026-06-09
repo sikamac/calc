@@ -45,6 +45,26 @@ const schema = [
   <main>
     <Hero />
 
+    <section class="gist-strip">
+      <div class="gist-strip-inner">
+        <div>
+          <p class="gist-kicker">Desarrollado por <span class="brand-name">GIST POINT</span></p>
+          <h2>También creamos herramientas digitales para empresas</h2>
+          <p>
+            Esta calculadora es un ejemplo de cómo transformamos procesos complejos en herramientas simples, útiles y medibles. En <span class="brand-name">GIST POINT</span> diseñamos sistemas, dashboards e integraciones para negocios que necesitan más orden, control y visibilidad.
+          </p>
+        </div>
+        <a
+          href="https://gist-point.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary gist-strip-btn"
+        >
+          Visitá nuestra web
+        </a>
+      </div>
+    </section>
+
     <!-- Sección 2: Costos que incluye -->
     <section style="padding: 64px 0; background: #F8FAFC;">
       <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
@@ -237,6 +257,63 @@ const schema = [
 </BaseLayout>
 
 <style>
+  .gist-strip {
+    background: #fff;
+    padding: 38px 0;
+    border-top: 1px solid #DDE6F2;
+    border-bottom: 1px solid #DDE6F2;
+  }
+
+  .gist-strip-inner {
+    width: min(100% - 48px, 1180px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .gist-kicker {
+    color: #0074D9;
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .gist-strip h2 {
+    color: #081C3A;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+
+  .gist-strip p:not(.gist-kicker) {
+    color: #5D6B82;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 760px;
+    margin: 0;
+  }
+
+  .gist-strip-btn {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) {
+    .gist-strip-inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .gist-strip-btn {
+      width: fit-content;
+      white-space: normal;
+    }
+  }
+
   /* Sección 2 — Costos */
   .costs-grid {
     display: grid;

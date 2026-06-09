@@ -3,8 +3,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 
-const title = "Asesoramiento en importaciones — GIST POINT";
-const description = "Contactate con expertos en comercio exterior de GIST POINT. Asesoramiento personalizado en importaciones, aranceles y despacho aduanero.";
+const title = "Asesoramiento para negocios — GIST POINT";
+const description = "Contactate con GIST POINT para mejorar márgenes, crear herramientas digitales, validar proveedores y controlar la calidad de productos.";
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const schema = [
   {
@@ -37,8 +37,8 @@ const schema = [
   {
     "@type": "ProfessionalService",
     "@id": `${Astro.url.href}#professional-service`,
-    "name": "Asesoramiento en importaciones de GIST POINT",
-    "description": "Asesoramiento personalizado en costos de importación, clasificación NCM, despacho aduanero y optimización de costos.",
+    "name": "Asesoramiento para negocios de GIST POINT",
+    "description": "Asesoramiento para mejorar márgenes, crear herramientas digitales, validar proveedores y controlar la calidad de productos.",
     "provider": { "@id": `${siteUrl}#organization` },
     "areaServed": {
       "@type": "Country",
@@ -62,11 +62,11 @@ const schema = [
 
       <div class="text-center mb-14">
         <h1 class="text-4xl md:text-5xl font-bold text-[#081C3A] mb-4">
-          Asesoramiento en importaciones
+          Asesoramiento para hacer crecer tu negocio
         </h1>
         <p class="text-lg text-[#5D6B82] max-w-2xl mx-auto">
-          Nuestro equipo de expertos en comercio exterior de <strong class="text-[#081C3A]">GIST POINT S.A.S.</strong>
-          te ayuda a resolver dudas específicas sobre tu operación de importación.
+          En <strong class="brand-name text-[#081C3A]">GIST POINT S.A.S.</strong>
+          combinamos tecnología, análisis operativo y experiencia comercial para ayudarte a tomar mejores decisiones.
         </p>
       </div>
 
@@ -78,11 +78,11 @@ const schema = [
             <h2 class="text-xl font-bold text-[#081C3A] mb-6">¿En qué podemos ayudarte?</h2>
             <div class="space-y-5">
               {[
-                { title: 'Cálculos de costos', desc: 'Verificación de cálculos y escenarios alternativos', icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z' },
-                { title: 'Clasificación NCM', desc: 'Asesoramiento en la correcta clasificación arancelaria', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
-                { title: 'Despacho aduanero', desc: 'Proceso completo y documentación requerida', icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
-                { title: 'Optimización de costos', desc: 'Estrategias para reducir impuestos y gastos', icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6' },
-                { title: 'Orígenes y regímenes', desc: 'Beneficios arancelarios según origen del producto', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064' },
+                { title: 'Mejora de márgenes', desc: 'Revisión de costos, precios, procesos y oportunidades para ganar rentabilidad.', icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6' },
+                { title: 'Herramientas digitales', desc: 'Diseño de sistemas, dashboards y automatizaciones para ordenar la gestión.', icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z' },
+                { title: 'Validación de proveedores', desc: 'Análisis de alternativas, condiciones comerciales, riesgos y confiabilidad.', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+                { title: 'Control de calidad', desc: 'Criterios para validar productos, muestras, especificaciones y entregables.', icon: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4' },
+                { title: 'Decisiones con datos', desc: 'Indicadores claros para entender qué está pasando y dónde actuar primero.', icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064' },
               ].map(item => (
                 <div class="flex items-start gap-4">
                   <div class="w-10 h-10 bg-[#F3F7FC] rounded-xl flex items-center justify-center flex-shrink-0">
@@ -100,13 +100,13 @@ const schema = [
           </div>
 
           <div style="background: linear-gradient(135deg, #001B4D 0%, #00246B 55%, #003C8F 100%);" class="rounded-xl p-8 text-white">
-            <h3 class="text-lg font-bold mb-4">¿Por qué elegir GIST POINT?</h3>
+            <h3 class="text-lg font-bold mb-4">¿Por qué elegir <span class="brand-name">GIST POINT</span>?</h3>
             <ul class="space-y-3">
               {[
-                'Especialistas en comercio exterior argentino',
-                'Actualizados en normativa vigente',
-                'Soluciones personalizadas',
-                'Respuesta rápida y eficiente',
+                'Entendemos negocio, tecnología y operación',
+                'Construimos soluciones concretas, no solo diagnósticos',
+                'Trabajamos con datos para mejorar decisiones',
+                'Acompañamos desde la idea hasta la implementación',
               ].map(item => (
                 <li class="flex items-center gap-3 text-sm">
                   <span class="text-[#8FE3D5] font-bold">✓</span>
@@ -180,7 +180,7 @@ const schema = [
 
             <div class="bg-[#F3F7FC] border border-[#DDE6F2] rounded-lg p-4">
               <p class="text-sm text-[#5D6B82]">
-                <strong class="text-[#081C3A]">Tip:</strong> Incluí el valor FOB, tipo de producto y origen para una respuesta más precisa.
+              <strong class="text-[#081C3A]">Tip:</strong> Contanos qué querés mejorar, qué problema estás viendo y qué información tenés disponible.
               </p>
             </div>
 

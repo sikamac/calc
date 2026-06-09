@@ -1,0 +1,405 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = "Herramientas para negocios";
+const description = "Diseñamos sistemas, dashboards y automatizaciones a medida para ordenar procesos, centralizar información y mejorar la toma de decisiones.";
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+const image = "/images/og/herramientas-negocios.png";
+const imageAlt = "Herramientas digitales para negocios";
+
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${Astro.url.href}#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": siteUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Herramientas para negocios",
+        "item": Astro.url.href
+      }
+    ]
+  },
+  {
+    "@type": "Service",
+    "@id": `${Astro.url.href}#service`,
+    "name": "Desarrollo de herramientas digitales para negocios",
+    "description": description,
+    "provider": { "@id": `${siteUrl}#organization` },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "serviceType": "Software a medida, sistemas de gestión, dashboards y automatización de procesos"
+  }
+];
+
+const problems = [
+  {
+    title: 'Demasiadas tareas manuales',
+    desc: 'Carga repetida de datos, planillas dispersas y procesos que dependen de personas puntuales.',
+  },
+  {
+    title: 'Poca visibilidad para decidir',
+    desc: 'Datos desactualizados, informes incompletos y falta de indicadores claros para gestionar.',
+  },
+  {
+    title: 'Procesos que no acompañan el crecimiento',
+    desc: 'Cuellos de botella, errores frecuentes y dificultad para escalar sin sumar complejidad.',
+  },
+];
+
+const capabilities = [
+  'Sistemas de gestión empresarial',
+  'Dashboards e indicadores',
+  'Automatización de procesos',
+  'Integraciones entre sistemas',
+  'Portales para clientes o proveedores',
+  'Soluciones IoT y monitoreo operativo',
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  url={Astro.url.href}
+  image={image}
+  imageAlt={imageAlt}
+  schema={schema}
+>
+  <Header />
+  <main>
+    <section class="tools-hero" style={`background-image: linear-gradient(90deg, rgba(0, 27, 77, 0.88), rgba(0, 36, 107, 0.58), rgba(0, 36, 107, 0.16)), url('${image}');`}>
+      <div class="tools-hero-inner">
+        <p class="eyebrow">Software y automatización para empresas</p>
+        <h1>Herramientas digitales para ordenar, medir y hacer crecer tu negocio</h1>
+        <p>
+          En <span class="brand-name">GIST POINT</span> empezamos por entender qué problema querés resolver. Después diseñamos y construimos la herramienta adecuada: sistemas, dashboards, integraciones o automatizaciones.
+        </p>
+        <div class="hero-actions">
+          <a href="/contacto" class="btn btn-secondary">Contanos tu problema</a>
+          <a href="https://gist-point.com" target="_blank" rel="noopener noreferrer" class="btn hero-link">Visitá nuestra web</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-band">
+      <div class="tools-wrap">
+        <div class="section-head">
+          <h2>Cuando una herramienta estándar no alcanza</h2>
+          <p>
+            Muchas empresas no necesitan más software genérico. Necesitan una solución que entienda su operación, reduzca trabajo manual y convierta datos dispersos en decisiones.
+          </p>
+        </div>
+        <div class="problem-grid">
+          {problems.map((item) => (
+            <article class="problem-card">
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-band white">
+      <div class="tools-wrap two-col">
+        <div>
+          <h2>Actuamos como socio tecnológico, no como un proveedor aislado</h2>
+          <p>
+            Comprendemos el negocio, identificamos el problema real, diseñamos la solución y acompañamos la implementación. El objetivo es que puedas enfocarte en tu empresa mientras nosotros nos ocupamos de la complejidad tecnológica.
+          </p>
+          <a href="/contacto" class="btn btn-primary">Solicitar diagnóstico</a>
+        </div>
+        <div class="process-list" aria-label="Proceso de trabajo">
+          {[
+            'Comprendemos el negocio',
+            'Identificamos el problema real',
+            'Diseñamos la solución adecuada',
+            'Construimos e integramos la tecnología',
+            'Acompañamos la adopción y evolución',
+          ].map((step, index) => (
+            <div class="process-step">
+              <span>{index + 1}</span>
+              <p>{step}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-band">
+      <div class="tools-wrap two-col">
+        <div>
+          <h2>Qué podemos construir</h2>
+          <p>
+            La tecnología se define después de entender el problema. Estas son algunas de las herramientas que solemos diseñar para ordenar operaciones y mejorar la gestión.
+          </p>
+        </div>
+        <div class="capability-grid">
+          {capabilities.map((item) => (
+            <div class="capability-item">{item}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="tools-cta">
+      <div class="tools-wrap cta-row">
+        <div>
+          <h2>Contanos qué está pasando en tu empresa</h2>
+          <p>Si hay tareas repetitivas, datos desordenados o procesos difíciles de controlar, podemos ayudarte a transformarlos en una herramienta concreta. También podés conocer más soluciones en nuestra web institucional.</p>
+        </div>
+        <div class="cta-actions">
+          <a href="/contacto" class="btn btn-secondary cta-brand-link">Hablar con <span class="brand-name">GIST POINT</span></a>
+          <a href="https://gist-point.com" target="_blank" rel="noopener noreferrer" class="btn cta-external">Visitá nuestra web</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .tools-hero {
+    min-height: calc(100vh - 76px);
+    max-height: 760px;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 64px 0 96px;
+  }
+
+  .tools-hero-inner,
+  .tools-wrap {
+    width: min(100% - 48px, 1180px);
+    margin: 0 auto;
+  }
+
+  .tools-hero-inner {
+    max-width: 760px;
+    margin-left: max(24px, calc((100vw - 1180px) / 2));
+  }
+
+  .eyebrow {
+    color: #8FE3D5;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+
+  .tools-hero h1 {
+    font-size: clamp(38px, 5vw, 64px);
+    line-height: 1.04;
+    margin: 0 0 24px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .tools-hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    max-width: 680px;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .hero-link {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .tools-band {
+    padding: 72px 0;
+    background: #F8FAFC;
+  }
+
+  .tools-band.white {
+    background: #fff;
+  }
+
+  .section-head {
+    max-width: 760px;
+    margin-bottom: 34px;
+  }
+
+  .tools-band h2,
+  .tools-cta h2 {
+    color: #081C3A;
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.15;
+    margin: 0 0 18px;
+    font-weight: 700;
+  }
+
+  .tools-band p,
+  .tools-cta p {
+    color: #5D6B82;
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+
+  .problem-card {
+    background: #fff;
+    border: 1px solid #DDE6F2;
+    border-radius: 8px;
+    padding: 24px;
+  }
+
+  .problem-card h3 {
+    color: #00246B;
+    font-size: 18px;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .two-col .btn {
+    margin-top: 28px;
+  }
+
+  .process-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 16px;
+    border: 1px solid #DDE6F2;
+    border-radius: 8px;
+    background: #F8FAFC;
+  }
+
+  .process-step span {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #00246B;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .process-step p {
+    color: #081C3A;
+    font-weight: 600;
+  }
+
+  .capability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .capability-item {
+    border: 1px solid #DDE6F2;
+    background: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    color: #081C3A;
+    font-weight: 600;
+  }
+
+  .tools-cta {
+    background: #001B4D;
+    color: #fff;
+    padding: 54px 0;
+  }
+
+  .tools-cta h2 {
+    color: #fff;
+  }
+
+  .tools-cta p {
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 720px;
+  }
+
+  .cta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+  }
+
+  .cta-brand-link {
+    gap: 4px;
+    white-space: nowrap;
+  }
+
+  .cta-external {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  @media (max-width: 860px) {
+    .tools-hero {
+      min-height: 640px;
+      padding: 56px 0 72px;
+    }
+
+    .tools-hero-inner {
+      width: min(100% - 40px, 1180px);
+      margin: 0 auto;
+    }
+
+    .problem-grid,
+    .two-col,
+    .capability-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-row {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cta-actions {
+      justify-content: flex-start;
+    }
+  }
+</style>
