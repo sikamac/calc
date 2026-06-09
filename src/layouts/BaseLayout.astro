@@ -1,47 +1,109 @@
 ---
 import '../styles/global.css';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+
+type SchemaNode = Record<string, unknown>;
 
 interface Props {
   title: string;
   description: string;
   image?: string;
+  imageAlt?: string;
   url?: string;
   locale?: string;
   type?: 'website' | 'article';
+  schema?: SchemaNode | SchemaNode[];
 }
 
 const { 
   title, 
   description, 
   image = '/logo.svg', 
+  imageAlt = 'GIST POINT',
   url, 
   locale = 'es_AR',
-  type = 'website'
+  type = 'website',
+  schema = []
 } = Astro.props;
 
 const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
-const siteUrl = Astro.site?.href || 'https://calculadoraimportacion.com.ar';
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const canonicalUrl = url || siteUrl;
-const fullImageUrl = image?.startsWith('http') ? image : `${siteUrl}${image}`;
+const pageSchema = Array.isArray(schema) ? schema : [schema];
+const localImageExists = image.startsWith('/') && existsSync(join(process.cwd(), 'public', image.slice(1)));
+const resolvedImage = image.startsWith('http') || localImageExists ? image : '/logo.svg';
+const fullImageUrl = resolvedImage.startsWith('http') ? resolvedImage : `${siteUrl}${resolvedImage}`;
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "Calculadora de Importaciones Argentina",
-  "description": "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más.",
-  "url": siteUrl,
-  "applicationCategory": "FinanceApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "GIST POINT S.A.S.",
-    "email": "info@gist-point.com"
-  }
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}#organization`,
+      "name": "GIST POINT S.A.S.",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logo.svg`,
+        "caption": "Logo de GIST POINT"
+      },
+      "email": "info@gist-point.com",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "customer support",
+          "telephone": "+54-9-351-346-4248",
+          "email": "info@gist-point.com",
+          "areaServed": "AR",
+          "availableLanguage": ["es-AR", "es"]
+        }
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}#website`,
+      "url": siteUrl,
+      "name": "Calculadora de Importaciones Argentina",
+      "description": "Calculadora gratuita y guías para estimar costos de importación en Argentina.",
+      "inLanguage": "es-AR",
+      "publisher": { "@id": `${siteUrl}#organization` }
+    },
+    {
+      "@type": "WebApplication",
+      "@id": `${siteUrl}/calculadora#webapp`,
+      "name": "Calculadora de importaciones Argentina",
+      "description": "Calculá derechos, aranceles, IVA, tasa estadística y gastos asociados a una importación en Argentina.",
+      "url": `${siteUrl}/calculadora`,
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web Browser",
+      "inLanguage": "es-AR",
+      "isAccessibleForFree": true,
+      "browserRequirements": "Requiere un navegador web moderno con JavaScript habilitado.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": { "@id": `${siteUrl}#organization` }
+    },
+    {
+      "@type": type === 'article' ? "Article" : "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": { "@id": `${siteUrl}#website` },
+      "about": { "@id": `${siteUrl}/calculadora#webapp` },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": fullImageUrl,
+        "caption": imageAlt
+      },
+      "inLanguage": "es-AR"
+    },
+    ...pageSchema
+  ]
 };
 ---
 
@@ -73,6 +135,7 @@ const jsonLd = {
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={fullImageUrl} />
+    <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:locale" content={locale} />
     <meta property="og:site_name" content="Calculadora de Importaciones Argentina" />
     
@@ -81,6 +144,7 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={fullImageUrl} />
+    <meta name="twitter:image:alt" content={imageAlt} />
     
     <title>{siteTitle}</title>
     

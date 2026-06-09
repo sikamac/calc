@@ -1,5 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
@@ -19,17 +21,75 @@ const { Content } = await render(entry);
 
 const title = `${entry.data.title} | GIST POINT`;
 const description = entry.data.description;
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+const articleSlug = entry.id.replace(/\.md$/, '');
+const articleUrl = `${siteUrl}/articulos/${articleSlug}`;
+const localImageExists = entry.data.image?.startsWith('/') && existsSync(join(process.cwd(), 'public', entry.data.image.slice(1)));
+const articleImage = entry.data.image && (entry.data.image.startsWith('http') || localImageExists) ? entry.data.image : '/logo.svg';
+const articleImageUrl = articleImage.startsWith('http') ? articleImage : `${siteUrl}${articleImage}`;
+const imageAlt = `Imagen representativa de la guía: ${entry.data.title}`;
 
 const allArticles = await getCollection('articulos');
 const relatedArticles = allArticles.filter(a => a.id !== entry.id).slice(0, 2);
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${articleUrl}#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": siteUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guías de importación",
+        "item": `${siteUrl}/articulos`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": entry.data.title,
+        "item": articleUrl
+      }
+    ]
+  },
+  {
+    "@type": "BlogPosting",
+    "@id": `${articleUrl}#article`,
+    "headline": entry.data.title,
+    "description": description,
+    "image": {
+      "@type": "ImageObject",
+      "url": articleImageUrl,
+      "caption": imageAlt
+    },
+    "datePublished": entry.data.date.toISOString(),
+    "author": {
+      "@type": "Organization",
+      "name": entry.data.author
+    },
+    "publisher": { "@id": `${siteUrl}#organization` },
+    "mainEntityOfPage": { "@id": `${articleUrl}#webpage` },
+    "articleSection": entry.data.category,
+    "keywords": entry.data.tags.join(', '),
+    "inLanguage": "es-AR",
+    "url": articleUrl,
+    "breadcrumb": { "@id": `${articleUrl}#breadcrumb` }
+  }
+];
 ---
 
 <BaseLayout
   title={title}
   description={description}
   url={Astro.url.href}
-  image={entry.data.image}
+  image={articleImage}
+  imageAlt={imageAlt}
   type="article"
+  schema={schema}
 >
   <Header />
   <main style="background: #F8FAFC; padding: 32px 0 64px;">

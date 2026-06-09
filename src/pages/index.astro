@@ -6,12 +6,40 @@ import Footer from '../components/layout/Footer.astro';
 
 const title = "Calculadora de importaciones Argentina";
 const description = "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más. Herramienta gratuita para importadores y despachantes.";
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${Astro.url.href}#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": siteUrl
+      }
+    ]
+  },
+  {
+    "@type": "Service",
+    "@id": `${Astro.url.href}#service`,
+    "name": "Estimación de costos de importación en Argentina",
+    "description": "Herramienta gratuita para estimar aranceles, impuestos, flete, seguro y gastos operativos de una importación.",
+    "provider": { "@id": `${siteUrl}#organization` },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Argentina"
+    },
+    "serviceType": "Calculadora de importaciones"
+  }
+];
 ---
 
 <BaseLayout
   title={title}
   description={description}
   url={Astro.url.href}
+  schema={schema}
 >
   <Header />
   <main>

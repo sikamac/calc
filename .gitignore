@@ -97,6 +97,7 @@ temp/
 
 # Astro
 .astro/
+.superpowers/
 
 # Vite
 .vite/

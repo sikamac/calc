@@ -6,6 +6,7 @@ import Footer from '../../components/layout/Footer.astro';
 
 const title = "Guías de importación Argentina — Blog especializado";
 const description = "Guías completas y actualizadas sobre importaciones en Argentina. Aprendé sobre aranceles, despacho aduanero, impuestos y logística.";
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 
 const articulosCollection = await getCollection('articulos');
 const guias = articulosCollection
@@ -17,12 +18,53 @@ const guias = articulosCollection
     category: entry.data.category,
   }))
   .sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${Astro.url.href}#breadcrumb`,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": siteUrl
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Guías de importación",
+        "item": Astro.url.href
+      }
+    ]
+  },
+  {
+    "@type": "CollectionPage",
+    "@id": `${Astro.url.href}#collection`,
+    "name": title,
+    "description": description,
+    "url": Astro.url.href,
+    "breadcrumb": { "@id": `${Astro.url.href}#breadcrumb` },
+    "mainEntity": {
+      "@type": "ItemList",
+      "name": "Guías de importación Argentina",
+      "numberOfItems": guias.length,
+      "itemListElement": guias.map((guia, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `${siteUrl}/articulos/${guia.slug}`,
+        "name": guia.title
+      }))
+    }
+  }
+];
 ---
 
 <BaseLayout
   title={title}
   description={description}
   url={Astro.url.href}
+  schema={schema}
 >
   <Header />
   <main style="background: #F8FAFC; padding: 64px 0;">
