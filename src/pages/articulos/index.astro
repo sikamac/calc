@@ -16,6 +16,7 @@ const guias = articulosCollection
     excerpt: entry.data.description,
     date: entry.data.date,
     category: entry.data.category,
+    image: entry.data.image,
   }))
   .sort((a, b) => b.date.getTime() - a.date.getTime());
 
@@ -132,6 +133,14 @@ const schema = [
             data-title={guia.title.toLowerCase()}
             data-date={guia.date.getTime()}
           >
+            {guia.image && (
+              <img
+                src={guia.image}
+                alt={`Guía: ${guia.title}`}
+                class="guide-cover"
+                loading="lazy"
+              />
+            )}
             <div class="p-6">
               <div class="mb-3">
                 <span class="px-3 py-1 bg-[#0074D9]/10 text-[#0074D9] text-xs font-semibold rounded-full">
@@ -233,5 +242,12 @@ const schema = [
     background: #00246B;
     color: #fff;
     border-color: #00246B;
+  }
+
+  .guide-cover {
+    width: 100%;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    border-bottom: 1px solid #DDE6F2;
   }
 </style>

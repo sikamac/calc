@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
-Sitemap: https://gistpoint.com/sitemap-0.xml
+Sitemap: https://calculadoraimportacion.com.ar/sitemap-index.xml

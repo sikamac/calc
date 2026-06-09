@@ -8,6 +8,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
+      filter: (page) => !page.includes('/admin/'),
       i18n: {
         defaultLocale: 'es',
         locales: {

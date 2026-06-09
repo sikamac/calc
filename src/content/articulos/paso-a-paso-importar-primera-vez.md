@@ -1,8 +1,9 @@
 ---
 title: "Cómo importar por primera vez: Guía paso a paso"
 date: 2024-02-15
+updatedDate: 2026-06-09
 category: "Iniciación"
-image: "/images/guides/primera-importacion.jpg"
+image: "/images/guides/primera-importacion.png"
 description: "Todo lo que necesitás saber para realizar tu primera importación en Argentina sin errores. Guía completa para principiantes."
 author: "Equipo de GIST POINT"
 tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]
@@ -10,7 +11,7 @@ tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]
 
 # Cómo importar por primera vez: Guía paso a paso
 
-Si estás leyendo esto, probablemente estés considerando realizar tu primera importación en Argentina y no sabés por dónde empezar. No te preocupés, en GIST POINT te guiamos en cada paso del proceso.
+Si estás leyendo esto, probablemente estés considerando realizar tu primera importación en Argentina y no sabés por dónde empezar. No te preocupés, en <span class="brand-name">GIST POINT</span> te guiamos en cada paso del proceso.
 
 ## Paso 1: Registración ante ARCA
 
@@ -55,7 +56,7 @@ El **Código NCM** (Nomenclatura Común del Mercosur) es fundamental. Determina:
 
 ## Paso 4: Calcular costos totales
 
-Usá nuestra **calculadora de importaciones** para estimar:
+Usá nuestra [calculadora de importaciones](/calculadora) para estimar:
 - Valor CIF (costo + flete + seguro)
 - Derechos de importación
 - Impuestos (IVA, Ganancias, IIBB)
@@ -159,15 +160,15 @@ Una vez liberada:
 
 ## ¿Necesitás Ayuda?
 
-En **GIST POINT S.A.S.** te asesoramos en tu primera importación:
+En <span class="brand-name">GIST POINT S.A.S.</span> te asesoramos en tu primera importación:
 - Clasificación NCM correcta
 - Cálculo de costos completo
 - Recomendación de despachantes
 - Optimización de impuestos
 
 📧 **Contactanos:** info@gist-point.com  
-🌐 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
+🌐 **Calculadora:** [calculadoraimportacion.com.ar/calculadora](https://calculadoraimportacion.com.ar/calculadora)
 
 ---
 
-**Descargá nuestra checklist en PDF:** [Checklist Primera Importación](https://gistpoint.com/downloads/checklist-primera-importacion.pdf)
+También puede servirte leer nuestra guía sobre [impuestos de importación en Argentina](/articulos/impuestos-importacion-argentina) antes de confirmar una compra.

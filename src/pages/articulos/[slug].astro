@@ -67,6 +67,7 @@ const schema = [
       "caption": imageAlt
     },
     "datePublished": entry.data.date.toISOString(),
+    "dateModified": (entry.data.updatedDate ?? entry.data.date).toISOString(),
     "author": {
       "@type": "Organization",
       "name": entry.data.author
@@ -132,6 +133,14 @@ const schema = [
             </header>
 
             <div class="p-6 lg:p-10">
+              {entry.data.image && (
+                <img
+                  src={articleImage}
+                  alt={imageAlt}
+                  class="article-cover"
+                  loading="eager"
+                />
+              )}
               <div class="prose prose-lg max-w-none">
                 <Content />
               </div>
@@ -142,7 +151,7 @@ const schema = [
           <div style="background: linear-gradient(135deg, #001B4D 0%, #00246B 55%, #003C8F 100%);" class="mt-8 rounded-2xl p-8 text-center">
             <h2 class="text-2xl font-bold text-white mb-3">¿Necesitás ayuda con tu importación?</h2>
             <p class="text-white/75 mb-6 max-w-xl mx-auto text-sm">
-              Nuestro equipo de expertos de GIST POINT puede ayudarte con dudas específicas sobre tu operación.
+              Nuestro equipo de expertos de <span class="brand-name">GIST POINT</span> puede ayudarte con dudas específicas sobre tu operación.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 justify-center">
               <a href="/calculadora" class="btn btn-secondary px-6 py-2.5 text-sm">
@@ -168,7 +177,13 @@ const schema = [
                 </div>
                 <div class="flex justify-between">
                   <dt class="text-[#5D6B82]">Autor</dt>
-                  <dd class="font-medium text-[#081C3A]">{entry.data.author}</dd>
+                  <dd class="font-medium text-[#081C3A]">
+                    {entry.data.author === 'Equipo de GIST POINT' ? (
+                      <>Equipo de <span class="brand-name">GIST POINT</span></>
+                    ) : (
+                      entry.data.author
+                    )}
+                  </dd>
                 </div>
                 <div class="flex justify-between">
                   <dt class="text-[#5D6B82]">Publicado</dt>
@@ -178,6 +193,16 @@ const schema = [
                     })}
                   </dd>
                 </div>
+                {entry.data.updatedDate && (
+                  <div class="flex justify-between">
+                    <dt class="text-[#5D6B82]">Actualizado</dt>
+                    <dd class="font-medium text-[#081C3A]">
+                      {new Date(entry.data.updatedDate).toLocaleDateString('es-AR', {
+                        day: 'numeric', month: 'short', year: 'numeric'
+                      })}
+                    </dd>
+                  </div>
+                )}
               </dl>
             </div>
 
@@ -229,3 +254,14 @@ const schema = [
   </main>
   <Footer />
 </BaseLayout>
+
+<style>
+  .article-cover {
+    width: 100%;
+    aspect-ratio: 1200 / 630;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #DDE6F2;
+    margin-bottom: 28px;
+  }
+</style>

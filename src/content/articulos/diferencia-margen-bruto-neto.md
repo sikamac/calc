@@ -1,8 +1,9 @@
 ---
 title: "Diferencia entre margen bruto y margen neto: Guía para importadores"
 date: 2026-02-28
+updatedDate: 2026-06-09
 category: "Finanzas"
-image: "/images/guides/margen-bruto-neto.jpg"
+image: "/images/guides/margen-bruto-neto.png"
 description: "Aprende a diferenciar entre margen bruto y neto, y por qué es fundamental para calcular correctamente los costos de importación en Argentina."
 author: "Equipo de GIST POINT"
 tags: ["margen bruto", "margen neto", "finanzas importacion", "costos"]
@@ -147,7 +148,7 @@ Las tasas arancelarias y las percepciones cambian constantemente en Argentina.
 
 ## Herramienta para calcular margenes
 
-Nuestra **calculadora de importaciones** hace todos estos cálculos automáticamente. Al ingresar tus datos, obtienes:
+Nuestra [calculadora de importaciones](/calculadora) hace todos estos cálculos automáticamente. Al ingresar tus datos, obtenés:
 
 - **Resumen de costos:** Desglose detallado de todos los gastos
 - **Margen bruto vs neto:** Comparación entre ambos conceptos
@@ -170,4 +171,6 @@ Nuestro equipo de expertos te puede ayudar a:
 - Negociar con proveedores
 
 📧 **Contactanos:** info@gist-point.com  
-🌐 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
+🌐 **Calculadora:** [calculadoraimportacion.com.ar/calculadora](https://calculadoraimportacion.com.ar/calculadora)
+
+Si todavía estás armando el costo base de tu operación, revisá también la guía sobre [valor CIF en importaciones](/articulos/valor-cif-importacion).

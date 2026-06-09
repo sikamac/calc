@@ -1,8 +1,9 @@
 ---
 title: "Código NCM: Clasificación arancelaria completa"
-date: 2024-02-10
+date: 2025-02-10
+updatedDate: 2026-06-09
 category: "Aranceles"
-image: "/images/guides/ncm-clasificacion.jpg"
+image: "/images/guides/ncm-clasificacion.png"
 description: "Aprendé a clasificar correctamente tus productos con el código NCM y evitá problemas con Aduana. Guía completa con ejemplos prácticos."
 author: "Equipo de GIST POINT"
 tags: ["NCM", "clasificación arancelaria", "código arancelario", "Mercosur"]
@@ -43,7 +44,7 @@ El NCM es un sistema de 8 dígitos que clasifica todas las mercaderías que se c
 
 ### Método 1: Buscador oficial ARCA
 
-1. Entrá a [Buscador NCM ARCA](https://www.arca.gob.ar/adicuad/NCMArancel/)
+1. Entrá a [Buscador NCM](https://www.vuce.gob.ar/)
 2. Escribí una descripción en español
 3. Navegá el árbol de clasificaciones
 4. Verificá la nota explicativa del capítulo
@@ -60,7 +61,9 @@ Si ya importaste productos similares:
 Consultá con:
 - Despachante de aduanas matriculado
 - Estudios especializados en comercio exterior
-- **GIST POINT S.A.S.** para productos complejos
+- <span class="brand-name">GIST POINT S.A.S.</span> para productos complejos
+
+Una vez definido el código, podés usar la [calculadora de importaciones](/calculadora) para estimar derechos, impuestos y gastos asociados.
 
 ## Ejemplos prácticos de clasificación
 
@@ -168,7 +171,7 @@ Cada capítulo tiene notas que excluyen o incluyen productos específicos.
 - Verificá decisiones de clasificación
 
 ### 3. **Nuestro asesoramiento**
-En **GIST POINT S.A.S.** ofrecemos:
+En <span class="brand-name">GIST POINT S.A.S.</span> ofrecemos:
 - Clasificación NCM confirmada
 - Justificación técnica
 - Respaldo para Aduana
@@ -226,7 +229,7 @@ Para importaciones grandes o recurrentes:
 
 ### Opción 3: Asesoramiento profesional
 
-En **GIST POINT S.A.S.** te ayudamos con:
+En <span class="brand-name">GIST POINT S.A.S.</span> te ayudamos con:
 - Análisis de producto complejo
 - Documentación para consulta
 - Respaldo técnico
@@ -235,9 +238,9 @@ En **GIST POINT S.A.S.** te ayudamos con:
 
 El NCM se actualiza cada 6 meses. Es importante:
 
-✅ **Suscribirte** a alertas de ARCA  
-✅ **Revisar** antes de cada importación  
-✅ **Actualizar** tus códigos registrados  
+✅ **Suscribirte** a alertas de ARCA
+✅ **Revisar** antes de cada importación
+✅ **Actualizar** tus códigos registrados
 
 ## Caso de Estudio: Importación de Café
 
@@ -273,14 +276,14 @@ La clasificación NCM correcta es fundamental para:
 
 ## ¿Necesitás Ayuda con tu Clasificación?
 
-En **GIST POINT S.A.S.** ofrecemos:
+En <span class="brand-name">GIST POINT S.A.S.</span> ofrecemos:
 
-📊 **Clasificación confirmada** con respaldo técnico  
-📋 **Documentación** para presentar en Aduana  
-🔄 **Actualizaciones** cuando cambie la normativa  
-💡 **Capacitación** para tu equipo  
+📊 **Clasificación confirmada** con respaldo técnico
+📋 **Documentación** para presentar en Aduana
+🔄 **Actualizaciones** cuando cambie la normativa
+💡 **Capacitación** para tu equipo
 
-**Contactanos:** info@gist-point.com  
+**Contactanos:** info@gist-point.com
 **Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
 
 ---
