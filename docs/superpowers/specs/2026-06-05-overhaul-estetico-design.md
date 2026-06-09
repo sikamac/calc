@@ -150,7 +150,7 @@ Card con valores ilustrativos fijos. **No hay formulario ni lógica de cálculo 
 <div class="calculator-card">
   <div class="card-label">Ejemplo de estimación</div>
   <div class="example-rows">
-    Valor FOB .............. USD 10.000
+    Valor EXW .............. USD 10.000
     Flete y seguro ......... USD 1.200
     Aranceles .............. USD 1.320
     Impuestos .............. USD 2.530

@@ -4,7 +4,7 @@ date: 2026-06-07
 updatedDate: 2026-06-09
 category: "Logística"
 image: "/images/guides/importar-china-argentina.png"
-description: "Guía práctica para estimar costos al importar desde China a Argentina: FOB, flete, seguro, impuestos, despacho y margen."
+description: "Guía práctica para estimar costos al importar desde China a Argentina: EXW, flete, seguro, impuestos, despacho y margen."
 author: "Equipo de GIST POINT"
 tags: ["importar de China", "costos importación", "flete internacional", "Argentina"]
 ---
@@ -17,7 +17,7 @@ Antes de comprar, conviene estimar todos los costos hasta que la mercadería est
 
 ## Costo del producto
 
-El primer dato es el valor FOB o el precio pactado con el proveedor según el Incoterm de la operación.
+El primer dato es el valor EXW o el precio pactado con el proveedor según el Incoterm de la operación.
 
 Pedí una proforma clara, con descripción del producto, cantidades, precio unitario, condiciones de pago y plazo de producción.
 
@@ -51,12 +51,12 @@ Además de derechos e impuestos, considerá:
 
 ## Margen y precio de venta
 
-Una importación puede parecer atractiva por precio FOB y dejar de serlo al sumar logística, impuestos y gastos operativos.
+Una importación puede parecer atractiva por precio EXW y dejar de serlo al sumar logística, impuestos y gastos operativos.
 
 Por eso recomendamos estimar el costo total y compararlo con el precio de venta esperado. La guía sobre [margen bruto y margen neto](/articulos/diferencia-margen-bruto-neto) te puede ayudar a analizar la rentabilidad.
 
 ## Herramienta para una primera estimación
 
-Con FOB, flete, seguro y tipo de producto podés usar la [calculadora de importaciones](/calculadora) para tener una primera referencia del costo total.
+Con EXW, flete, seguro y tipo de producto podés usar la [calculadora de importaciones](/calculadora) para tener una primera referencia del costo total.
 
 Para operaciones reales, validá la clasificación y los requisitos con un profesional antes de cerrar la compra.

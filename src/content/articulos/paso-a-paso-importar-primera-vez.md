@@ -47,8 +47,8 @@ El **Código NCM** (Nomenclatura Común del Mercosur) es fundamental. Determina:
 ## Paso 3: Elegir proveedor y condiciones de compra
 
 ### Aspectos clave a negociar:
-- **Precio FOB** (precio en origen)
-- **Incoterm:** FOB, CIF, EXW, etc.
+- **Precio EXW** (precio en origen)
+- **Incoterm:** EXW, CIF, EXW, etc.
 - **Forma de pago:** Transferencia bancaria, carta de crédito
 - **Tiempo de entrega**
 
@@ -65,7 +65,7 @@ Usá nuestra [calculadora de importaciones](/calculadora) para estimar:
 
 ### Ejemplo rápido:
 ```
-Valor FOB: USD 1,000
+Valor EXW: USD 1,000
 Flete: USD 150
 Seguro: USD 50
 Arancel: 14%

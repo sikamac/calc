@@ -50,7 +50,7 @@ El camino práctico es:
 
 1. Definir producto y origen.
 2. Buscar o validar el código NCM.
-3. Estimar valor FOB, flete y seguro.
+3. Estimar valor EXW, flete y seguro.
 4. Calcular valor CIF.
 5. Aplicar derechos, impuestos y gastos.
 6. Comparar el costo final contra el precio de venta esperado.

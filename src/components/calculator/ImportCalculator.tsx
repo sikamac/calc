@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 interface ImportCalculation {
-  valorFOB: number;
+  valorEXW: number;
   arancel: number;
   derechoAntidumping: number;
   tasaEstadistica: number;
@@ -15,12 +15,12 @@ interface ImportCalculation {
   costoTransferenciaBancaria: number;
   gastosDespachante: number;
   costoFinal: number;
-  costoTotalEnFOB: number;
+  costoTotalEnEXW: number;
 }
 
 interface VentaCalculation {
   costoUnitario: number;
-  valorFOB: number;
+  valorEXW: number;
   impuestosImportacion: number;
   gastosOperativosImportacion: number;
   flete: number;
@@ -30,7 +30,7 @@ interface VentaCalculation {
   costoTotalDeducible: number;
   margenGanancia: number;
   precioVenta: number;
-  precioVentaEnFOB: number;
+  precioVentaEnEXW: number;
   precioVentaConIVA: number;
   baseImponibleGanancias: number;
   gananciaImponible: number;
@@ -51,7 +51,7 @@ type TabType = 'importacion' | 'venta';
 export const ImportCalculator: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('importacion');
   
-  const [valorFOB, setValorFOB] = useState<number>(1000);
+  const [valorEXW, setValorEXW] = useState<number>(1000);
   const [tasaArancel, setTasaArancel] = useState<number>(18);
   const [tasaAntidumping, setTasaAntidumping] = useState<number>(0);
   const [tasaIVA, setTasaIVA] = useState<number>(21);
@@ -76,7 +76,7 @@ export const ImportCalculator: React.FC = () => {
   useEffect(() => {
     calcularImportacion();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [valorFOB, tasaArancel, tasaAntidumping, tasaIVA, tipoIVAAdicional,
+  }, [valorEXW, tasaArancel, tasaAntidumping, tasaIVA, tipoIVAAdicional,
       tasaGanancias, tasaPercepcionIB, flete, seguro, costoTransferenciaBancaria, 
       gastosDespachante, costoDepositoFiscal]);
 
@@ -89,23 +89,23 @@ export const ImportCalculator: React.FC = () => {
       tasaIIBBProvincial, tasaIIBBMunicipal]);
 
   const calcularImportacion = () => {
-    const valorFOBNumerico = valorFOB || 0;
+    const valorEXWNumerico = valorEXW || 0;
 
-    const valorCIF = valorFOBNumerico + flete + seguro;
+    const valorCIF = valorEXWNumerico + flete + seguro;
 
     const arancelCalculado = (valorCIF * tasaArancel) / 100;
 
     const derechoAntidumpingCalculado = (valorCIF * tasaAntidumping) / 100;
 
     // Tasa Estadística con topes máximos según normativa
-    let tasaEstadisticaCalculada = valorFOBNumerico * 0.005;
+    let tasaEstadisticaCalculada = valorEXWNumerico * 0.005;
     let maximoTasaEstadistica = 0;
 
-    if (valorFOBNumerico <= 10000) {
+    if (valorEXWNumerico <= 10000) {
       maximoTasaEstadistica = 180;
-    } else if (valorFOBNumerico <= 100000) {
+    } else if (valorEXWNumerico <= 100000) {
       maximoTasaEstadistica = 3000;
-    } else if (valorFOBNumerico <= 1000000) {
+    } else if (valorEXWNumerico <= 1000000) {
       maximoTasaEstadistica = 30000;
     } else {
       maximoTasaEstadistica = 150000;
@@ -128,10 +128,10 @@ export const ImportCalculator: React.FC = () => {
                       impuestoGananciasCalculado + percepcionIBCalculada +
                       costoTransferenciaBancaria + gastosDespachante + costoDepositoFiscal;
 
-    const costoTotalEnFOB = valorFOBNumerico > 0 ? costoFinal / valorFOBNumerico : 0;
+    const costoTotalEnEXW = valorEXWNumerico > 0 ? costoFinal / valorEXWNumerico : 0;
 
     setCalculo({
-      valorFOB: valorFOBNumerico,
+      valorEXW: valorEXWNumerico,
       arancel: arancelCalculado,
       derechoAntidumping: derechoAntidumpingCalculado,
       tasaEstadistica: tasaEstadisticaCalculada,
@@ -145,7 +145,7 @@ export const ImportCalculator: React.FC = () => {
       costoTransferenciaBancaria,
       gastosDespachante,
       costoFinal,
-      costoTotalEnFOB
+      costoTotalEnEXW
     });
   };
 
@@ -159,8 +159,8 @@ export const ImportCalculator: React.FC = () => {
     const impuestosImportacion = calculo.arancel + calculo.derechoAntidumping + calculo.tasaEstadistica +
                                    calculo.iva + calculo.ivaAdicional + calculo.impuestoGanancias + calculo.percepcionIB;
 
-    // Calculate deductible cost for income tax: FOB + Operating Expenses (NOT including import taxes)
-    const costoDeducibleGanancias = valorFOB + gastosOperativosImportacion;
+    // Calculate deductible cost for income tax: EXW + Operating Expenses (NOT including import taxes)
+    const costoDeducibleGanancias = valorEXW + gastosOperativosImportacion;
 
     // Calculate required price to achieve desired net margin
     // Working backwards from desired net margin
@@ -184,7 +184,7 @@ export const ImportCalculator: React.FC = () => {
       const comisionCalculada = (precioVenta * comisionVenta) / 100;
 
       // Income tax base: Gross Profit (based on deductible cost) - Fixed Costs - Commission - Socios' Fees (capped at 25%)
-      // Deductible costs: FOB + Operating Expenses (flete, seguro, transferencia, despachante)
+      // Deductible costs: EXW + Operating Expenses (flete, seguro, transferencia, despachante)
       const gananciaBrutaDeducible = precioVenta - costoDeducibleGanancias;
       
       const gananciaImponibleSinHonorarios = gananciaBrutaDeducible - gastosFijos - comisionCalculada;
@@ -222,7 +222,7 @@ export const ImportCalculator: React.FC = () => {
     const comisionCalculada = (precioVenta * comisionVenta) / 100;
 
     // Income tax base: Gross Profit (based on deductible cost) - Fixed Costs - Commission - Socios' Fees (capped at 25%)
-    // Deductible costs: FOB + Operating Expenses (flete, seguro, transferencia, despachante)
+    // Deductible costs: EXW + Operating Expenses (flete, seguro, transferencia, despachante)
     const gananciaBrutaDeducible = precioVenta - costoDeducibleGanancias;
     
     const gananciaImponibleSinHonorariosFinal = gananciaBrutaDeducible - gastosFijos - comisionCalculada;
@@ -246,7 +246,7 @@ export const ImportCalculator: React.FC = () => {
     // Margen neto calculado sobre el total recibido (lo que realmente se lleva en bolsillo)
     const margenNetoCalculadoFinal = (totalRecibidoFinal / precioVenta) * 100;
 
-    const precioVentaEnFOB = valorFOB > 0 ? precioVenta / valorFOB : 0;
+    const precioVentaEnEXW = valorEXW > 0 ? precioVenta / valorEXW : 0;
 
     // Precio de venta + IVA (usando el mismo IVA que la importación)
     const ivaVentaCalculado = (precioVenta * tasaIVA) / 100;
@@ -254,7 +254,7 @@ export const ImportCalculator: React.FC = () => {
 
     setCalculoVenta({
       costoUnitario: calculo.costoFinal,
-      valorFOB,
+      valorEXW,
       impuestosImportacion,
       gastosOperativosImportacion,
       flete,
@@ -264,7 +264,7 @@ export const ImportCalculator: React.FC = () => {
       costoTotalDeducible: gastosOperativosImportacion,
       margenGanancia: margenCalculadoReal,
       precioVenta,
-      precioVentaEnFOB,
+      precioVentaEnEXW,
       precioVentaConIVA,
       baseImponibleGanancias,
       gananciaImponible: baseImponibleGanancias,
@@ -327,11 +327,11 @@ export const ImportCalculator: React.FC = () => {
                 <h3 className="text-xl font-bold text-gray-900 mb-4">Datos de importación</h3>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Valor FOB (USD)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Valor EXW (USD)</label>
                   <input
                     type="number"
-                    value={valorFOB}
-                    onChange={(e) => setValorFOB(parseFloat(e.target.value) || 0)}
+                    value={valorEXW}
+                    onChange={(e) => setValorEXW(parseFloat(e.target.value) || 0)}
                     className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     placeholder="Ej: 1000"
                   />
@@ -504,8 +504,8 @@ export const ImportCalculator: React.FC = () => {
                       
                       <div className="space-y-3">
                         <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
-                          <span className="text-gray-700">Valor FOB</span>
-                          <span className="font-medium">{formatCurrency(calculo.valorFOB)}</span>
+                          <span className="text-gray-700">Valor EXW</span>
+                          <span className="font-medium">{formatCurrency(calculo.valorEXW)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">+ Flete</span>
@@ -517,7 +517,7 @@ export const ImportCalculator: React.FC = () => {
                         </div>
                         <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
                           <span className="font-semibold">Valor CIF</span>
-                          <span className="font-semibold">{formatCurrency(calculo.valorFOB + calculo.flete + calculo.seguro)}</span>
+                          <span className="font-semibold">{formatCurrency(calculo.valorEXW + calculo.flete + calculo.seguro)}</span>
                         </div>
                         <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                           <span className="text-gray-700">Arancel ({tasaArancel}%)</span>
@@ -565,9 +565,9 @@ export const ImportCalculator: React.FC = () => {
                         </div>
                         <div className="mt-4 p-3 bg-[#F3F7FC] rounded-lg">
                           <div className="flex justify-between">
-                            <span className="font-semibold text-[#081C3A]">Costo total en FOB:</span>
+                            <span className="font-semibold text-[#081C3A]">Costo total en EXW:</span>
                             <span className="bg-[#00246B] text-white px-3 py-1 rounded-full text-sm font-bold">
-                              {calculo.costoTotalEnFOB.toFixed(2)}x
+                              {calculo.costoTotalEnEXW.toFixed(2)}x
                             </span>
                           </div>
                         </div>
@@ -580,7 +580,7 @@ export const ImportCalculator: React.FC = () => {
                       
                       <div className="space-y-4">
                         {[
-                          { label: 'Valor FOB', value: calculo.valorFOB, color: 'bg-[#0074D9]' },
+                          { label: 'Valor EXW', value: calculo.valorEXW, color: 'bg-[#0074D9]' },
                           { label: 'Arancel + Antidumping', value: calculo.arancel + calculo.derechoAntidumping, color: 'bg-[#00246B]' },
                           {
                             label: 'Impuestos (IVA, IVA Adic, Ganancias, IIBB)',
@@ -730,8 +730,8 @@ export const ImportCalculator: React.FC = () => {
                       <span className="font-medium text-[#0074D9]">{formatCurrency(calculoVenta.precioVentaConIVA)}</span>
                     </div>
                     <div className="flex justify-between py-2 border-b-2 border-[#DDE6F2]">
-                      <span className="font-semibold">Precio en FOB</span>
-                      <span className="font-semibold">{calculoVenta.precioVentaEnFOB.toFixed(2)}x</span>
+                      <span className="font-semibold">Precio en EXW</span>
+                      <span className="font-semibold">{calculoVenta.precioVentaEnEXW.toFixed(2)}x</span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Margen Neto</span>

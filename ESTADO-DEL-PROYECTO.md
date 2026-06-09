@@ -28,7 +28,7 @@ Proyecto web completo para calculadora de costos de importación en Argentina, c
 - ✅ **Paleta de Colores:** Primary (#003366), Secondary (#0066CC), Accent (#FF6600)
 
 ### 🧮 Calculadora Profesional
-- ✅ **Cálculo de Importación:** Valor FOB, CIF, aranceles, antidumping, tasa estadística
+- ✅ **Cálculo de Importación:** Valor EXW, CIF, aranceles, antidumping, tasa estadística
 - ✅ **Impuestos Argentinos:** IVA (21%/10.5%), IVA adicional (10%/20%), Ganancias, IIBB
 - ✅ **Gastos Operativos:** Flete, seguro, transferencia bancaria, despachante
 - ✅ **Cálculo de Venta:** Margen neto deseado, comisiones, honorarios socios

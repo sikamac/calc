@@ -266,7 +266,7 @@ export const Logo = ({ className, color = '#003366', width = 200 }: LogoProps) =
 
 ### 4. ImportCalculator.tsx
 **Inputs:**
-- Valor FOB (USD)
+- Valor EXW (USD)
 - Peso/volumen
 - Categoría arancelaria (select)
 - Origen (select)

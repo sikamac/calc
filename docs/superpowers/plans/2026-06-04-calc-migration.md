@@ -495,7 +495,7 @@ Reemplazar desde `<form id="contact-form"...>` hasta el cierre `</form>` con:
 
   <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
     <p class="text-sm text-blue-800">
-      <strong>💡 Tip:</strong> Incluí el valor FOB, tipo de producto y origen para una respuesta más precisa.
+      <strong>💡 Tip:</strong> Incluí el valor EXW, tipo de producto y origen para una respuesta más precisa.
     </p>
   </div>
 

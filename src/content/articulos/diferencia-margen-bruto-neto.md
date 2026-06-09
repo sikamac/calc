@@ -29,7 +29,7 @@ Margen Bruto = [(200 - 100) / 200] × 100 = 50%
 ```
 
 ### ¿Qué incluye?
-- Costo FOB
+- Costo EXW
 - Flete y seguro
 - Gastos operativos directos
 
@@ -65,7 +65,7 @@ Margen Neto = [(200 - 160) / 200] × 100 = 20%
 
 ## Por qué es crucial distinguirlos para importadores
 
-En Argentina, los impuestos pueden representar entre **60-100% del costo FOB**. Esto significa que:
+En Argentina, los impuestos pueden representar entre **60-100% del costo EXW**. Esto significa que:
 
 ### 1. El margen bruto engaña
 Si solo calculas el margen bruto, te darás una idea falsa de la rentabilidad. Un margen bruto del 50% puede convertirse en un margen neto del 20% después de impuestos.
@@ -82,7 +82,7 @@ En Argentina, los impuestos no son "descontados al final del año" - son pagos q
 
 | Concepto | Costo (USD) |
 |----------|-------------|
-| FOB | 800 |
+| EXW | 800 |
 | Flete + Seguro | 100 |
 | Arancel (10%) | 80 |
 | IVA (21%) | 210 |
@@ -91,13 +91,13 @@ En Argentina, los impuestos no son "descontados al final del año" - son pagos q
 
 ### Precio de Venta y Margenes:
 - **Precio de Venta:** USD 1,800
-- **Margen Bruto:** ~44% (solo costo FOB)
+- **Margen Bruto:** ~44% (solo costo EXW)
 - **Margen Neto Real:** ~28% (incluye todos los costos)
 
 ## Cómo calcular el margen neto correctamente
 
 ### Paso 1: Suma todos los costos de importación
-- Valor FOB
+- Valor EXW
 - Flete y seguro
 - Aranceles y derechos antidumping
 - IVA y percepciones
@@ -122,7 +122,7 @@ Margen Neto (%) = [(Precio de Venta - Costo Total) / Precio de Venta] × 100
 ## Tips para optimizar tu margen neto
 
 ### 1. Negocia precios con proveedores
-Un descuento del 5% en el costo FOB puede mejorar tu margen neto en ~10%.
+Un descuento del 5% en el costo EXW puede mejorar tu margen neto en ~10%.
 
 ### 2. Optimiza la clasificación NCM
 Un código incorrecto puede aumentar el arancel en hasta 30%, reduciendo drásticamente tu margen.

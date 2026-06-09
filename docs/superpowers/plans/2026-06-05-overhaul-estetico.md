@@ -473,7 +473,7 @@ git commit -m "feat: redesign footer — GP colors, simplified CTA, updated tagl
           <p class="card-label">Ejemplo de estimación</p>
           <div class="example-rows">
             <div class="example-row">
-              <span>Valor FOB</span><span class="example-val">USD 10.000</span>
+              <span>Valor EXW</span><span class="example-val">USD 10.000</span>
             </div>
             <div class="example-row">
               <span>Flete y seguro</span><span class="example-val">USD 1.200</span>
@@ -763,7 +763,7 @@ const description = "Calculá al instante los costos de importación en Argentin
             <div class="example-card-big">
               <p class="ecb-label">Ejemplo de estimación</p>
               <div class="ecb-rows">
-                <div class="ecb-row"><span>Valor FOB</span><span class="ecb-val">USD 10.000</span></div>
+                <div class="ecb-row"><span>Valor EXW</span><span class="ecb-val">USD 10.000</span></div>
                 <div class="ecb-row"><span>Flete y seguro</span><span class="ecb-val">USD 1.200</span></div>
                 <div class="ecb-row"><span>Aranceles (14%)</span><span class="ecb-val">USD 1.320</span></div>
                 <div class="ecb-row"><span>Impuestos (IVA + percepciones)</span><span class="ecb-val">USD 2.530</span></div>
@@ -814,7 +814,7 @@ const description = "Calculá al instante los costos de importación en Argentin
               <li>Transporte marítimo y aéreo</li>
               <li>Seguro de carga</li>
               <li>Incoterms 2020</li>
-              <li>Valor FOB y CIF</li>
+              <li>Valor EXW y CIF</li>
             </ul>
           </div>
           <div class="info-card">
@@ -1102,9 +1102,9 @@ Reemplazar:
 ```tsx
 <div className="mt-4 p-3 bg-green-100 rounded-lg">
   <div className="flex justify-between">
-    <span className="font-semibold">Costo total en FOB:</span>
+    <span className="font-semibold">Costo total en EXW:</span>
     <span className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
-      {calculo.costoTotalEnFOB.toFixed(2)}x
+      {calculo.costoTotalEnEXW.toFixed(2)}x
     </span>
   </div>
 </div>
@@ -1113,9 +1113,9 @@ Con:
 ```tsx
 <div className="mt-4 p-3 bg-[#F3F7FC] rounded-lg">
   <div className="flex justify-between">
-    <span className="font-semibold text-[#081C3A]">Costo total en FOB:</span>
+    <span className="font-semibold text-[#081C3A]">Costo total en EXW:</span>
     <span className="bg-[#00246B] text-white px-3 py-1 rounded-full text-sm font-bold">
-      {calculo.costoTotalEnFOB.toFixed(2)}x
+      {calculo.costoTotalEnEXW.toFixed(2)}x
     </span>
   </div>
 </div>
@@ -1424,7 +1424,7 @@ const description = "Contactate con expertos en comercio exterior de GIST POINT.
 
             <div class="bg-[#F3F7FC] border border-[#DDE6F2] rounded-lg p-4">
               <p class="text-sm text-[#5D6B82]">
-                <strong class="text-[#081C3A]">Tip:</strong> Incluí el valor FOB, tipo de producto y origen para una respuesta más precisa.
+                <strong class="text-[#081C3A]">Tip:</strong> Incluí el valor EXW, tipo de producto y origen para una respuesta más precisa.
               </p>
             </div>
 
