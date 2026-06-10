@@ -99,6 +99,9 @@ temp/
 .astro/
 .superpowers/
 
+# Worktrees
+.worktrees/
+
 # Vite
 .vite/
 
