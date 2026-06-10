@@ -43,6 +43,7 @@ interface VentaCalculation {
   honorariosDeducibles: number;
   totalRecibido: number;
   gananciaNeta: number;
+  margenBruto: number;
   margenNeto: number;
 }
 
@@ -57,7 +58,7 @@ export const ImportCalculator: React.FC = () => {
   const [tasaIVA, setTasaIVA] = useState<number>(21);
   const [tipoIVAAdicional, setTipoIVAAdicional] = useState<'0' | '10' | '20'>('20');
   const [tasaGanancias, setTasaGanancias] = useState<number>(6);
-  const [tasaPercepcionIB, setTasaPercepcionIB] = useState<number>(3);
+  const [tasaPercepcionIB, setTasaPercepcionIB] = useState<number>(2.5);
   const [flete, setFlete] = useState<number>(0);
   const [seguro, setSeguro] = useState<number>(0);
   const [costoTransferenciaBancaria, setCostoTransferenciaBancaria] = useState<number>(0);
@@ -277,6 +278,7 @@ export const ImportCalculator: React.FC = () => {
       honorariosDeducibles: honorariosDeduciblesFinal,
       totalRecibido: totalRecibidoFinal,
       gananciaNeta: gananciaNetaCalculada,
+      margenBruto: (margenCalculadoReal / precioVenta) * 100,
       margenNeto: margenNetoCalculadoFinal
     });
   };
@@ -302,7 +304,7 @@ export const ImportCalculator: React.FC = () => {
                   : 'border-transparent text-[#5D6B82] hover:text-[#081C3A] hover:border-[#DDE6F2]'
               }`}
             >
-              Costos de importación
+              Precio de compra
             </button>
             <button
               onClick={() => setActiveTab('venta')}
@@ -335,6 +337,12 @@ export const ImportCalculator: React.FC = () => {
                     className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     placeholder="Ej: 1000"
                   />
+                  <div className="text-sm text-gray-500">
+                    Valor pactado con tu proveedor según el Incoterm acordado.
+                    <a href="/blog/que-son-los-incoterms" className="text-blue-600 hover:text-blue-800 ml-1">
+                      ¿Qué son los Incoterms?
+                    </a>
+                  </div>
                 </div>
 
                 <div className="space-y-4">
@@ -425,7 +433,6 @@ export const ImportCalculator: React.FC = () => {
                       onChange={(e) => setTasaPercepcionIB(parseFloat(e.target.value) || 0)}
                       className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                     />
-                    <div className="text-sm text-gray-500">3% comercio, 1.5% industria</div>
                   </div>
                 </div>
 
@@ -655,6 +662,12 @@ export const ImportCalculator: React.FC = () => {
                     onChange={(e) => setComisionVenta(parseFloat(e.target.value) || 0)}
                     className="w-full px-4 py-3 border border-[#DDE6F2] rounded-lg focus:ring-2 focus:ring-[#0074D9] focus:border-transparent"
                   />
+                  <div className="text-sm text-gray-500">
+                    Porcentaje que cobra la plataforma o canal de venta.
+                    <a href="/blog/comision-venta-plataformas" className="text-blue-600 hover:text-blue-800 ml-1">
+                      ¿Qué es la comisión de venta?
+                    </a>
+                  </div>
                 </div>
 
                 <div>
@@ -734,6 +747,10 @@ export const ImportCalculator: React.FC = () => {
                       <span className="font-semibold">{calculoVenta.precioVentaEnEXW.toFixed(2)}x</span>
                     </div>
                     <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
+                      <span className="text-gray-700">Margen Bruto</span>
+                      <span className="font-medium">{calculoVenta.margenBruto.toFixed(2)}%</span>
+                    </div>
+                    <div className="flex justify-between py-2 border-b border-[#DDE6F2]">
                       <span className="text-gray-700">Margen Neto</span>
                       <span className="font-medium text-[#0074D9]">{calculoVenta.margenNeto.toFixed(2)}%</span>
                     </div>
@@ -761,7 +778,12 @@ export const ImportCalculator: React.FC = () => {
                       <span>{formatCurrency(calculoVenta.impuestoGananciasVenta)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Comisión Venta</span>
+                      <span className="text-gray-600">
+                        Comisión vendedor/plataforma
+                        <span className="ml-1 text-blue-500 cursor-help" title="Si tu plataforma cobra además una comisión por el medio de pago (tarjeta, billetera virtual), sumala acá para ver el costo real.">
+                          ?
+                        </span>
+                      </span>
                       <span>{formatCurrency(calculoVenta.comisionVenta)}</span>
                     </div>
                     <div className="flex justify-between">
