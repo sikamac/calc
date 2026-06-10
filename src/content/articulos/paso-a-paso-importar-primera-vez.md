@@ -3,7 +3,7 @@ title: "Cómo importar por primera vez: Guía paso a paso"
 date: 2024-02-15
 updatedDate: 2026-06-09
 category: "Iniciación"
-image: "/images/guides/primera-importacion.png"
+image: "../../assets/images/guides/primera-importacion.png"
 description: "Todo lo que necesitás saber para realizar tu primera importación en Argentina sin errores. Guía completa para principiantes."
 author: "Equipo de GIST POINT"
 tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]

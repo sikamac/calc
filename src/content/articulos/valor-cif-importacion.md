@@ -3,7 +3,7 @@ title: "Valor CIF en importaciones: qué es y cómo se calcula"
 date: 2026-06-05
 updatedDate: 2026-06-09
 category: "Costos"
-image: "/images/guides/valor-cif.png"
+image: "../../assets/images/guides/valor-cif.png"
 description: "Aprendé qué significa el valor CIF, qué componentes incluye y por qué es clave para calcular impuestos de importación."
 author: "Equipo de GIST POINT"
 tags: ["valor CIF", "EXW", "flete internacional", "seguro de carga"]

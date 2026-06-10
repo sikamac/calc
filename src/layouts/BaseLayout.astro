@@ -1,14 +1,15 @@
 ---
 import '../styles/global.css';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import defaultOgImage from '../assets/images/og/calculadora-importaciones.png';
 
 type SchemaNode = Record<string, unknown>;
 
 interface Props {
   title: string;
   description: string;
-  image?: string;
+  image?: ImageMetadata | string;
   imageAlt?: string;
   url?: string;
   locale?: string;
@@ -16,12 +17,12 @@ interface Props {
   schema?: SchemaNode | SchemaNode[];
 }
 
-const { 
-  title, 
-  description, 
-  image = '/images/og/calculadora-importaciones.png',
+const {
+  title,
+  description,
+  image = defaultOgImage,
   imageAlt = 'Calculadora de importaciones',
-  url, 
+  url,
   locale = 'es_AR',
   type = 'website',
   schema = []
@@ -31,9 +32,21 @@ const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const canonicalUrl = url || siteUrl;
 const pageSchema = Array.isArray(schema) ? schema : [schema];
-const localImageExists = image.startsWith('/') && existsSync(join(process.cwd(), 'public', image.slice(1)));
-const resolvedImage = image.startsWith('http') || localImageExists ? image : '/logo.svg';
-const fullImageUrl = resolvedImage.startsWith('http') ? resolvedImage : `${siteUrl}${resolvedImage}`;
+
+let fullImageUrl: string;
+let ogImageMeta: { width: number; height: number; type: string } | null = null;
+
+if (typeof image === 'string') {
+  fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image}`;
+} else {
+  const optimizedOgImage = await getImage({ src: image, format: 'avif', width: 1200, height: 630 });
+  fullImageUrl = `${siteUrl}${optimizedOgImage.src}`;
+  ogImageMeta = {
+    width: optimizedOgImage.attributes.width,
+    height: optimizedOgImage.attributes.height,
+    type: 'image/avif',
+  };
+}
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -136,6 +149,13 @@ const jsonLd = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={fullImageUrl} />
     <meta property="og:image:alt" content={imageAlt} />
+    {ogImageMeta && (
+      <>
+        <meta property="og:image:width" content={String(ogImageMeta.width)} />
+        <meta property="og:image:height" content={String(ogImageMeta.height)} />
+        <meta property="og:image:type" content={ogImageMeta.type} />
+      </>
+    )}
     <meta property="og:locale" content={locale} />
     <meta property="og:site_name" content="Calculadora de Importaciones Argentina" />
     

@@ -3,7 +3,7 @@ title: "Importar de China a Argentina: costos que tenés que estimar"
 date: 2026-06-07
 updatedDate: 2026-06-09
 category: "Logística"
-image: "/images/guides/importar-china-argentina.png"
+image: "../../assets/images/guides/importar-china-argentina.png"
 description: "Guía práctica para estimar costos al importar desde China a Argentina: EXW, flete, seguro, impuestos, despacho y margen."
 author: "Equipo de GIST POINT"
 tags: ["importar de China", "costos importación", "flete internacional", "Argentina"]

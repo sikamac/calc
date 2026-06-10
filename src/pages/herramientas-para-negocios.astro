@@ -1,12 +1,14 @@
 ---
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import heroToolsImage from '../assets/images/og/herramientas-negocios.png';
 
 const title = "Herramientas para negocios";
 const description = "Diseñamos sistemas, dashboards y automatizaciones a medida para ordenar procesos, centralizar información y mejorar la toma de decisiones.";
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
-const image = "/images/og/herramientas-negocios.png";
+const optimizedHeroTools = await getImage({ src: heroToolsImage, format: 'avif', width: 1600 });
 const imageAlt = "Herramientas digitales para negocios";
 
 const schema = [
@@ -71,13 +73,13 @@ const capabilities = [
   title={title}
   description={description}
   url={Astro.url.href}
-  image={image}
+  image={heroToolsImage}
   imageAlt={imageAlt}
   schema={schema}
 >
   <Header />
   <main>
-    <section class="tools-hero" style={`background-image: linear-gradient(90deg, rgba(0, 27, 77, 0.88), rgba(0, 36, 107, 0.58), rgba(0, 36, 107, 0.16)), url('${image}');`}>
+    <section class="tools-hero" style={`background-image: linear-gradient(90deg, rgba(0, 27, 77, 0.88), rgba(0, 36, 107, 0.58), rgba(0, 36, 107, 0.16)), url('${optimizedHeroTools.src}');`}>
       <div class="tools-hero-inner">
         <p class="eyebrow">Software y automatización para empresas</p>
         <h1>Herramientas digitales para ordenar, medir y hacer crecer tu negocio</h1>

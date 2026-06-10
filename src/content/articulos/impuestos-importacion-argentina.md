@@ -3,7 +3,7 @@ title: "Impuestos de importación en Argentina: qué costos considerar"
 date: 2026-06-03
 updatedDate: 2026-06-09
 category: "Impuestos"
-image: "/images/guides/impuestos-importacion.png"
+image: "../../assets/images/guides/impuestos-importacion.png"
 description: "Conocé los principales impuestos y tasas que pueden intervenir en una importación en Argentina y cómo estimarlos antes de comprar."
 author: "Equipo de GIST POINT"
 tags: ["impuestos de importación", "IVA importación", "derechos de importación", "costos"]

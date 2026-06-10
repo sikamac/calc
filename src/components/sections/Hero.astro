@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import heroImage from '../../assets/images/og/calculadora-importaciones.png';
 ---
 
 <section class="hero-section">
@@ -60,11 +62,15 @@
       <!-- Columna derecha — ejemplo estático -->
       <div class="hero-visual" aria-label="Ejemplo visual de estimación de costos">
         <div class="visual-media">
-          <img
-            src="/images/og/calculadora-importaciones.png"
+          <Image
+            src={heroImage}
             alt="Planificación de costos de importación"
             class="hero-image"
             loading="eager"
+            fetchpriority="high"
+            format="avif"
+            width={1200}
+            height={630}
           />
         </div>
         <div class="calc-card">

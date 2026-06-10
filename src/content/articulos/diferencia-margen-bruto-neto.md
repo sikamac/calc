@@ -3,7 +3,7 @@ title: "Diferencia entre margen bruto y margen neto: Guía para importadores"
 date: 2026-02-28
 updatedDate: 2026-06-09
 category: "Finanzas"
-image: "/images/guides/margen-bruto-neto.png"
+image: "../../assets/images/guides/margen-bruto-neto.png"
 description: "Aprende a diferenciar entre margen bruto y neto, y por qué es fundamental para calcular correctamente los costos de importación en Argentina."
 author: "Equipo de GIST POINT"
 tags: ["margen bruto", "margen neto", "finanzas importacion", "costos"]

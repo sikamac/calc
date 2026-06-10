@@ -3,7 +3,7 @@ title: "Código NCM: Clasificación arancelaria completa"
 date: 2025-02-10
 updatedDate: 2026-06-09
 category: "Aranceles"
-image: "/images/guides/ncm-clasificacion.png"
+image: "../../assets/images/guides/ncm-clasificacion.png"
 description: "Aprendé a clasificar correctamente tus productos con el código NCM y evitá problemas con Aduana. Guía completa con ejemplos prácticos."
 author: "Equipo de GIST POINT"
 tags: ["NCM", "clasificación arancelaria", "código arancelario", "Mercosur"]

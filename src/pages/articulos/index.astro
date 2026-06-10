@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
@@ -134,11 +135,14 @@ const schema = [
             data-date={guia.date.getTime()}
           >
             {guia.image && (
-              <img
+              <Image
                 src={guia.image}
                 alt={`Guía: ${guia.title}`}
                 class="guide-cover"
                 loading="lazy"
+                format="avif"
+                width={800}
+                height={420}
               />
             )}
             <div class="p-6">

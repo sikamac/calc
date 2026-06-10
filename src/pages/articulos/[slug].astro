@@ -1,7 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { Image, getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/layout/Header.astro';
 import Footer from '../../components/layout/Footer.astro';
@@ -24,10 +23,16 @@ const description = entry.data.description;
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const articleSlug = entry.id.replace(/\.md$/, '');
 const articleUrl = `${siteUrl}/articulos/${articleSlug}`;
-const localImageExists = entry.data.image?.startsWith('/') && existsSync(join(process.cwd(), 'public', entry.data.image.slice(1)));
-const articleImage = entry.data.image && (entry.data.image.startsWith('http') || localImageExists) ? entry.data.image : '/logo.svg';
-const articleImageUrl = articleImage.startsWith('http') ? articleImage : `${siteUrl}${articleImage}`;
+const articleImage = entry.data.image;
 const imageAlt = `Imagen representativa de la guía: ${entry.data.title}`;
+
+let articleImageUrl: string;
+if (articleImage) {
+  const optimizedArticleImage = await getImage({ src: articleImage, format: 'avif', width: 1200, height: 630 });
+  articleImageUrl = `${siteUrl}${optimizedArticleImage.src}`;
+} else {
+  articleImageUrl = `${siteUrl}/logo.svg`;
+}
 
 const allArticles = await getCollection('articulos');
 const relatedArticles = allArticles.filter(a => a.id !== entry.id).slice(0, 2);
@@ -87,7 +92,7 @@ const schema = [
   title={title}
   description={description}
   url={Astro.url.href}
-  image={articleImage}
+  image={articleImage ?? '/logo.svg'}
   imageAlt={imageAlt}
   type="article"
   schema={schema}
@@ -133,12 +138,15 @@ const schema = [
             </header>
 
             <div class="p-6 lg:p-10">
-              {entry.data.image && (
-                <img
+              {articleImage && (
+                <Image
                   src={articleImage}
                   alt={imageAlt}
                   class="article-cover"
                   loading="eager"
+                  format="avif"
+                  width={1200}
+                  height={630}
                 />
               )}
               <div class="prose prose-lg max-w-none">
