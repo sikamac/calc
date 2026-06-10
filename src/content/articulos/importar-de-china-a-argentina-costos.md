@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["importar de China", "costos importación", "flete internacional", "Argentina"]
 ---
 
-# Importar de China a Argentina: costos que tenés que estimar
-
 China es uno de los orígenes más habituales para importar productos, pero una operación rentable no depende solo de conseguir buen precio con el proveedor.
 
 Antes de comprar, conviene estimar todos los costos hasta que la mercadería esté disponible para vender o usar en tu empresa.
@@ -31,13 +29,13 @@ El flete puede variar mucho según volumen, peso, urgencia y modalidad:
 
 ## Seguro de carga
 
-El seguro suele parecer menor, pero es parte del costo que conviene contemplar desde el inicio. También forma parte del cálculo del [valor CIF](/articulos/valor-cif-importacion).
+El seguro suele parecer menor, pero es parte del costo que conviene contemplar desde el inicio. También forma parte del cálculo del [valor CIF](/blog/valor-cif-importacion).
 
 ## Clasificación NCM
 
 El código NCM define derechos de importación, posibles restricciones y requisitos documentales. No conviene asumir una tasa general sin validar la clasificación.
 
-Podés revisar la guía sobre [clasificación arancelaria NCM](/articulos/ncm-clasificacion-arancelaria) para entender el proceso.
+Podés revisar la guía sobre [clasificación arancelaria NCM](/blog/ncm-clasificacion-arancelaria) para entender el proceso.
 
 ## Impuestos y gastos locales
 
@@ -53,7 +51,7 @@ Además de derechos e impuestos, considerá:
 
 Una importación puede parecer atractiva por precio EXW y dejar de serlo al sumar logística, impuestos y gastos operativos.
 
-Por eso recomendamos estimar el costo total y compararlo con el precio de venta esperado. La guía sobre [margen bruto y margen neto](/articulos/diferencia-margen-bruto-neto) te puede ayudar a analizar la rentabilidad.
+Por eso recomendamos estimar el costo total y compararlo con el precio de venta esperado. La guía sobre [margen bruto y margen neto](/blog/diferencia-margen-bruto-neto) te puede ayudar a analizar la rentabilidad.
 
 ## Herramienta para una primera estimación
 

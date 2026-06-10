@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["primera importación", "paso a paso", "principiantes", "desde cero"]
 ---
 
-# Cómo importar por primera vez: Guía paso a paso
-
 Si estás leyendo esto, probablemente estés considerando realizar tu primera importación en Argentina y no sabés por dónde empezar. No te preocupés, en <span class="brand-name">GIST POINT</span> te guiamos en cada paso del proceso.
 
 ## Paso 1: Registración ante ARCA
@@ -171,4 +169,4 @@ En <span class="brand-name">GIST POINT S.A.S.</span> te asesoramos en tu primera
 
 ---
 
-También puede servirte leer nuestra guía sobre [impuestos de importación en Argentina](/articulos/impuestos-importacion-argentina) antes de confirmar una compra.
+También puede servirte leer nuestra guía sobre [impuestos de importación en Argentina](/blog/impuestos-importacion-argentina) antes de confirmar una compra.

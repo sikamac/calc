@@ -54,7 +54,7 @@ const schema = [
       "itemListElement": guias.map((guia, index) => ({
         "@type": "ListItem",
         "position": index + 1,
-        "url": `${siteUrl}/articulos/${guia.slug}`,
+        "url": `${siteUrl}/blog/${guia.slug}`,
         "name": guia.title
       }))
     }
@@ -162,7 +162,7 @@ const schema = [
                   })}
                 </time>
                 <a
-                  href={`/articulos/${guia.slug}`}
+                  href={`/blog/${guia.slug}`}
                   class="text-sm font-semibold text-[#0074D9] hover:text-[#00246B] transition-colors"
                 >
                   Leer más →

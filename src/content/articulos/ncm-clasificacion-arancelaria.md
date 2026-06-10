@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["NCM", "clasificación arancelaria", "código arancelario", "Mercosur"]
 ---
 
-# Código NCM: Clasificación arancelaria completa
-
 El **Código NCM** (Nomenclatura Común del Mercosur) es el sistema de clasificación de mercaderías más importante para el comercio exterior en Argentina. Una clasificación incorrecta puede generar multas, demoras y problemas legales.
 
 ## ¿Qué es el NCM?

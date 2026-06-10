@@ -639,7 +639,7 @@ export const ImportCalculator: React.FC = () => {
                   />
                   <div className="text-sm text-gray-500">
                     Margen de ganancia neta deseado. 
-                    <a href="/articulos/diferencia-margen-bruto-neto" className="text-blue-600 hover:text-blue-800 ml-1">
+                    <a href="/blog/diferencia-margen-bruto-neto" className="text-blue-600 hover:text-blue-800 ml-1">
                       ¿Qué es la diferencia entre margen bruto y neto?
                     </a>
                   </div>

@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["impuestos de importación", "IVA importación", "derechos de importación", "costos"]
 ---
 
-# Impuestos de importación en Argentina: qué costos considerar
-
 Antes de importar, el precio del proveedor es solo una parte del costo. Para saber si una operación conviene, también hay que estimar derechos, tasas, impuestos y gastos asociados al despacho.
 
 Esta guía resume los conceptos más habituales. No reemplaza el análisis de un despachante, pero te ayuda a ordenar los números antes de avanzar.
@@ -19,7 +17,7 @@ Esta guía resume los conceptos más habituales. No reemplaza el análisis de un
 
 Los derechos de importación dependen principalmente del código NCM del producto. Por eso la clasificación arancelaria es uno de los pasos más importantes del proceso.
 
-Si todavía no tenés claro el código, revisá la guía sobre [clasificación NCM](/articulos/ncm-clasificacion-arancelaria).
+Si todavía no tenés claro el código, revisá la guía sobre [clasificación NCM](/blog/ncm-clasificacion-arancelaria).
 
 ## IVA de importación
 

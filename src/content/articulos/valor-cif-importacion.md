@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["valor CIF", "EXW", "flete internacional", "seguro de carga"]
 ---
 
-# Valor CIF en importaciones: qué es y cómo se calcula
-
 El valor CIF es una de las bases más importantes para estimar una importación. En términos simples, combina el valor de la mercadería, el flete internacional y el seguro.
 
 ## Qué significa CIF
@@ -51,7 +49,7 @@ Sobre esa base se estiman derechos, tasas e impuestos según el producto y su cl
 
 Un error en el flete o en el seguro puede cambiar toda la estimación. Si calculás impuestos solo sobre el EXW, probablemente estés subestimando el costo real.
 
-Para ver cómo impacta en la rentabilidad, también podés leer la guía sobre [margen bruto y margen neto](/articulos/diferencia-margen-bruto-neto).
+Para ver cómo impacta en la rentabilidad, también podés leer la guía sobre [margen bruto y margen neto](/blog/diferencia-margen-bruto-neto).
 
 ## Cómo calcularlo rápido
 

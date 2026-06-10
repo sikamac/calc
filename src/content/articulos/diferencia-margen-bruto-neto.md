@@ -9,8 +9,6 @@ author: "Equipo de GIST POINT"
 tags: ["margen bruto", "margen neto", "finanzas importacion", "costos"]
 ---
 
-# Diferencia entre margen bruto y margen neto: Guía para importadores
-
 Uno de los conceptos más importantes para cualquier importador es entender la diferencia entre **margen bruto** y **margen neto**, ya que estos números determinarán la rentabilidad real de su negocio.
 
 ## ¿Qué es el margen bruto?
@@ -173,4 +171,4 @@ Nuestro equipo de expertos te puede ayudar a:
 📧 **Contactanos:** info@gist-point.com  
 🌐 **Calculadora:** [calculadoraimportacion.com.ar/calculadora](https://calculadoraimportacion.com.ar/calculadora)
 
-Si todavía estás armando el costo base de tu operación, revisá también la guía sobre [valor CIF en importaciones](/articulos/valor-cif-importacion).
+Si todavía estás armando el costo base de tu operación, revisá también la guía sobre [valor CIF en importaciones](/blog/valor-cif-importacion).
