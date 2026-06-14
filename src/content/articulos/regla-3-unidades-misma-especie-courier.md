@@ -10,7 +10,7 @@ tags: ["régimen courier", "3 unidades misma especie", "compras al exterior", "A
 
 La regla de **3 unidades de la misma especie por envío** es una de las condiciones que más dudas genera cuando se compra en Shein, Temu, AliExpress u otras plataformas del exterior.
 
-En simple: bajo el régimen de pequeños envíos, **no deberías incluir más de 3 unidades idénticas del mismo producto en un mismo paquete**.
+Dicho de manera más sencilla: bajo el régimen de pequeños envíos, **no deberías incluir más de 3 unidades idénticas del mismo producto en un mismo paquete**.
 
 > Esta regla existe porque el régimen courier para personas humanas está pensado para **uso personal o familiar**, no para importar mercadería con finalidad comercial.
 
@@ -20,7 +20,7 @@ La idea práctica es identificar productos que, por sus características, se con
 
 Por ejemplo, si comprás varias unidades exactamente iguales de un producto, la Aduana puede interpretar que superás el límite permitido para uso personal.
 
-> **Ojo:** no significa necesariamente que solo puedas traer 3 remeras en total. Podrías traer varias remeras si son productos claramente distintos: manga corta, manga larga, distintos materiales, distintos cortes, uso deportivo, camisa, buzo o prenda de otro tipo. El problema aparece cuando se repite el mismo producto o un producto equivalente.
+> **Aclaracíon:** no significa necesariamente que solo puedas traer, por ejemplo, 3 remeras en total. Podrías traer varias remeras si son productos claramente distintos: manga corta, manga larga, distintos materiales, distintos cortes, uso deportivo, camisa, buzo o prenda de otro tipo. El problema aparece cuando se repite el mismo producto.
 
 Casos típicos:
 
