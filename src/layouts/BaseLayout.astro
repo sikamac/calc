@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import defaultOgImage from '../assets/images/og/calculadora-importaciones.png';
+import { normalizeCanonicalUrl, normalizeSchemaUrls } from '../lib/seo';
 
 type SchemaNode = Record<string, unknown>;
 
@@ -28,9 +29,10 @@ const {
   schema = []
 } = Astro.props;
 
-const siteTitle = `${title} | Calculadora de Importaciones Argentina`;
+const siteTitle = `${title} | GIST POINT`;
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
-const canonicalUrl = url || siteUrl;
+const canonicalUrl = normalizeCanonicalUrl(url || siteUrl, siteUrl);
+const calculatorUrl = `${siteUrl}/calculadora`;
 const pageSchema = Array.isArray(schema) ? schema : [schema];
 
 let fullImageUrl: string;
@@ -48,7 +50,7 @@ if (typeof image === 'string') {
   };
 }
 
-const jsonLd = {
+const jsonLd = normalizeSchemaUrls({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -84,10 +86,10 @@ const jsonLd = {
     },
     {
       "@type": "WebApplication",
-      "@id": `${siteUrl}/calculadora#webapp`,
+      "@id": `${calculatorUrl}#webapp`,
       "name": "Calculadora de importaciones Argentina",
       "description": "Calculá derechos, aranceles, IVA, tasa estadística y gastos asociados a una importación en Argentina.",
-      "url": `${siteUrl}/calculadora`,
+      "url": calculatorUrl,
       "applicationCategory": "FinanceApplication",
       "operatingSystem": "Web Browser",
       "inLanguage": "es-AR",
@@ -107,7 +109,7 @@ const jsonLd = {
       "name": title,
       "description": description,
       "isPartOf": { "@id": `${siteUrl}#website` },
-      "about": { "@id": `${siteUrl}/calculadora#webapp` },
+      "about": { "@id": `${calculatorUrl}#webapp` },
       "primaryImageOfPage": {
         "@type": "ImageObject",
         "url": fullImageUrl,
@@ -117,7 +119,7 @@ const jsonLd = {
     },
     ...pageSchema
   ]
-};
+}, siteUrl);
 ---
 
 <!doctype html>

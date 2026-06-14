@@ -282,7 +282,7 @@ En <span class="brand-name">GIST POINT S.A.S.</span> ofrecemos:
 💡 **Capacitación** para tu equipo
 
 **Contactanos:** info@gist-point.com
-**Calculadora:** [gistpoint.com/calculadora](https://gistpoint.com/calculadora)
+**Calculadora:** [calculadoraimportacion.com.ar/calculadora](https://calculadoraimportacion.com.ar/calculadora)
 
 ---
 

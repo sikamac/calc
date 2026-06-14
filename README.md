@@ -31,6 +31,8 @@ calc/
 │   ├── content/
 │   │   ├── articulos/        # Artículos del blog (Markdown), colección "articulos"
 │   │   └── ../content.config.ts  # Schema de la colección (Zod)
+│   ├── lib/
+│   │   └── seo.ts            # Normalización de URLs canónicas y URLs en JSON-LD
 │   ├── layouts/
 │   │   └── BaseLayout.astro  # <head>, meta tags SEO/OG, JSON-LD, fuentes, WhatsApp flotante
 │   ├── pages/                # Rutas del sitio (ver tabla abajo)
@@ -115,6 +117,10 @@ El sitio se sirve como **assets estáticos + un Worker** (no Cloudflare Pages tr
 - `worker.js` expone:
   - `POST /api/contact` — recibe el formulario de `/contacto`, valida y guarda en D1 (tabla `impocalc_contacts`), envía notificación por email (`send_email` binding).
   - `GET /api/leads` — devuelve los leads guardados, protegido con `Authorization: Bearer <ADMIN_TOKEN>` (lo consume `/admin/leads`).
+- `worker.js` también normaliza URLs públicas antes de servir assets:
+  - `/calculadora/` → `/calculadora`
+  - `/calculadora.html` → `/calculadora`
+  - `/index.html` → `/`
 - Base de datos D1 `calc-contacts`, migraciones en `migrations/` (aplicar con `npx wrangler d1 migrations apply calc-contacts --remote`).
 - Variables/secrets necesarios: `ADMIN_TOKEN` (panel de leads) y los que use el envío de email — configurarlos con `wrangler secret put`.
 
@@ -180,6 +186,23 @@ Imágenes optimizadas con `astro:assets` (AVIF), CSS crítico inline (`build.inl
 - JSON-LD (`BreadcrumbList`, `BlogPosting`, `ItemList`, etc.) por página
 - Sitemap automático (`@astrojs/sitemap`, excluye `/admin/`)
 - `public/robots.txt` y `public/_redirects` (incluye redirecciones 301 de `/articulos` → `/blog`)
+
+### URLs canónicas
+
+La variante canónica del sitio es **sin trailing slash**:
+
+- Correcto: `https://calculadoraimportacion.com.ar/calculadora`
+- Alternativa redirigida: `https://calculadoraimportacion.com.ar/calculadora/`
+
+Esta decisión está reflejada en varias capas:
+
+- `astro.config.mjs` usa `trailingSlash: 'never'` y `build.format: 'file'` para que Astro genere rutas limpias sin barra final en el sitemap.
+- `src/lib/seo.ts` centraliza la normalización de URLs canónicas y URLs internas de JSON-LD. Quita `.html`, quita trailing slash, limpia query strings, y conserva fragmentos (`#webapp`, `#organization`) cuando corresponden a identificadores de schema.
+- `BaseLayout.astro` usa esas utilidades para `<link rel="canonical">`, `og:url` y JSON-LD.
+- `wrangler.jsonc` tiene `run_worker_first: true` para que `worker.js` pueda aplicar redirecciones HTTP antes de servir assets.
+- `worker.js` redirige con `301` las variantes no canónicas con barra final o `.html` hacia la URL limpia.
+
+Si se agrega una nueva página, usar rutas internas sin barra final (`/contacto`, `/blog/slug`) y dejar que `BaseLayout.astro` genere la canonical. Después de cambios de rutas o SEO, correr `npm run build` y revisar `dist/sitemap-0.xml` y el HTML generado.
 
 ## 📚 Documentación adicional
 

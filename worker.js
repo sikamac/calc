@@ -14,6 +14,21 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    if (url.pathname === '/index.html') {
+      url.pathname = '/';
+      return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname.endsWith('.html')) {
+      url.pathname = url.pathname.slice(0, -5);
+      return Response.redirect(url.toString(), 301);
+    }
+
+    if (url.pathname !== '/' && url.pathname.endsWith('/')) {
+      url.pathname = url.pathname.slice(0, -1);
+      return Response.redirect(url.toString(), 301);
+    }
+
     if (url.pathname === '/api/contact' && request.method === 'POST') {
       return handleContact(request, env);
     }
@@ -22,7 +37,7 @@ export default {
       return handleLeads(request, env);
     }
 
-    return new Response('Not found', { status: 404 });
+    return env.ASSETS.fetch(request);
   },
 };
 

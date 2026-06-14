@@ -7,6 +7,7 @@ import { ImportCalculator } from '../../components/calculator/ImportCalculator';
 const title = "Calculadora de importaciones";
 const description = "Calculá todos los costos asociados a tu importación: derechos de aduana, IVA, tasa estadística y gastos de gestión.";
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+const calculatorUrl = `${siteUrl}/calculadora`;
 const schema = [
   {
     "@type": "BreadcrumbList",
@@ -31,7 +32,7 @@ const schema = [
     "@id": `${Astro.url.href}#calculator-page`,
     "name": title,
     "description": description,
-    "mainEntity": { "@id": `${siteUrl}/calculadora#webapp` },
+    "mainEntity": { "@id": `${calculatorUrl}#webapp` },
     "breadcrumb": { "@id": `${Astro.url.href}#breadcrumb` }
   }
 ];

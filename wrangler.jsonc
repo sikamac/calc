@@ -13,7 +13,7 @@
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "run_worker_first": false
+    "run_worker_first": true
   },
   // Shared D1 database — each site uses its own table with a project prefix.
   // calc uses 'impocalc_contacts'; gist-point.com uses 'gist_contacts'.
