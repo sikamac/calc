@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const title = `${entry.data.title} | GIST POINT`;
+const title = entry.data.title;
 const description = entry.data.description;
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const articleSlug = entry.id.replace(/\.md$/, '');

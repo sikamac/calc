@@ -184,8 +184,19 @@ Imágenes optimizadas con `astro:assets` (AVIF), CSS crítico inline (`build.inl
 
 - Meta tags, Open Graph y Twitter Cards generados centralmente en `BaseLayout.astro` (recibe `title`, `description`, `image`, `schema` por props)
 - JSON-LD (`BreadcrumbList`, `BlogPosting`, `ItemList`, etc.) por página
-- Sitemap automático (`@astrojs/sitemap`, excluye `/admin/`)
+- Sitemap automático (`@astrojs/sitemap`, excluye `/admin/` y agrega `<lastmod>` a artículos)
 - `public/robots.txt` y `public/_redirects` (incluye redirecciones 301 de `/articulos` → `/blog`)
+
+### Fechas de artículos y sitemap
+
+Los artículos usan el frontmatter de `src/content/articulos/*.md` como fuente de verdad:
+
+- `date`: fecha original de publicación.
+- `updatedDate`: fecha opcional de última actualización editorial.
+
+`src/pages/blog/[slug].astro` usa esas fechas para `datePublished` y `dateModified` en el schema `BlogPosting`. `src/lib/sitemap-lastmod.mjs` lee el mismo frontmatter durante `npm run build` y agrega `<lastmod>` en el sitemap: si hay `updatedDate`, usa esa fecha; si no, usa `date`.
+
+No se usan fechas de modificación del filesystem para el sitemap, porque en CI o deploy pueden cambiar aunque el contenido no haya cambiado. Para indicar una actualización real a Google, editar `updatedDate` en el artículo correspondiente y correr un nuevo build/deploy.
 
 ### URLs canónicas
 
