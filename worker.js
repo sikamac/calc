@@ -37,9 +37,30 @@ export default {
       return handleLeads(request, env);
     }
 
-    return env.ASSETS.fetch(request);
+    const response = await env.ASSETS.fetch(request);
+    return withStaticAssetHeaders(url, response);
   },
 };
+
+function withStaticAssetHeaders(url, response) {
+  const headers = new Headers(response.headers);
+  const pathname = url.pathname;
+  const contentType = headers.get('Content-Type') || '';
+
+  if (contentType.includes('text/html')) {
+    headers.set('Content-Type', 'text/html; charset=UTF-8');
+  }
+
+  if (pathname.startsWith('/assets/') || pathname.startsWith('/fonts/')) {
+    headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  }
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
 
 async function handleLeads(request, env) {
   const token = request.headers.get('Authorization')?.replace('Bearer ', '');

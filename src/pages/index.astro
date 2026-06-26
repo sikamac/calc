@@ -5,7 +5,7 @@ import Hero from '../components/sections/Hero.astro';
 import Footer from '../components/layout/Footer.astro';
 
 const title = "Calculadora de importaciones Argentina";
-const description = "Calculá al instante los costos de importación en Argentina. Derechos, aranceles, IVA y más. Herramienta gratuita para importadores y despachantes.";
+const description = "Calculadora de importaciones Argentina para estimar costos, aranceles, derechos aduaneros, IVA, gastos de despacho y costo final antes de comprar.";
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 const schema = [
   {
@@ -31,6 +31,36 @@ const schema = [
       "name": "Argentina"
     },
     "serviceType": "Calculadora de importaciones"
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${Astro.url.href}#faq`,
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Como calcular los gastos aduaneros en Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para estimar gastos aduaneros conviene partir del valor EXW o FOB, sumar flete y seguro para obtener el valor CIF, y luego calcular arancel, antidumping si aplica, tasa estadistica, IVA, IVA adicional, percepciones de Ganancias, Ingresos Brutos y gastos operativos."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "La calculadora sirve como simulador de costos de importacion Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si. La herramienta funciona como simulador para ordenar los principales componentes del costo de importacion antes de comprar o definir un precio de venta."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Se pueden pagar derechos aduaneros en cuotas en Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Los tributos y gastos aduaneros no se pagan en cuotas para liberar mercaderia. En courier se pagan por adelantado o antes de la entrega; en despacho formal puede existir pago a vista operativo, pero la mercaderia no se libera sin cancelar la liquidacion correspondiente."
+        }
+      }
+    ]
   }
 ];
 ---
@@ -65,7 +95,52 @@ const schema = [
       </div>
     </section>
 
-    <!-- Sección 2: Costos que incluye -->
+    <!-- Sección 2: Tomá decisiones con números reales -->
+    <section style="padding: 72px 0; background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <div class="decisions-grid">
+          <div>
+            <h2 class="text-3xl font-bold text-[#081C3A] mb-6" style="letter-spacing:-0.02em;">
+              Tomá decisiones con números reales
+            </h2>
+            <p class="text-[#5D6B82] text-lg leading-relaxed mb-8">
+              La calculadora gratuita sirve para una primera lectura con un monto global. La versión completa está pensada para cotizaciones reales: cargás varios productos, indicás el NCM de cada uno y la herramienta completa los datos necesarios para calcular costos por línea.
+            </p>
+            <div class="space-y-4">
+              {[
+                'Autocompletado por NCM: aranceles, tributos y parámetros aplicables',
+                'Múltiples líneas: distintos productos, cantidades, valores y costos',
+                'Resultado por producto: costo unitario, costo total y comparación entre ítems',
+              ].map((item) => (
+                <div class="flex items-start gap-3">
+                  <span class="text-[#0074D9] font-bold text-lg leading-none mt-0.5">✓</span>
+                  <span class="text-[#5D6B82]">{item}</span>
+                </div>
+              ))}
+            </div>
+            <a href="/contacto" class="btn btn-primary mt-8">
+              Consultar por la versión completa →
+            </a>
+          </div>
+          <div>
+            <div class="example-card-big">
+              <p class="ecb-label">Versión completa</p>
+              <div class="ecb-rows">
+                <div class="ecb-row"><span>Producto A</span><span class="ecb-val">NCM 8504.40</span></div>
+                <div class="ecb-row"><span>Producto B</span><span class="ecb-val">NCM 3926.90</span></div>
+                <div class="ecb-row"><span>Producto C</span><span class="ecb-val">NCM 7326.90</span></div>
+                <div class="ecb-row"><span>Datos automáticos</span><span class="ecb-val">aranceles + tributos</span></div>
+                <div class="ecb-row"><span>Detalle</span><span class="ecb-val">costo unitario y total</span></div>
+                <div class="ecb-row ecb-total"><span>Salida final</span><span>margen por producto</span></div>
+              </div>
+              <p class="ecb-disclaimer">Para operaciones con varias posiciones NCM y más de un producto por embarque</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Costos que incluye -->
     <section style="padding: 64px 0; background: #F8FAFC;">
       <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
         <div class="text-center mb-12">
@@ -138,51 +213,6 @@ const schema = [
       </div>
     </section>
 
-    <!-- Sección 3: Tomá decisiones con números reales -->
-    <section style="padding: 72px 0; background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);">
-      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
-        <div class="decisions-grid">
-          <div>
-            <h2 class="text-3xl font-bold text-[#081C3A] mb-6" style="letter-spacing:-0.02em;">
-              Tomá decisiones con números reales
-            </h2>
-            <p class="text-[#5D6B82] text-lg leading-relaxed mb-8">
-              Nuestra calculadora te brinda una estimación completa y detallada para que planifiques tu importación con confianza.
-            </p>
-            <div class="space-y-4">
-              {[
-                'Estimaciones basadas en datos actualizados',
-                'Cálculo de todos los costos relevantes',
-                'Herramienta rápida, clara y confiable',
-              ].map((item) => (
-                <div class="flex items-start gap-3">
-                  <span class="text-[#0074D9] font-bold text-lg leading-none mt-0.5">✓</span>
-                  <span class="text-[#5D6B82]">{item}</span>
-                </div>
-              ))}
-            </div>
-            <a href="/calculadora" class="btn btn-primary mt-8">
-              Ir a la calculadora →
-            </a>
-          </div>
-          <div>
-            <div class="example-card-big">
-              <p class="ecb-label">Ejemplo de estimación</p>
-              <div class="ecb-rows">
-                <div class="ecb-row"><span>Valor EXW</span><a href="/calculadora" class="ecb-val ecb-link" aria-label="Ir a la calculadora para editar el Valor EXW">USD 10.000</a></div>
-                <div class="ecb-row"><span>Flete y seguro</span><span class="ecb-val">USD 1.200</span></div>
-                <div class="ecb-row"><span>Aranceles (14%)</span><span class="ecb-val">USD 1.320</span></div>
-                <div class="ecb-row"><span>Impuestos (IVA + percepciones)</span><span class="ecb-val">USD 2.530</span></div>
-                <div class="ecb-row"><span>Gastos operativos</span><span class="ecb-val">USD 680</span></div>
-                <div class="ecb-row ecb-total"><span>Total estimado</span><span>ARS 16.940.000</span></div>
-              </div>
-              <p class="ecb-disclaimer">Valores ilustrativos · tasa de cambio USD 1.100</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Sección 4: Información clave (4 cards, sin emojis) -->
     <section style="padding: 64px 0; background: #fff;">
       <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
@@ -233,6 +263,40 @@ const schema = [
               <li>Restricciones y prohibiciones</li>
             </ul>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 5: Consultas frecuentes SEO -->
+    <section style="padding: 64px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-[#081C3A] mb-3">Preguntas frecuentes sobre costos de importación</h2>
+          <p class="text-[#5D6B82] text-lg max-w-3xl mx-auto">
+            Usá la calculadora como simulador de costos de importación en Argentina para estimar aranceles, derechos aduaneros, IVA, valor CIF y precio final.
+          </p>
+        </div>
+        <div class="faq-grid">
+          <article class="faq-card">
+            <h3>¿Cómo calcular los gastos aduaneros en Argentina?</h3>
+            <p>Primero definí el valor EXW o FOB, sumá flete y seguro para llegar al valor CIF, y después agregá arancel, antidumping si aplica, tasa estadística, IVA, IVA adicional, Ganancias, IIBB y gastos operativos.</p>
+            <a href="/blog/impuestos-importacion-argentina">Ver impuestos de importación</a>
+          </article>
+          <article class="faq-card">
+            <h3>¿La herramienta sirve como calculadora de aduana?</h3>
+            <p>Sí. Te ayuda a simular el costo de importación antes de comprar, comparar escenarios y entender cuánto impactan aranceles, impuestos y logística en el costo final.</p>
+            <a href="/calculadora">Abrir calculadora de importación</a>
+          </article>
+          <article class="faq-card">
+            <h3>¿Puedo calcular compras del exterior o Amazon?</h3>
+            <p>Podés usarla para ordenar el precio del producto, envío, seguro e impuestos estimados. En compras courier o puerta a puerta, revisá además los límites del régimen aplicable.</p>
+            <a href="/blog/comprar-shein-temu-argentina-regimen-courier">Ver guía courier</a>
+          </article>
+          <article class="faq-card">
+            <h3>¿Se pueden pagar los derechos aduaneros en cuotas?</h3>
+            <p>No. Para liberar mercadería hay que cancelar la liquidación aduanera correspondiente. En courier es pago anticipado o previo a entrega; en despacho formal puede haber pago a vista operativo, pero no cuotas aduaneras.</p>
+            <a href="/blog/derechos-aduaneros-aranceles-importacion-argentina">Leer sobre derechos aduaneros</a>
+          </article>
         </div>
       </div>
     </section>
@@ -413,6 +477,44 @@ const schema = [
     content: '·';
     position: absolute; left: 0;
     color: #0074D9;
+  }
+
+  /* Sección 5 — FAQ */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  @media (max-width: 1024px) { .faq-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 640px) { .faq-grid { grid-template-columns: 1fr; } }
+  .faq-card {
+    background: #fff;
+    border: 1px solid #DDE6F2;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .faq-card h3 {
+    color: #081C3A;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.35;
+    margin: 0 0 10px;
+  }
+  .faq-card p {
+    color: #5D6B82;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+  }
+  .faq-card a {
+    color: #0074D9;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+  }
+  .faq-card a:hover {
+    color: #00246B;
+    text-decoration: underline;
   }
 
   /* Sección 5 — CTA */
