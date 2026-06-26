@@ -10,7 +10,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
       <!-- Columna izquierda -->
       <div class="hero-copy">
         <p class="eyebrow">Herramienta gratuita para importar en Argentina</p>
-        <h1>Calculá el costo real antes de importar</h1>
+        <h1>Calculá el costo real de importar en Argentina</h1>
         <p class="hero-desc">
           Estimá impuestos, aranceles, flete, seguro y gastos operativos en segundos. Usá la calculadora para decidir con números claros antes de comprar o vender.
         </p>
@@ -80,7 +80,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
           </div>
           <div class="example-rows">
             <div class="example-row">
-              <span>Valor EXW</span><span class="example-val">USD 10.000</span>
+              <span>Valor EXW</span><a href="/calculadora" class="example-val example-link" aria-label="Ir a la calculadora para editar el Valor EXW">USD 10.000</a>
             </div>
             <div class="example-row">
               <span>Flete y seguro</span><span class="example-val">USD 1.200</span>
@@ -268,6 +268,20 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
   .example-val {
     font-weight: 500;
     color: #081C3A;
+  }
+  .example-link {
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .example-link:hover,
+  .example-link:focus-visible {
+    color: #0074D9;
+    text-decoration: underline;
+  }
+  .example-link:focus-visible {
+    outline: 2px solid #0074D9;
+    outline-offset: 3px;
   }
   .example-subtotal {
     border-bottom: none;
