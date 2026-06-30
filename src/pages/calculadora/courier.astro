@@ -1,0 +1,299 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { CourierCalculator } from '../../components/calculator/CourierCalculator';
+
+const title = "Calculadora Courier Argentina 2026 | Régimen Puerta a Puerta";
+const description = "Calculá cuánto IVA y arancel pagás por tus compras del exterior en Argentina. Franquicia de USD 400, régimen de pequeños envíos (puerta a puerta).";
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+
+const faqItems = [
+  {
+    q: "¿Cuánto IVA pago si compro en Shein, Temu o Amazon desde Argentina?",
+    a: "Si el valor del envío no supera USD 400, pagás IVA del 21% sobre el valor total del producto más envío. No se aplican derechos de importación ni tasa estadística dentro de la franquicia. Por ejemplo, una compra de USD 300 te costaría USD 63 de IVA, con un costo final de USD 363.",
+  },
+  {
+    q: "¿Qué pasa si mi compra supera los USD 400?",
+    a: "Si el valor del envío supera la franquicia de USD 400, pagás IVA del 21% sobre el total más un arancel simplificado del 50% sobre el excedente de USD 400. Por ejemplo, una compra de USD 800 paga IVA de USD 168 más arancel de USD 200, con un costo final de USD 1.168.",
+  },
+  {
+    q: "¿Cuántos envíos del exterior puedo recibir por año en Argentina?",
+    a: "El régimen de pequeños envíos permite hasta 5 envíos por año calendario y por persona. Cada envío puede tener hasta USD 3.000 de valor y 50 kg de peso. Además, no podés incluir más de 3 unidades de la misma especie por paquete.",
+  },
+  {
+    q: "¿Puedo usar este régimen si soy empresa?",
+    a: "Sí, las personas jurídicas también pueden operar por courier como Pequeño Envío, pero el límite de 5 envíos anuales aplica 'por persona'. Las empresas que importan regularmente suelen derivarse al régimen de courier comercial sin la franquicia de USD 400.",
+  },
+];
+
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    "@id": `${Astro.url.href}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteUrl },
+      { "@type": "ListItem", "position": 2, "name": "Calculadora", "item": `${siteUrl}/calculadora` },
+      { "@type": "ListItem", "position": 3, "name": "Courier / Puerta a puerta", "item": Astro.url.href },
+    ],
+  },
+  {
+    "@type": "WebApplication",
+    "@id": `${Astro.url.href}#webapp-courier`,
+    "name": "Calculadora Courier Argentina — Régimen Pequeños Envíos",
+    "description": description,
+    "url": Astro.url.href,
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser",
+    "inLanguage": "es-AR",
+    "isAccessibleForFree": true,
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": { "@id": `${siteUrl}#organization` },
+  },
+  {
+    "@type": "FAQPage",
+    "@id": `${Astro.url.href}#faq`,
+    "mainEntity": faqItems.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a },
+    })),
+  },
+];
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  url={Astro.url.href}
+  schema={schema}
+>
+  <Header />
+  <main>
+
+    <!-- Header -->
+    <section style="background: linear-gradient(115deg, #F7FAFB 0%, #EEF7F7 46%, #F8FAFC 100%); padding: 48px 0 56px; border-bottom: 1px solid #DDE6F2;">
+      <div style="width: min(100% - 48px, 860px); margin: 0 auto; text-align: center;">
+        <p style="color: #3084ae; font-size: 13px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.04em;">
+          Régimen de pequeños envíos · Puerta a puerta
+        </p>
+        <h1 style="color: #081C3A; font-size: clamp(32px, 5vw, 52px); line-height: 1.08; font-weight: 700; margin: 0 0 20px;">
+          Calculá cuánto pagás al comprar del exterior en Argentina
+        </h1>
+        <p style="color: #5D6B82; font-size: 18px; line-height: 1.7; max-width: 640px; margin: 0 auto;">
+          IVA, franquicia de USD 400 y arancel simplificado del régimen courier. Resultado al instante, sin registro.
+        </p>
+      </div>
+    </section>
+
+    <!-- Calculadora -->
+    <section style="padding: 56px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 680px); margin: 0 auto;">
+        <CourierCalculator client:load />
+        <p style="text-align: center; font-size: 12px; color: #5D6B82; margin-top: 16px;">
+          Estimación basada en el régimen de Pequeños Envíos (ARCA). Consulte con un despachante para operaciones específicas.
+        </p>
+      </div>
+    </section>
+
+    <!-- Reglas del régimen -->
+    <section style="padding: 64px 0; background: #fff;">
+      <div style="width: min(100% - 48px, 1100px); margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 style="color: #081C3A; font-size: 28px; font-weight: 700; margin: 0 0 12px;">
+            Reglas del régimen de pequeños envíos
+          </h2>
+          <p style="color: #5D6B82; font-size: 16px; max-width: 580px; margin: 0 auto;">
+            El régimen courier tiene límites claros que conviene revisar antes de comprar.
+          </p>
+        </div>
+        <div class="rules-grid">
+          {[
+            { title: 'Franquicia USD 400', desc: 'Hasta USD 400 por envío: solo pagás IVA 21%. Sin derechos de importación ni tasa estadística.' },
+            { title: 'Límite USD 3.000', desc: 'El valor máximo por envío es USD 3.000 y 50 kg. Si superás ese monto, necesitás despacho formal.' },
+            { title: '5 envíos por año', desc: 'Podés utilizar este régimen hasta 5 veces por año calendario y por persona (CUIT o CUIL).' },
+            { title: 'Máx. 3 unidades iguales', desc: 'No podés incluir más de 3 unidades de la misma especie en un envío bajo este régimen.' },
+          ].map(({ title, desc }) => (
+            <div class="rule-card">
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </div>
+          ))}
+        </div>
+        <p style="text-align: center; margin-top: 28px;">
+          <a href="/blog/comprar-shein-temu-argentina-regimen-courier" style="color: #0074D9; font-weight: 600; font-size: 14px; text-decoration: none;">
+            Leer la guía completa del régimen courier →
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Courier vs. Formal (estático) -->
+    <section style="padding: 64px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 1100px); margin: 0 auto;">
+        <div style="text-align: center; margin-bottom: 40px;">
+          <h2 style="color: #081C3A; font-size: 28px; font-weight: 700; margin: 0 0 12px;">
+            Courier vs. Régimen formal: ¿cuándo conviene cada uno?
+          </h2>
+          <p style="color: #5D6B82; font-size: 16px; max-width: 580px; margin: 0 auto;">
+            El régimen courier simplifica el trámite pero tiene límites. El formal es obligatorio para montos mayores o importaciones comerciales.
+          </p>
+        </div>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>Aspecto</th>
+                <th class="col-courier">Courier (pequeños envíos)</th>
+                <th class="col-formal">Régimen formal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Valor máximo</td><td>USD 3.000 por envío</td><td>Sin límite</td></tr>
+              <tr><td>IVA</td><td>21% sobre el total</td><td>21% sobre base imponible</td></tr>
+              <tr><td>Derechos de importación</td><td>Exentos hasta USD 400 / 50% s/excedente</td><td>Según NCM (generalmente 8%–35%)</td></tr>
+              <tr><td>Tasa estadística</td><td>No aplica</td><td>0.5% con tope</td></tr>
+              <tr><td>Despachante de aduanas</td><td>No requerido</td><td>Obligatorio</td></tr>
+              <tr><td>Entrega</td><td>A domicilio por el courier</td><td>Retiro en zona primaria</td></tr>
+              <tr><td>Límite anual</td><td>5 envíos por persona</td><td>Sin límite</td></tr>
+              <tr><td>Uso comercial</td><td>No permitido</td><td>Permitido</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: center; margin-top: 28px;">
+          <a href="/calculadora" style="display: inline-block; padding: 12px 24px; background: #00246B; color: #fff; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none;">
+            Ir a la calculadora de régimen formal →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section style="padding: 64px 0; background: #fff;">
+      <div style="width: min(100% - 48px, 860px); margin: 0 auto;">
+        <h2 style="color: #081C3A; font-size: 28px; font-weight: 700; text-align: center; margin: 0 0 40px;">
+          Preguntas frecuentes sobre el régimen courier
+        </h2>
+        <div class="faq-list">
+          {faqItems.map(({ q, a }) => (
+            <div class="faq-item">
+              <h3>{q}</h3>
+              <p>{a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA final -->
+    <section style="padding: 48px 0; background: #F8FAFC;">
+      <div style="width: min(100% - 48px, 1100px); margin: 0 auto;">
+        <div class="cta-card">
+          <div>
+            <h2>¿Importás como empresa o en grandes cantidades?</h2>
+            <p>La calculadora formal te permite estimar aranceles según NCM, IVA, tasa estadística y gastos de despacho para operaciones comerciales.</p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="/calculadora" class="btn-cta-primary">Calculadora formal →</a>
+            <a href="/contacto" class="btn-cta-secondary">Hablar con un experto</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 900px) { .rules-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .rules-grid { grid-template-columns: 1fr; } }
+
+  .rule-card {
+    background: #F8FAFC;
+    border: 1px solid #DDE6F2;
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .rule-card h3 { font-size: 14px; font-weight: 700; color: #00246B; margin: 0 0 8px; }
+  .rule-card p  { font-size: 13px; color: #5D6B82; margin: 0; line-height: 1.55; }
+
+  .compare-table-wrap { overflow-x: auto; }
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .compare-table th, .compare-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #DDE6F2;
+  }
+  .compare-table thead th {
+    background: #F8FAFC;
+    font-weight: 700;
+    color: #081C3A;
+    font-size: 13px;
+  }
+  .compare-table td:first-child { color: #5D6B82; font-weight: 500; }
+  .compare-table td:not(:first-child) { color: #081C3A; }
+  .col-courier { color: #15803d !important; }
+  .col-formal  { color: #1d4ed8 !important; }
+  .compare-table tbody tr:hover { background: #F8FAFC; }
+
+  .faq-list { display: flex; flex-direction: column; gap: 0; }
+  .faq-item {
+    border-bottom: 1px solid #DDE6F2;
+    padding: 24px 0;
+  }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-item h3 { font-size: 16px; font-weight: 700; color: #081C3A; margin: 0 0 10px; }
+  .faq-item p  { font-size: 14px; color: #5D6B82; margin: 0; line-height: 1.65; }
+
+  .cta-card {
+    background: linear-gradient(135deg, #001B4D 0%, #00246B 55%, #003C8F 100%);
+    border-radius: 18px;
+    padding: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  @media (max-width: 768px) { .cta-card { flex-direction: column; align-items: flex-start; } }
+  .cta-card h2 { font-size: 24px; font-weight: 700; color: #fff; margin: 0 0 10px; line-height: 1.25; }
+  .cta-card p  { color: rgba(255,255,255,0.75); margin: 0; font-size: 15px; max-width: 460px; }
+
+  .btn-cta-primary {
+    display: inline-block;
+    padding: 12px 22px;
+    background: #0074D9;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .btn-cta-primary:hover { background: #005faf; }
+
+  .btn-cta-secondary {
+    display: inline-block;
+    padding: 12px 22px;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+  .btn-cta-secondary:hover { background: rgba(255,255,255,0.2); }
+</style>
