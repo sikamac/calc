@@ -49,6 +49,10 @@ function withStaticAssetHeaders(url, response) {
 
   if (contentType.includes('text/html')) {
     headers.set('Content-Type', 'text/html; charset=UTF-8');
+    headers.set(
+      'Origin-Trial',
+      'Ao87xuRJDyYKtW4lymmP7PUlVaXKEnMJcbXYG/oEpTnPTVIcRBkE1DPg1yqIarKeArwICwsF7s/+255Ak3lSKQ0AAABdeyJvcmlnaW4iOiJodHRwczovL2NhbGN1bGFkb3JhaW1wb3J0YWNpb24uY29tLmFyOjQ0MyIsImZlYXR1cmUiOiJXZWJNQ1AiLCJleHBpcnkiOjE3OTQ4NzM2MDB9'
+    );
     headers.append(
       'Link',
       '</llms.txt>; rel="help alternate"; type="text/markdown"; title="Guia del sitio para agentes de IA"'
