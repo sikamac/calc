@@ -5,7 +5,7 @@ import Footer from '../../components/layout/Footer.astro';
 import { CourierCalculator } from '../../components/calculator/CourierCalculator';
 
 const title = "Calculadora Courier Argentina 2026 | Régimen Puerta a Puerta";
-const description = "Calculá cuánto IVA y arancel pagás por tus compras del exterior en Argentina. Franquicia de USD 400, régimen de pequeños envíos (puerta a puerta).";
+const description = "Calculá cuánto IVA y arancel pagás por tus compras del exterior en Argentina. Franquicia de USD 400, límite de 5 envíos por año, régimen courier simplificado.";
 const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
 
 const faqItems = [
@@ -33,8 +33,8 @@ const schema = [
     "@id": `${Astro.url.href}#breadcrumb`,
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Inicio", "item": siteUrl },
-      { "@type": "ListItem", "position": 2, "name": "Calculadora", "item": `${siteUrl}/calculadora` },
-      { "@type": "ListItem", "position": 3, "name": "Courier / Puerta a puerta", "item": Astro.url.href },
+      { "@type": "ListItem", "position": 2, "name": "Calculadoras", "item": `${siteUrl}/calculadora` },
+      { "@type": "ListItem", "position": 3, "name": "Calculadora Courier", "item": Astro.url.href },
     ],
   },
   {
@@ -75,10 +75,10 @@ const schema = [
     <section style="background: linear-gradient(115deg, #F7FAFB 0%, #EEF7F7 46%, #F8FAFC 100%); padding: 48px 0 56px; border-bottom: 1px solid #DDE6F2;">
       <div style="width: min(100% - 48px, 860px); margin: 0 auto; text-align: center;">
         <p style="color: #3084ae; font-size: 13px; font-weight: 700; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.04em;">
-          Régimen de pequeños envíos · Puerta a puerta
+          Régimen courier / puerta a puerta
         </p>
         <h1 style="color: #081C3A; font-size: clamp(32px, 5vw, 52px); line-height: 1.08; font-weight: 700; margin: 0 0 20px;">
-          Calculá cuánto pagás al comprar del exterior en Argentina
+          Calculá cuánto pagás al comprar del exterior
         </h1>
         <p style="color: #5D6B82; font-size: 18px; line-height: 1.7; max-width: 640px; margin: 0 auto;">
           IVA, franquicia de USD 400 y arancel simplificado del régimen courier. Resultado al instante, sin registro.
