@@ -1,4 +1,4 @@
-import { FC, useState, useEffect, useRef, useMemo } from 'react';
+import { type FC, useState, useEffect, useRef, useMemo } from 'react';
 import { calculateCourierCost, type CourierResult, type CourierChannel } from '../../lib/courier-calculation';
 import { pushDataLayerEvent } from '../../lib/analytics';
 
