@@ -1,12 +1,6 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { FC, useState, useEffect, useRef, useMemo } from 'react';
 import { calculateCourierCost, type CourierResult, type CourierChannel } from '../../lib/courier-calculation';
-
-const pushDataLayerEvent = (event: string, parameters: Record<string, unknown> = {}) => {
-  if (typeof window === 'undefined') return;
-  const w = window as Window & { dataLayer?: Array<Record<string, unknown>> };
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ event, ...parameters });
-};
+import { pushDataLayerEvent } from '../../lib/analytics';
 
 const fmt = (n: number) =>
   new Intl.NumberFormat('es-AR', {
@@ -14,7 +8,7 @@ const fmt = (n: number) =>
     maximumFractionDigits: 2,
   }).format(n);
 
-export const CourierCalculator: React.FC = () => {
+export const CourierCalculator: FC = () => {
   const [valorDeclarado, setValorDeclarado] = useState<string>('300');
   const [costoEnvio, setCostoEnvio] = useState<string>('0');
   const [channel, setChannel] = useState<CourierChannel>('privado');
@@ -23,7 +17,7 @@ export const CourierCalculator: React.FC = () => {
   const result = useMemo<CourierResult | null>(() => {
     const v = parseFloat(valorDeclarado.replace(',', '.'));
     if (!valorDeclarado || isNaN(v) || v < 0) return null;
-    const e = parseFloat(costoEnvio.replace(',', '.')) || 0;
+    const e = parseFloat(costoEnvio.replace(',', '.'));
     return calculateCourierCost({ valorDeclarado: v, costoEnvio: e, channel });
   }, [valorDeclarado, costoEnvio, channel]);
 
@@ -39,7 +33,6 @@ export const CourierCalculator: React.FC = () => {
 
   return (
     <div className="bg-white rounded-2xl border border-[#DDE6F2] shadow-sm overflow-hidden">
-      {/* Selector de canal */}
       <div className="p-6 md:p-8 pb-0">
         <div className="flex gap-2 mb-6">
           {([
@@ -60,7 +53,6 @@ export const CourierCalculator: React.FC = () => {
             </button>
           ))}
         </div>
-        {/* Nota informativa del canal */}
         <p className="text-xs text-[#5D6B82] mb-6 bg-[#F8FAFC] rounded-lg px-4 py-2.5">
           {channel === 'privado'
             ? 'Franquicia USD 400 · 5 envíos/año · hasta 50 kg · Decreto 1065/2024'
@@ -68,7 +60,6 @@ export const CourierCalculator: React.FC = () => {
         </p>
       </div>
 
-      {/* Inputs */}
       <div className="px-6 md:px-8 pb-6 md:pb-8 border-b border-[#DDE6F2]">
         <div className="grid md:grid-cols-2 gap-6">
           <div>
@@ -115,6 +106,7 @@ export const CourierCalculator: React.FC = () => {
                 step="any"
                 value={costoEnvio}
                 onChange={(e) => setCostoEnvio(e.target.value)}
+                onBlur={(e) => { if (e.target.value === '') setCostoEnvio('0'); }}
                 placeholder="0"
                 className="w-full pl-12 pr-4 py-3 border border-[#DDE6F2] rounded-lg text-[#081C3A] font-medium focus:outline-none focus:ring-2 focus:ring-[#0074D9] focus:border-transparent text-sm"
               />
@@ -126,7 +118,6 @@ export const CourierCalculator: React.FC = () => {
         </div>
       </div>
 
-      {/* Resultado */}
       {result && (
         <div className="p-6 md:p-8">
           {result.regime === 'supera_limite' && (
@@ -146,7 +137,6 @@ function ResultCard({ result }: { result: CourierResult }) {
 
   return (
     <div>
-      {/* Badge */}
       <div
         className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-semibold mb-6 ${
           esFranquicia
@@ -157,12 +147,11 @@ function ResultCard({ result }: { result: CourierResult }) {
         <span>{esFranquicia ? '✓' : '⚠'}</span>
         <span>
           {esFranquicia
-            ? 'Dentro de la franquicia de USD 400'
-            : 'Superás la franquicia de USD 400'}
+            ? `Dentro de la franquicia de USD ${result.franquicia}`
+            : `Superás la franquicia de USD ${result.franquicia}`}
         </span>
       </div>
 
-      {/* Desglose */}
       <div className="space-y-0">
         <Row label="Valor base (producto + envío)" value={`USD ${fmt(result.base)}`} />
         {result.channel === 'privado' && (
@@ -185,7 +174,6 @@ function ResultCard({ result }: { result: CourierResult }) {
         </div>
       </div>
 
-      {/* Costo final */}
       <div className="mt-4 bg-[#EAF1F4] rounded-xl px-5 py-4 flex items-center justify-between">
         <div>
           <p className="text-xs font-semibold text-[#5D6B82] uppercase tracking-wide mb-0.5">
@@ -205,7 +193,6 @@ function ResultCard({ result }: { result: CourierResult }) {
         </div>
       </div>
 
-      {/* Nota franquicia */}
       {esFranquicia && result.channel === 'privado' && (
         <p className="mt-4 text-xs text-[#5D6B82] bg-[#F8FAFC] rounded-lg px-4 py-3">
           Sin derechos de importación ni tasa estadística — solo IVA 21% sobre el total.
@@ -217,7 +204,6 @@ function ResultCard({ result }: { result: CourierResult }) {
         </p>
       )}
 
-      {/* Tip excedente courier privado */}
       {!esFranquicia && result.channel === 'privado' && result.base <= 800 && (
         <p className="mt-4 text-xs text-[#c2410c] bg-[#fff7ed] rounded-lg px-4 py-3">
           Si dividís la compra en dos envíos de hasta USD 400 cada uno,

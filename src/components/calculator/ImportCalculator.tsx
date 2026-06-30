@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { calculateImportCost, type ImportCalculation } from '../../lib/import-calculation';
+import { pushDataLayerEvent } from '../../lib/analytics';
 
 interface VentaCalculation {
   costoUnitario: number;
@@ -31,16 +32,6 @@ interface VentaCalculation {
 }
 
 type TabType = 'importacion' | 'venta';
-
-const pushDataLayerEvent = (event: string, parameters: Record<string, unknown> = {}) => {
-  if (typeof window === 'undefined') return;
-
-  const analyticsWindow = window as Window & {
-    dataLayer?: Array<Record<string, unknown>>;
-  };
-  analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-  analyticsWindow.dataLayer.push({ event, ...parameters });
-};
 
 export const ImportCalculator: React.FC = () => {
   const hasStartedRef = useRef(false);
