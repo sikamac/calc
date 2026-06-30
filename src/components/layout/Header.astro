@@ -8,8 +8,8 @@ const navItems = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 h-[76px] flex items-center bg-white/90 backdrop-blur-sm border-b border-[#DDE6F2]">
-  <nav class="w-full px-6 max-w-[1228px] mx-auto" aria-label="Navegación principal">
+<header class="site-header sticky top-0 z-50 h-[76px] flex items-center bg-white/90 backdrop-blur-sm border-b border-[#DDE6F2]">
+  <nav class="w-full px-4 md:px-6 max-w-[1228px] mx-auto" aria-label="Navegación principal">
     <div class="header-grid">
 
       <!-- Logo -->
@@ -63,7 +63,7 @@ const currentPath = Astro.url.pathname;
       </div>
 
       <!-- Mobile hamburger -->
-      <div class="md:hidden justify-self-end" style="grid-column: 3;">
+      <div class="md:hidden justify-self-end">
         <button
           type="button"
           id="mobile-menu-button"
@@ -72,16 +72,19 @@ const currentPath = Astro.url.pathname;
           aria-expanded="false"
         >
           <span class="sr-only">Abrir menú principal</span>
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg class="menu-open-icon h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg class="menu-close-icon hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 6l12 12M18 6L6 18" />
           </svg>
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div class="md:hidden hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-[#DDE6F2]">
+    <div class="mobile-menu md:hidden hidden" id="mobile-menu">
+      <div class="px-4 py-3 space-y-1 bg-white border-t border-[#DDE6F2] shadow-lg">
         {navItems.map((item) => {
           const isActive = currentPath === item.href || currentPath.startsWith(item.href + '/');
           return (
@@ -121,14 +124,41 @@ const currentPath = Astro.url.pathname;
   </nav>
 </header>
 
-<script>
+<script is:inline>
   const button = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
   if (button && menu) {
+    const label = button.querySelector('.sr-only');
+    const openIcon = button.querySelector('.menu-open-icon');
+    const closeIcon = button.querySelector('.menu-close-icon');
+
+    const setMenuOpen = (isOpen) => {
+      button.setAttribute('aria-expanded', String(isOpen));
+      menu.classList.toggle('hidden', !isOpen);
+      openIcon?.classList.toggle('hidden', isOpen);
+      closeIcon?.classList.toggle('hidden', !isOpen);
+      if (label) label.textContent = isOpen ? 'Cerrar menú principal' : 'Abrir menú principal';
+    };
+
     button.addEventListener('click', () => {
-      const isExpanded = button.getAttribute('aria-expanded') === 'true';
-      button.setAttribute('aria-expanded', String(!isExpanded));
-      menu.classList.toggle('hidden');
+      setMenuOpen(button.getAttribute('aria-expanded') !== 'true');
+    });
+
+    menu.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) setMenuOpen(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+        setMenuOpen(false);
+        button.focus();
+      }
+    });
+
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !button.contains(event.target) && !menu.contains(event.target)) {
+        setMenuOpen(false);
+      }
     });
   }
 </script>
@@ -136,7 +166,7 @@ const currentPath = Astro.url.pathname;
 <style>
   .header-grid {
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
     align-items: center;
     gap: 16px;
   }
@@ -178,9 +208,39 @@ const currentPath = Astro.url.pathname;
     color: #3084ae;
   }
 
-  @media (max-width: 480px) {
+  .mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  @media (min-width: 768px) {
+    .header-grid {
+      grid-template-columns: 1fr auto 1fr;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .header-grid {
+      gap: 8px;
+    }
+
+    .header-brand {
+      gap: 7px;
+    }
+
+    .header-brand img {
+      width: 36px;
+      height: 36px;
+    }
+
+    .header-product-label {
+      font-size: 13px;
+    }
+
     .header-byline {
-      display: none;
+      font-size: 10px;
     }
   }
 </style>

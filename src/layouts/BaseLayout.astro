@@ -4,6 +4,7 @@ import { getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import defaultOgImage from '../assets/images/og/calculadora-importaciones.png';
 import { normalizeCanonicalUrl, normalizeSchemaUrls } from '../lib/seo';
+import webMcpEntryUrl from '../scripts/register-webmcp.ts?worker&url';
 
 type SchemaNode = Record<string, unknown>;
 
@@ -200,11 +201,9 @@ const jsonLd = normalizeSchemaUrls({
 
     <slot />
 
-    <script>
+    <script is:inline define:vars={{ webMcpEntryUrl }}>
       if ('modelContext' in document) {
-        import('../scripts/webmcp-tools').then(({ registerWebMcpTools }) => {
-          registerWebMcpTools();
-        });
+        import(webMcpEntryUrl);
       }
     </script>
 
@@ -261,8 +260,8 @@ const jsonLd = normalizeSchemaUrls({
     font-family: 'Jost';
     font-style: normal;
     font-weight: 600 700;
-    font-display: swap;
-    src: url('/fonts/jost-brand-600-700.woff2') format('woff2');
+    font-display: optional;
+    src: url('data:font/woff2;base64,d09GMgABAAAAAAmkABQAAAAAERgAAAk8AAO1wwAAAAAAAAAAAAAAAAAAAAAAAAAAGhYbgSocMD9IVkFSdAZgP1NUQVSBOCcuAGQvfhEICoUUhCswiDYBNgIkAywLGAAEIAWIfAcgDAcbPQ8onoexjTg76Uxj4p2NkKQTIp6fs9n3f8QIbYMEu2Cemic1pWZOCmeuUM8JUjGnTnNUM/9rbuZp+d7VibdFV+LpP/c0S4hVUqCRSKQI0fAOIg9AAvlUExzC8j8c4K/9NJtXlvkqiSy8mf1loatsjdnZUpC3wLwpCtWpUK1xQFv+Rb5zaOzVuBPKH6SuXfVlZNhJYAEV2UTtUiwfxXPxX4IAdgBAIQhWBAGspNEI1alLr4EUZo5bOJsCOsBHY9yMSfNnk4KyDh0lwJzfiw60Y2CJoflUslNpSeG/ILzNOyQBVHRz0wQDCg0jJiwICjNC5dCWl66woCpAuh1quel5FKD1LU6ZP2kG0KKTIWAx5utdwKQOxYUGaZADncJqIwmAr8QYzKC6SfnSDUuD+lHBNuhA2vVGofYIgkKAt4+hsIHVabFHmG2RDnSVIi9gAPWUGkqInoKQ0bTFNdM2CMiZNjmwEQ8Dq+Dhk9CCsgQ0SbUqd3hundqMAlx6SGtbMmXqQtH5TuNmSgKCCw95tKCbA5TAcUUARJgo1GDQ+K/SIHm3YIqY5AVQ5UCVRWodg00NXewADU7Nw+tppYogFYlgO0RaLby17x206/fS1+cmEwL71kjcb8XPzpic+Xdj2764DQooh3bDbCIUnSIeSWTn33oowG9sauPww836lf3X2hGblIfLwr+Hf0WomM0jUdSiFqwsGSPGwKzdJkB80NHaQDSwjeISAwvqJUpMJiaJFsvYWpAYscFNj8SKQ0K52i1O0DxKnNSD0n85HkHC4ZwA2ACIBuxAECQRANDhpa0UlC3TrZm6OdKluxqb7UMcg4e7DXMPsk2fahsSP8X2zp4de6xP7dsngf37bU/v9Q/4KWhp3mM9xXtpmPdrpNjH6DbDEn3xafkiw4j+dXsp3nP5osFJILCvZEbmgWJg1GqlDwPogg8Z+K1B3O5uuyozKvf91My7e3vFJveQ7xTyU7x3a0X6r3s3sVE23DXGptsMNrEPKV7Xq7+XwFch/+OlnfMT+zZ7494S94JJ15BOx1IzMuX2PD7rX3wio+vv/ZOa9FjSucuKfv27LJ+09Sha1M70247B/pnJ/l6BJmPGNinp0yeoaHHhXkUrWw2alLu2e2fWVz6onHFnqZd7fFCxIYFRfTutWNK1V+/FXS9LX4cq0rvXEpsP69NrEHOzA29xs0HplNJkLS3okTXQaF875MbpfZ/vNNDn9w30d3q+aFE9vVG70Y+73aiJvn8q014/f1a3orHeljm94rekdC/wJnfyHf8OdsnZkZjSrGX28/MqJtl66w4Dc1q2HlHQuF8Tb5r/nftvrOqS8nuht2PbFjn+1L6kZ/wyc9DMX4rWMbqjiY65/lsbjol28jSB+g/kYQPACwAU8gzvUS4u6SOVclJpPn4oVthJR8gFnFd339hxyml2/HXK+nvZLwQDWrt2dXU+3iUyOUBNQOIdJaY2bYYntYnTzvs4S5uQjzdt0UicaE88sW+fLzxW/nwlgDMgr/5aMgUMgGEbZTnbdm6fbb939r8yyyrO3TMleK5evX3v3kPdbEWTWX94r/bK5ZoaJ6GAu3nzpOtb/4CovoKraTdVo7x7obqHqeG1FlEXCd+7feNGidm9bdvh2ph8/9QOnH1pwswu+c7dwUFFPdrkJ0eEQ9J03xST2qhrv6JubtoHMo4evRXftgiihYuaLZ8RP1deu3bfms/uMFN3/UpNxy0tIT9/+WBpdnjAoKv89RcbAo9rSpQi5OfM0gXB/W5RgCUiwmrduDEYZFug2BcezX/AxxeuUsvXX4dCCxZkZZHUHuZv7Qlv8igK0AcGDk8vK6s4W2fLbGpppq3ubEWZ1WpS9+pqr148xwYXr9bW3VMmK9e/6pToZt1ENIvmcuUfZOVlHoZR+Qg/RISHUkRK/Nx41D65iZtt36Kl+oG7yWQft6hQ6K5yulO8LdogbZ7vcTcwPQjRKFCccva3NyF+O0tCjymZeiRQd6OGvFGHye6wVjjsJirgbW0OuLdbfari+H3nO15x6lRF8K+f3H8FF90oD5REdpExxXT5P11Eis20kfaYMxRatWpQT6+BsLfnoFY/uxPXm1ZNqT679uBcbP7Qxo2ntFRdsE/VgVM1dx6bGGbC6k2a7HNy9uDJM0e2Qd0rtm6r2l/1uyWHzl5/EL637u/dR09cvm+ADN99YDLZ60nuHvvvzyDBQKMLDRxGhUwe1NZcOH3ixKkTZ/6P8HaEbNu8qdPEQ4k5yp2ckeGJj3OGQ8fWceS20yXmbnV3Igp8vSYt68nd3+gFXuMlSnmDtwtmazEsG+L3Fjby88hTMavG9Wz7iMWkze6wJ0bc3iGqcbuOnQjSqNmeyq7Wak6z0eZyNwhffMeXIst27BQMVonlQc35w7u2Vge33qifO5BAj7bEwdYWCQb9rn+M7qrcYz2mOjMM1o688Wk4xNvqWZ4NmEDkmzziwWRENFGaZoyNPbRx48MDxoOXDJf+/RYcu3fX1vf280be+rW7SQvY8l03MLryO0/7oZ1LEED7dcvN7Yktxzjb3DZr2gWA3YHkZYTg6Li8AeEXH35kCOpGwIgCQOBvxGM4j+g+WAWhstm+e7I8UK9g0ExkcZuiycygjiZLpVHUkiE7sYJfNUYYsFGKhXx0xespBEiU8UQR3QJ8BQ0omPkKFRH8hBp5bESdWGrQQJzoaCRWkjIiaCLNcgjYZToKZlmMGi5ZjQas8hKaiOAntGCXd9BGpHyBDszyBzqpLxuxHlbZhQ1IkCPoIkvqMIok5cFoUlQ7jMGjxmIsaaoY3SSoTzCODLUR40lS5zABu6Y/LhGrFklHMoVLw6IxDDCN8LoRDwObAbT1INOBSBHNbeMAROPRfiYDQ6bRwWQp0VQrdF0K+RQsdkETrs4EMlGDaSQkQJtrTE26UXAC1CIuRboa07tK9sV3AJpJgNF0KKA5DfHSejKPclaKL1cLSzsLgvkJ2IKFhVZIYOXY9Eo2WhLwBQiKfRUGXd3lgjoZCw1N7Wtk4QEgzegyDnzICSoxC2C6fM0SQGKZRHuAiNUjE5Bims60brbQlQSeGyNvwQJXbXoRIFySEI4ZEZAXYdM3J8xm3bAQFADCzcSMTqcVmTLkGgGLwLgoVWHhd2hE7z8k/OgP+rM=') format('woff2');
     unicode-range: U+0020, U+002E, U+0041, U+0047, U+0049, U+004E-0050, U+0053-0054;
   }
 
