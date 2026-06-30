@@ -111,7 +111,10 @@ const schema = [
                 alt={imageAlt}
                 class="article-cover"
                 loading="eager"
+                fetchpriority="high"
                 format="avif"
+                widths={[480, 768, 1200]}
+                sizes="(max-width: 1023px) calc(100vw - 48px), 767px"
                 width={1200}
                 height={630}
               />
