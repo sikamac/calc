@@ -1,22 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-
-interface ImportCalculation {
-  valorEXW: number;
-  arancel: number;
-  derechoAntidumping: number;
-  tasaEstadistica: number;
-  baseIVA: number;
-  iva: number;
-  ivaAdicional: number;
-  impuestoGanancias: number;
-  percepcionIB: number;
-  flete: number;
-  seguro: number;
-  costoTransferenciaBancaria: number;
-  gastosDespachante: number;
-  costoFinal: number;
-  costoTotalEnEXW: number;
-}
+import { calculateImportCost, type ImportCalculation } from '../../lib/import-calculation';
 
 interface VentaCalculation {
   costoUnitario: number;
@@ -121,64 +104,20 @@ export const ImportCalculator: React.FC = () => {
   };
 
   const calcularImportacion = () => {
-    const valorEXWNumerico = valorEXW || 0;
-
-    const valorCIF = valorEXWNumerico + flete + seguro;
-
-    const arancelCalculado = (valorCIF * tasaArancel) / 100;
-
-    const derechoAntidumpingCalculado = (valorCIF * tasaAntidumping) / 100;
-
-    // Tasa Estadística con topes máximos según normativa
-    let tasaEstadisticaCalculada = valorEXWNumerico * 0.005;
-    let maximoTasaEstadistica = 0;
-
-    if (valorEXWNumerico <= 10000) {
-      maximoTasaEstadistica = 180;
-    } else if (valorEXWNumerico <= 100000) {
-      maximoTasaEstadistica = 3000;
-    } else if (valorEXWNumerico <= 1000000) {
-      maximoTasaEstadistica = 30000;
-    } else {
-      maximoTasaEstadistica = 150000;
-    }
-
-    tasaEstadisticaCalculada = Math.min(tasaEstadisticaCalculada, maximoTasaEstadistica);
-
-    const baseDerechos = valorCIF + arancelCalculado + derechoAntidumpingCalculado + tasaEstadisticaCalculada;
-
-    const ivaCalculado = (baseDerechos * tasaIVA) / 100;
-
-    // IVA Adicional: 0%, 10% o 20% sobre la base imponible
-    const ivaAdicionalCalculado = (baseDerechos * parseFloat(tipoIVAAdicional)) / 100;
-
-    const impuestoGananciasCalculado = (baseDerechos * tasaGanancias) / 100;
-
-    const percepcionIBCalculada = (baseDerechos * tasaPercepcionIB) / 100;
-
-    const costoFinal = baseDerechos + ivaCalculado + ivaAdicionalCalculado +
-                      impuestoGananciasCalculado + percepcionIBCalculada +
-                      costoTransferenciaBancaria + gastosDespachante + costoDepositoFiscal;
-
-    const costoTotalEnEXW = valorEXWNumerico > 0 ? costoFinal / valorEXWNumerico : 0;
-
-    setCalculo({
-      valorEXW: valorEXWNumerico,
-      arancel: arancelCalculado,
-      derechoAntidumping: derechoAntidumpingCalculado,
-      tasaEstadistica: tasaEstadisticaCalculada,
-      baseIVA: baseDerechos,
-      iva: ivaCalculado,
-      ivaAdicional: ivaAdicionalCalculado,
-      impuestoGanancias: impuestoGananciasCalculado,
-      percepcionIB: percepcionIBCalculada,
+    setCalculo(calculateImportCost({
+      valorEXW,
+      tasaArancel,
+      tasaAntidumping,
+      tasaIVA,
+      tasaIVAAdicional: parseFloat(tipoIVAAdicional),
+      tasaGanancias,
+      tasaPercepcionIB,
       flete,
       seguro,
       costoTransferenciaBancaria,
       gastosDespachante,
-      costoFinal,
-      costoTotalEnEXW
-    });
+      costoDepositoFiscal,
+    }));
   };
 
   const calcularVenta = () => {

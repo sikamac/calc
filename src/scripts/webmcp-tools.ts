@@ -1,3 +1,5 @@
+import { calculateImportCost } from '../lib/import-calculation';
+
 type ToolInput = Record<string, unknown>;
 
 interface WebMcpTool {
@@ -66,25 +68,20 @@ function estimateImportCost(input: ToolInput) {
   const gastosDespachante = readNumber(input, 'gastos_despachante', 0);
   const depositoYManejo = readNumber(input, 'deposito_y_manejo', 0);
 
-  const valorCIF = valorEXW + flete + seguro;
-  const arancel = valorCIF * tasaArancel / 100;
-  const antidumping = valorCIF * tasaAntidumping / 100;
-  const tasaEstadisticaSinTope = valorEXW * 0.005;
-  const topeTasaEstadistica = valorEXW <= 10_000
-    ? 180
-    : valorEXW <= 100_000
-      ? 3_000
-      : valorEXW <= 1_000_000
-        ? 30_000
-        : 150_000;
-  const tasaEstadistica = Math.min(tasaEstadisticaSinTope, topeTasaEstadistica);
-  const baseImponible = valorCIF + arancel + antidumping + tasaEstadistica;
-  const iva = baseImponible * tasaIVA / 100;
-  const ivaAdicional = baseImponible * tasaIVAAdicional / 100;
-  const percepcionGanancias = baseImponible * tasaGanancias / 100;
-  const ingresosBrutos = baseImponible * tasaIngresosBrutos / 100;
-  const costoFinal = baseImponible + iva + ivaAdicional + percepcionGanancias
-    + ingresosBrutos + transferenciaBancaria + gastosDespachante + depositoYManejo;
+  const calculation = calculateImportCost({
+    valorEXW,
+    tasaArancel,
+    tasaAntidumping,
+    tasaIVA,
+    tasaIVAAdicional,
+    tasaGanancias,
+    tasaPercepcionIB: tasaIngresosBrutos,
+    flete,
+    seguro,
+    costoTransferenciaBancaria: transferenciaBancaria,
+    gastosDespachante,
+    costoDepositoFiscal: depositoYManejo,
+  });
 
   return {
     currency: 'USD',
@@ -103,20 +100,20 @@ function estimateImportCost(input: ToolInput) {
       deposito_y_manejo: depositoYManejo,
     },
     breakdown: {
-      valor_cif: roundCurrency(valorCIF),
-      arancel: roundCurrency(arancel),
-      antidumping: roundCurrency(antidumping),
-      tasa_estadistica: roundCurrency(tasaEstadistica),
-      base_imponible: roundCurrency(baseImponible),
-      iva: roundCurrency(iva),
-      iva_adicional: roundCurrency(ivaAdicional),
-      percepcion_ganancias: roundCurrency(percepcionGanancias),
-      ingresos_brutos: roundCurrency(ingresosBrutos),
+      valor_cif: roundCurrency(calculation.valorCIF),
+      arancel: roundCurrency(calculation.arancel),
+      antidumping: roundCurrency(calculation.derechoAntidumping),
+      tasa_estadistica: roundCurrency(calculation.tasaEstadistica),
+      base_imponible: roundCurrency(calculation.baseIVA),
+      iva: roundCurrency(calculation.iva),
+      iva_adicional: roundCurrency(calculation.ivaAdicional),
+      percepcion_ganancias: roundCurrency(calculation.impuestoGanancias),
+      ingresos_brutos: roundCurrency(calculation.percepcionIB),
       gastos_operativos: roundCurrency(transferenciaBancaria + gastosDespachante + depositoYManejo),
     },
     result: {
-      costo_final: roundCurrency(costoFinal),
-      multiplicador_sobre_exw: Math.round((costoFinal / valorEXW) * 100) / 100,
+      costo_final: roundCurrency(calculation.costoFinal),
+      multiplicador_sobre_exw: Math.round(calculation.costoTotalEnEXW * 100) / 100,
     },
     disclaimer: 'Estimación educativa. Verificá NCM, normativa y alícuotas con profesionales antes de operar.',
   };
