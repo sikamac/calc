@@ -59,6 +59,30 @@ const schema = [
           "@type": "Answer",
           "text": "No. Los tributos y gastos aduaneros no se pagan en cuotas para liberar mercaderia. En courier se pagan por adelantado o antes de la entrega; en despacho formal puede existir pago a vista operativo, pero la mercaderia no se libera sin cancelar la liquidacion correspondiente."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "La herramienta sirve como calculadora de aduana en Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si. La calculadora ayuda a simular el costo de importacion antes de comprar, comparar escenarios y entender cuanto impactan aranceles, impuestos y logistica en el costo final."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cuanto IVA se paga al comprar en Shein o Temu desde Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si el envio no supera USD 400, solo se paga IVA del 21% sobre el valor total del envio. Por ejemplo, una compra de USD 300 genera un IVA de USD 63, con costo final de USD 363. Si el envio supera USD 400, ademas del IVA se aplica un arancel simplificado del 50% sobre el excedente."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Cuantos envios del exterior puedo recibir por año en Argentina",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El regimen de pequenos envios (courier) permite hasta 5 envios por año calendario por persona. Cada envio puede tener hasta USD 3.000 de valor y 50 kg de peso, con un maximo de 3 unidades de la misma especie por paquete."
+        }
       }
     ]
   }
@@ -297,6 +321,16 @@ const schema = [
             <p>No. Para liberar mercadería hay que cancelar la liquidación aduanera correspondiente. En courier es pago anticipado o previo a entrega; en despacho formal puede haber pago a vista operativo, pero no cuotas aduaneras.</p>
             <a href="/blog/derechos-aduaneros-aranceles-importacion-argentina">Leer sobre derechos aduaneros</a>
           </article>
+          <article class="faq-card">
+            <h3>¿Cuánto IVA pago al comprar en Shein o Temu desde Argentina?</h3>
+            <p>Si el envío no supera USD 400, solo pagás IVA 21% sobre el valor total. Una compra de USD 300 genera USD 63 de IVA, con costo final de USD 363. Si superás la franquicia, se suma un arancel simplificado del 50% sobre el excedente.</p>
+            <a href="/calculadora/courier">Calcular costo courier →</a>
+          </article>
+          <article class="faq-card">
+            <h3>¿Cuántos envíos del exterior puedo recibir por año en Argentina?</h3>
+            <p>El régimen de pequeños envíos permite hasta 5 envíos por año por persona. Cada envío puede tener hasta USD 3.000 y 50 kg, con un máximo de 3 unidades iguales por paquete.</p>
+            <a href="/blog/regla-3-unidades-misma-especie-courier">Ver la regla de 3 unidades →</a>
+          </article>
         </div>
       </div>
     </section>
@@ -482,7 +516,7 @@ const schema = [
   /* Sección 5 — FAQ */
   .faq-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
   @media (max-width: 1024px) { .faq-grid { grid-template-columns: 1fr 1fr; } }
