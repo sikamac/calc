@@ -9,7 +9,7 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      filter: (page) => !page.includes('/admin/'),
+      filter: (page) => !page.includes('/admin/') && !page.includes('/api/'),
       serialize: addSitemapLastmod,
       i18n: {
         defaultLocale: 'es',

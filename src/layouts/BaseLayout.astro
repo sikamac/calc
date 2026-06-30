@@ -201,6 +201,14 @@ const jsonLd = normalizeSchemaUrls({
     <slot />
 
     <script>
+      if ('modelContext' in document) {
+        import('../scripts/webmcp-tools').then(({ registerWebMcpTools }) => {
+          registerWebMcpTools();
+        });
+      }
+    </script>
+
+    <script>
       document.addEventListener('click', (event) => {
         if (!(event.target instanceof Element)) return;
 
