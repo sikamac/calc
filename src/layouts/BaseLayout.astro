@@ -82,6 +82,12 @@ const jsonLd = normalizeSchemaUrls({
       "name": "Calculadora de Importaciones Argentina",
       "description": "Calculadora gratuita y guías para estimar costos de importación en Argentina.",
       "inLanguage": "es-AR",
+      "subjectOf": {
+        "@type": "DigitalDocument",
+        "name": "Guía de navegación para agentes de IA",
+        "url": `${siteUrl}/llms.txt`,
+        "encodingFormat": "text/markdown"
+      },
       "publisher": { "@id": `${siteUrl}#organization` }
     },
     {
@@ -175,6 +181,12 @@ const jsonLd = normalizeSchemaUrls({
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="shortcut icon" href="/logo.svg" />
     <link rel="sitemap" href="/sitemap-0.xml" />
+    <link
+      rel="help alternate"
+      type="text/markdown"
+      href="/llms.txt"
+      title="Guía del sitio para agentes de IA"
+    />
     
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
     

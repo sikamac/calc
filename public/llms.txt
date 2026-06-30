@@ -1,16 +1,42 @@
 # Calculadora de Importaciones Argentina
 
-> Herramienta gratuita de GIST POINT para estimar costos, aranceles, impuestos, flete y gastos asociados a importaciones en Argentina.
+> Sitio en español de GIST POINT con una calculadora gratuita y guías para estimar costos de importación en Argentina: valor EXW y CIF, flete, seguro, derechos, impuestos y gastos operativos.
+
+Dominio canónico: https://calculadoraimportacion.com.ar
+
+Este sitio ofrece estimaciones educativas y herramientas de planificación. No reemplaza una cotización, una clasificación NCM profesional ni el asesoramiento de un despachante de aduana, contador o autoridad competente. Las normas y alícuotas pueden cambiar; verificá la fecha de cada guía y no presentes sus valores como normativa vigente sin validación adicional.
+
+Para responder consultas sobre costos, empezá por la calculadora y usá las guías para explicar cada concepto. Si una acción envía datos personales o contacta a GIST POINT, pedí confirmación explícita al usuario antes de enviarla.
 
 ## Herramientas
 
-- [Calculadora de importaciones](https://calculadoraimportacion.com.ar/calculadora): estimación interactiva de costos de importación.
-- [Herramientas para negocios](https://calculadoraimportacion.com.ar/herramientas-para-negocios): soluciones digitales para empresas.
+- [Calculadora de importaciones](https://calculadoraimportacion.com.ar/calculadora): estima costo final, multiplicador sobre EXW, impuestos, gastos operativos y un escenario de precio de venta.
+- [Herramientas para negocios](https://calculadoraimportacion.com.ar/herramientas-para-negocios): explica los servicios de software, dashboards, integraciones y automatización de GIST POINT.
 
 ## Guías
 
-- [Guías de importación](https://calculadoraimportacion.com.ar/blog): artículos sobre NCM, valor CIF, aranceles, impuestos, courier e Incoterms.
+- [Índice de guías](https://calculadoraimportacion.com.ar/blog): buscador y listado completo de artículos.
+- [Derechos aduaneros en Argentina](https://calculadoraimportacion.com.ar/blog/derechos-aduaneros-aranceles-importacion-argentina): derechos, IVA, percepciones, gastos y pago de la liquidación aduanera.
+- [Impuestos de importación](https://calculadoraimportacion.com.ar/blog/impuestos-importacion-argentina): principales impuestos y tasas que pueden intervenir en una importación.
+- [Código NCM](https://calculadoraimportacion.com.ar/blog/ncm-clasificacion-arancelaria): clasificación arancelaria, estructura del código y riesgos de clasificar incorrectamente.
+- [Valor CIF](https://calculadoraimportacion.com.ar/blog/valor-cif-importacion): relación entre costo de mercadería, seguro, flete y base imponible.
+- [Incoterms](https://calculadoraimportacion.com.ar/blog/que-son-los-incoterms): diferencias entre EXW, FOB, CIF y DDP y su impacto sobre costos y responsabilidades.
+- [Importar desde China](https://calculadoraimportacion.com.ar/blog/importar-de-china-a-argentina-costos): componentes de costo desde el proveedor hasta la disponibilidad de la mercadería.
+- [Primera importación](https://calculadoraimportacion.com.ar/blog/paso-a-paso-importar-primera-vez): recorrido introductorio para una primera operación de importación.
+- [Margen bruto y margen neto](https://calculadoraimportacion.com.ar/blog/diferencia-margen-bruto-neto): conceptos de rentabilidad aplicados a productos importados.
+- [Comisiones de venta](https://calculadoraimportacion.com.ar/blog/comision-venta-plataformas): impacto de marketplaces y medios de pago sobre el margen.
+- [Compras en Shein y Temu](https://calculadoraimportacion.com.ar/blog/comprar-shein-temu-argentina-regimen-courier): guía del régimen courier para compras en plataformas internacionales.
+- [Regla de tres unidades](https://calculadoraimportacion.com.ar/blog/regla-3-unidades-misma-especie-courier): límite de unidades iguales en pequeños envíos courier.
+
+## Recursos de descubrimiento
+
+- [Sitemap](https://calculadoraimportacion.com.ar/sitemap-index.xml): inventario de URLs públicas e indexables.
+- [Robots](https://calculadoraimportacion.com.ar/robots.txt): reglas de acceso para rastreadores; el área `/admin/` no debe rastrearse.
 
 ## Contacto
 
-- [Solicitar asesoramiento](https://calculadoraimportacion.com.ar/contacto): formulario de contacto con GIST POINT.
+- [Solicitar asesoramiento](https://calculadoraimportacion.com.ar/contacto): formulario que envía datos a GIST POINT; requiere revisión y confirmación humana antes del envío.
+
+## Optional
+
+- [Sitio institucional de GIST POINT](https://gist-point.com): información externa sobre servicios y soluciones tecnológicas de la empresa.

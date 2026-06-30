@@ -49,6 +49,10 @@ function withStaticAssetHeaders(url, response) {
 
   if (contentType.includes('text/html')) {
     headers.set('Content-Type', 'text/html; charset=UTF-8');
+    headers.append(
+      'Link',
+      '</llms.txt>; rel="help alternate"; type="text/markdown"; title="Guia del sitio para agentes de IA"'
+    );
   }
 
   if (pathname.startsWith('/assets/') || pathname.startsWith('/fonts/')) {
