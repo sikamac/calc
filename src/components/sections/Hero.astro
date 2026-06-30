@@ -28,7 +28,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
               </svg>
             </div>
             <div>
-              <h3>Cálculo preciso</h3>
+              <p class="benefit-title">Cálculo preciso</p>
               <p>Todos los costos en un solo lugar</p>
             </div>
           </div>
@@ -40,7 +40,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
               </svg>
             </div>
             <div>
-              <h3>Datos seguros</h3>
+              <p class="benefit-title">Datos seguros</p>
               <p>Tu información está protegida</p>
             </div>
           </div>
@@ -52,7 +52,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
               </svg>
             </div>
             <div>
-              <h3>Resultados inmediatos</h3>
+              <p class="benefit-title">Resultados inmediatos</p>
               <p>Obtené tu estimación al instante</p>
             </div>
           </div>
@@ -69,6 +69,8 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
             loading="eager"
             fetchpriority="high"
             format="avif"
+            widths={[480, 720, 1200]}
+            sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) calc(100vw - 48px), 662px"
             width={1200}
             height={630}
           />
@@ -187,7 +189,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
     place-items: center;
     flex-shrink: 0;
   }
-  .benefit-item h3 {
+  .benefit-title {
     font-size: 15px;
     margin: 0 0 4px;
     color: #081C3A;
@@ -245,7 +247,7 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
   }
 
   .card-pill {
-    color: #3084ae;
+    color: #246b8c;
     background: #E5F4F4;
     border-radius: 999px;
     padding: 6px 10px;
@@ -305,10 +307,10 @@ import heroImage from '../../assets/images/og/calculadora-importaciones.png';
     padding: 14px 16px;
     font-size: 15px;
     font-weight: 700;
-    color: #3084ae;
+    color: #246b8c;
   }
   .example-total span:last-child {
-    color: #3084ae;
+    color: #246b8c;
     font-size: 22px;
     line-height: 1;
   }

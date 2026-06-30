@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface ImportCalculation {
   valorEXW: number;
@@ -49,7 +49,19 @@ interface VentaCalculation {
 
 type TabType = 'importacion' | 'venta';
 
+const pushDataLayerEvent = (event: string, parameters: Record<string, unknown> = {}) => {
+  if (typeof window === 'undefined') return;
+
+  const analyticsWindow = window as Window & {
+    dataLayer?: Array<Record<string, unknown>>;
+  };
+  analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+  analyticsWindow.dataLayer.push({ event, ...parameters });
+};
+
 export const ImportCalculator: React.FC = () => {
+  const hasStartedRef = useRef(false);
+  const hasCompletedRef = useRef(false);
   const [activeTab, setActiveTab] = useState<TabType>('importacion');
   
   const [valorEXW, setValorEXW] = useState<number>(1000);
@@ -88,6 +100,25 @@ export const ImportCalculator: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [calculo, margenNetoDeseado, comisionVenta, gastosFijos, porcentajeHonorariosSocios,
       tasaIIBBProvincial, tasaIIBBMunicipal]);
+
+  useEffect(() => {
+    if (!calculo || !hasStartedRef.current || hasCompletedRef.current) return;
+
+    hasCompletedRef.current = true;
+    pushDataLayerEvent('calculator_complete', {
+      currency: 'USD',
+      value: Number(calculo.costoFinal.toFixed(2)),
+    });
+  }, [calculo]);
+
+  const handleCalculatorFocus = (event: React.FocusEvent<HTMLDivElement>) => {
+    if (hasStartedRef.current || !(event.target instanceof HTMLInputElement || event.target instanceof HTMLSelectElement)) {
+      return;
+    }
+
+    hasStartedRef.current = true;
+    pushDataLayerEvent('calculator_start');
+  };
 
   const calcularImportacion = () => {
     const valorEXWNumerico = valorEXW || 0;
@@ -291,7 +322,7 @@ export const ImportCalculator: React.FC = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" onFocusCapture={handleCalculatorFocus}>
       <div className="bg-white rounded-2xl border border-[#DDE6F2] overflow-hidden" style={{boxShadow: '0 18px 45px rgba(8,28,58,0.08)'}}>
         {/* Tabs */}
         <div className="border-b border-[#DDE6F2]">

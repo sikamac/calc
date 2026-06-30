@@ -218,6 +218,21 @@ const schema = [
     const submitBtn = document.getElementById('submit-btn');
     const btnText = document.getElementById('btn-text');
     const btnSpinner = document.getElementById('btn-spinner');
+    let contactStarted = false;
+    const pushDataLayerEvent = (event: string, parameters: Record<string, unknown> = {}) => {
+      const analyticsWindow = window as typeof window & {
+        dataLayer?: Array<Record<string, unknown>>;
+      };
+      analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
+      analyticsWindow.dataLayer.push({ event, ...parameters });
+    };
+
+    form?.addEventListener('focusin', (event) => {
+      if (contactStarted || !(event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement)) return;
+
+      contactStarted = true;
+      pushDataLayerEvent('contact_start');
+    });
 
     form?.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -240,6 +255,9 @@ const schema = [
         });
         const result = await response.json();
         if (response.ok && result.ok) {
+          pushDataLayerEvent('generate_lead', {
+            lead_source: 'contact_form',
+          });
           successMessage.classList.remove('hidden');
           form.reset();
           if (window.turnstile) turnstile.reset();
