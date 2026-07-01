@@ -12,6 +12,7 @@ export const CourierCalculator: FC = () => {
   const [valorDeclarado, setValorDeclarado] = useState<string>('300');
   const [costoEnvio, setCostoEnvio] = useState<string>('0');
   const [channel, setChannel] = useState<CourierChannel>('privado');
+  const hasStartedRef = useRef(false);
   const hasCompletedRef = useRef(false);
 
   const result = useMemo<CourierResult | null>(() => {
@@ -22,7 +23,7 @@ export const CourierCalculator: FC = () => {
   }, [valorDeclarado, costoEnvio, channel]);
 
   useEffect(() => {
-    if (result && result.regime !== 'supera_limite' && !hasCompletedRef.current) {
+    if (result && result.regime !== 'supera_limite' && hasStartedRef.current && !hasCompletedRef.current) {
       hasCompletedRef.current = true;
       pushDataLayerEvent('courier_calc_complete', {
         regime: result.regime,
@@ -42,7 +43,8 @@ export const CourierCalculator: FC = () => {
             <button
               key={value}
               type="button"
-              onClick={() => setChannel(value)}
+              aria-pressed={channel === value}
+              onClick={() => { hasStartedRef.current = true; setChannel(value); }}
               className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold border transition-colors text-center ${
                 channel === value
                   ? 'bg-[#00246B] text-white border-[#00246B]'
@@ -79,7 +81,7 @@ export const CourierCalculator: FC = () => {
                 min="0"
                 step="any"
                 value={valorDeclarado}
-                onChange={(e) => setValorDeclarado(e.target.value)}
+                onChange={(e) => { hasStartedRef.current = true; setValorDeclarado(e.target.value); }}
                 placeholder="300"
                 className="w-full pl-12 pr-4 py-3 border border-[#DDE6F2] rounded-lg text-[#081C3A] font-medium focus:outline-none focus:ring-2 focus:ring-[#0074D9] focus:border-transparent text-sm"
               />
@@ -105,7 +107,7 @@ export const CourierCalculator: FC = () => {
                 min="0"
                 step="any"
                 value={costoEnvio}
-                onChange={(e) => setCostoEnvio(e.target.value)}
+                onChange={(e) => { hasStartedRef.current = true; setCostoEnvio(e.target.value); }}
                 onBlur={(e) => { if (e.target.value === '') setCostoEnvio('0'); }}
                 placeholder="0"
                 className="w-full pl-12 pr-4 py-3 border border-[#DDE6F2] rounded-lg text-[#081C3A] font-medium focus:outline-none focus:ring-2 focus:ring-[#0074D9] focus:border-transparent text-sm"

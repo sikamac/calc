@@ -59,6 +59,15 @@ const schema = [
       "acceptedAnswer": { "@type": "Answer", "text": a },
     })),
   },
+  {
+    "@type": "WebPage",
+    "@id": `${Astro.url.href}#webpage`,
+    "name": title,
+    "description": description,
+    "url": Astro.url.href,
+    "breadcrumb": { "@id": `${Astro.url.href}#breadcrumb` },
+    "mainEntity": { "@id": `${Astro.url.href}#webapp-courier` },
+  },
 ];
 ---
 

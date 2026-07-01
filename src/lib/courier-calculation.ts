@@ -50,7 +50,6 @@ export function calculateCourierCost(input: CourierInput): CourierResult {
   if (input.channel === 'correo_argentino') {
     // Hasta $50: exento total (ni IVA)
     // Excedente sobre $50: 50% all-inclusive (sin IVA aparte)
-    iva = 0;
     arancelExcedente = base > CA_FRANQUICIA
       ? (base - CA_FRANQUICIA) * TASA_ARANCEL
       : 0;

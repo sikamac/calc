@@ -30,7 +30,7 @@ assert.equal(r800.costoFinal, 1168);
 const rConEnvio = calculateCourierCost({ valorDeclarado: 450, costoEnvio: 60, channel: 'privado' });
 assert.equal(rConEnvio.base, 510);
 assert.equal(rConEnvio.regime, 'excedente');
-assert.equal(rConEnvio.iva, 107.1);       // 510 × 0.21
+assert.ok(Math.abs(rConEnvio.iva - 107.1) < 0.001, `IVA expected ~107.1, got ${rConEnvio.iva}`);       // 510 × 0.21
 assert.equal(rConEnvio.arancelExcedente, 55); // (510-400) × 0.50
 
 // Supera límite
