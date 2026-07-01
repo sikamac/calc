@@ -14,6 +14,23 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
 
+    // `llms.txt` is the canonical filename, but some clients still probe the
+    // singular spelling. Serve the same asset at both paths without relying on
+    // redirect support in the crawler.
+    if (url.pathname === '/llm.txt' && (request.method === 'GET' || request.method === 'HEAD')) {
+      const canonicalUrl = new URL('/llms.txt', url);
+      const assetResponse = await env.ASSETS.fetch(new Request(canonicalUrl, request));
+      const headers = new Headers(assetResponse.headers);
+      headers.set('Content-Location', '/llms.txt');
+      headers.append('Link', '</llms.txt>; rel="canonical"');
+
+      return new Response(assetResponse.body, {
+        status: assetResponse.status,
+        statusText: assetResponse.statusText,
+        headers,
+      });
+    }
+
     if (url.pathname === '/index.html') {
       url.pathname = '/';
       return Response.redirect(url.toString(), 301);

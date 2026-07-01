@@ -3,3 +3,6 @@ Allow: /
 Disallow: /admin/
 
 Sitemap: https://calculadoraimportacion.com.ar/sitemap-index.xml
+
+# AI-readable site guide (canonical filename)
+# https://calculadoraimportacion.com.ar/llms.txt
