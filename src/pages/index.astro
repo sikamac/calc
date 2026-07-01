@@ -99,6 +99,52 @@ const schema = [
   <main>
     <Hero />
 
+    <!-- Selector de calculadora -->
+    <section style="padding: 56px 0; background: #fff;">
+      <div style="width: min(100% - 48px, 1180px); margin: 0 auto;">
+        <p class="text-center text-sm font-semibold text-[#0074D9] uppercase tracking-wider mb-4">
+          ¿Qué tipo de importación necesitás calcular?
+        </p>
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Card courier -->
+          <div class="bg-white border border-[#DDE6F2] rounded-xl p-8 hover:shadow-md hover:border-[#0074D9] transition-all">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-12 h-12 bg-[#F3F7FC] rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-[#0074D9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+              </div>
+              <span class="px-2.5 py-1 bg-[#DCFCE7] text-[#16A34A] text-xs font-semibold rounded-full">Más buscado</span>
+            </div>
+            <h2 class="text-xl font-bold text-[#081C3A] mb-2">Compras personales del exterior</h2>
+            <p class="text-[#5D6B82] text-sm mb-6 leading-relaxed">
+              Shein, Temu, AliExpress, compras online. Franquicia de USD 400, hasta 5 envíos por año.
+            </p>
+            <a href="/calculadora/courier" class="btn btn-primary w-full text-center">
+              Calculadora courier →
+            </a>
+          </div>
+          <!-- Card formal -->
+          <div class="bg-white border border-[#DDE6F2] rounded-xl p-8 hover:shadow-md hover:border-[#0074D9] transition-all">
+            <div class="mb-4">
+              <div class="w-12 h-12 bg-[#F3F7FC] rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-[#0074D9]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                </svg>
+              </div>
+            </div>
+            <h2 class="text-xl font-bold text-[#081C3A] mb-2">Importación comercial o empresarial</h2>
+            <p class="text-[#5D6B82] text-sm mb-6 leading-relaxed">
+              Materias primas, productos para reventa, equipamiento. Aranceles según NCM, despacho aduanero.
+            </p>
+            <a href="/calculadora" class="btn btn-outline w-full text-center">
+              Calculadora de importación →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="gist-strip">
       <div class="gist-strip-inner">
         <div>
