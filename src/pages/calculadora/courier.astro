@@ -11,7 +11,7 @@ const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').re
 const faqItems = [
   {
     q: "¿Cuánto IVA pago si compro en Shein, Temu o Amazon desde Argentina?",
-    a: "Si el valor del envío no supera USD 400, pagás IVA del 21% sobre el valor total del producto más envío. No se aplican derechos de importación ni tasa estadística dentro de la franquicia. Por ejemplo, una compra de USD 300 te costaría USD 63 de IVA, con un costo final de USD 363.",
+    a: "Depende del canal de ingreso. Por courier privado (DHL, FedEx, UPS): pagás IVA del 21% sobre el valor total del producto más envío, independientemente del monto —siempre que no supere USD 400 de franquicia—. Por ejemplo, una compra de USD 300 te costaría USD 63 de IVA, con un costo final de USD 363. Por Correo Argentino: dentro de la franquicia de USD 50 no pagás IVA; sobre el excedente aplica un arancel simplificado del 50% que incluye todos los tributos, sin IVA por separado.",
   },
   {
     q: "¿Qué pasa si mi compra supera los USD 400?",
@@ -19,11 +19,11 @@ const faqItems = [
   },
   {
     q: "¿Cuántos envíos del exterior puedo recibir por año en Argentina?",
-    a: "El régimen de pequeños envíos permite hasta 5 envíos por año calendario y por persona. Cada envío puede tener hasta USD 3.000 de valor y 50 kg de peso. Además, no podés incluir más de 3 unidades de la misma especie por paquete.",
+    a: "El límite anual depende del canal: por courier privado (DHL, FedEx, UPS) podés recibir hasta 5 envíos por año calendario y por persona, con un máximo de USD 3.000 por envío y 50 kg de peso. Por Correo Argentino el límite es de 12 envíos por año, con un máximo de USD 1.000 por envío y 20 kg. En ambos casos no podés incluir más de 3 unidades de la misma especie por paquete.",
   },
   {
     q: "¿Puedo usar este régimen si soy empresa?",
-    a: "Sí, las personas jurídicas también pueden operar por courier como Pequeño Envío, pero el límite de 5 envíos anuales aplica 'por persona'. Las empresas que importan regularmente suelen derivarse al régimen de courier comercial sin la franquicia de USD 400.",
+    a: "No. El régimen courier (puerta a puerta) está disponible únicamente para personas humanas, no para personas jurídicas (empresas o sociedades). Si importás en nombre de una empresa, debés hacerlo por vía formal con un despachante de aduanas, aplicando los aranceles correspondientes según la posición NCM del producto.",
   },
 ];
 
@@ -99,7 +99,11 @@ const schema = [
     <section style="padding: 56px 0; background: #F8FAFC;">
       <div style="width: min(100% - 48px, 680px); margin: 0 auto;">
         <CourierCalculator client:load />
-        <p style="text-align: center; font-size: 12px; color: #5D6B82; margin-top: 16px;">
+        <div style="margin-top: 20px; padding: 16px 20px; background: #F0F4F8; border-radius: 10px; font-size: 13px; color: #5D6B82; line-height: 1.6;">
+          <strong style="color: #081C3A;">Valor declarado:</strong> el precio del producto que declarás ante aduana (generalmente el precio de compra que figura en la factura o confirmación de la tienda).
+          <strong style="color: #081C3A; display: inline; margin-left: 8px;">Costo de envío:</strong> lo que pagaste por el flete internacional. Ambos se suman para calcular la base imponible.
+        </div>
+        <p style="text-align: center; font-size: 12px; color: #5D6B82; margin-top: 12px;">
           Estimación basada en el régimen de Pequeños Envíos (ARCA). Consulte con un despachante para operaciones específicas.
         </p>
       </div>
@@ -120,7 +124,7 @@ const schema = [
           {[
             { title: 'Franquicia USD 400', desc: 'Hasta USD 400 por envío: solo pagás IVA 21%. Sin derechos de importación ni tasa estadística.' },
             { title: 'Límite USD 3.000', desc: 'El valor máximo por envío es USD 3.000 y 50 kg. Si superás ese monto, necesitás despacho formal.' },
-            { title: '5 envíos por año', desc: 'Podés utilizar este régimen hasta 5 veces por año calendario y por persona (CUIT o CUIL).' },
+            { title: '5 envíos por año (privado)', desc: 'Por courier privado (DHL/FedEx/UPS): hasta 5 envíos por año y por persona. Por Correo Argentino: hasta 12 envíos por año.' },
             { title: 'Máx. 3 unidades iguales', desc: 'No podés incluir más de 3 unidades de la misma especie en un envío bajo este régimen.' },
           ].map(({ title, desc }) => (
             <div class="rule-card">
@@ -159,17 +163,20 @@ const schema = [
             </thead>
             <tbody>
               <tr><td>Valor máximo</td><td>USD 3.000 por envío</td><td>Sin límite</td></tr>
-              <tr><td>IVA</td><td>21% sobre el total</td><td>21% sobre base imponible</td></tr>
-              <tr><td>Derechos de importación</td><td>Exentos hasta USD 400 / 50% s/excedente</td><td>Según NCM (generalmente 8%–35%)</td></tr>
+              <tr><td>IVA</td><td>21% s/total (privado) / sin IVA separado (Correo Argentino)</td><td>21% sobre base imponible</td></tr>
+              <tr><td>Derechos de importación</td><td>USD 400 (privado) / USD 50 (Correo Argentino); 50% s/excedente</td><td>Según NCM (generalmente 8%–35%)</td></tr>
               <tr><td>Tasa estadística</td><td>No aplica</td><td>3% con tope</td></tr>
               <tr><td>Despachante de aduanas</td><td>No requerido</td><td>Obligatorio</td></tr>
               <tr><td>Entrega</td><td>A domicilio por el courier</td><td>Retiro en zona primaria</td></tr>
-              <tr><td>Límite anual</td><td>5 envíos por persona</td><td>Sin límite</td></tr>
+              <tr><td>Límite anual</td><td>5/año (courier privado) / 12/año (Correo Argentino)</td><td>Sin límite</td></tr>
               <tr><td>Uso comercial</td><td>No permitido</td><td>Permitido</td></tr>
             </tbody>
           </table>
         </div>
-        <div style="text-align: center; margin-top: 28px;">
+        <p style="text-align: center; margin-top: 24px; font-size: 14px; color: #5D6B82;">
+          Para una comparación detallada entre ambos canales, ver: <a href="/blog/courier-privado-vs-correo-argentino" style="color: #0074D9; font-weight: 600; text-decoration: none;">Courier privado vs Correo Argentino</a>.
+        </p>
+        <div style="text-align: center; margin-top: 20px;">
           <a href="/calculadora" style="display: inline-block; padding: 12px 24px; background: #00246B; color: #fff; border-radius: 8px; font-weight: 600; font-size: 14px; text-decoration: none;">
             Ir a la calculadora de régimen formal →
           </a>
