@@ -31,6 +31,7 @@ const currentYear = new Date().getFullYear();
           <li><a href="/blog">Guías de importación</a></li>
           <li><a href="/herramientas-para-negocios">Herramientas para negocios</a></li>
           <li><a href="/contacto">Asesoramiento</a></li>
+          <li><a href="/terminos-de-uso">Términos de uso y privacidad</a></li>
         </ul>
       </div>
 
@@ -70,6 +71,12 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <div class="footer-bottom">
+      <p class="footer-disclosure">
+        Usamos Microsoft Clarity para comprender, mediante métricas de comportamiento, mapas de calor y reproducciones de sesión, cómo se utiliza el sitio y poder mejorarlo. Al navegar, aceptás la recopilación y el uso de estos datos por GIST POINT y Microsoft. Consultá nuestros <a href="/terminos-de-uso#privacidad-y-microsoft-clarity">términos y política de privacidad</a>.
+      </p>
+      <p class="footer-ai-note">
+        Para la navegación del sitio con agentes de IA, está disponible nuestro archivo <a href="/llms.txt"><code>llms.txt</code></a>.
+      </p>
       <p>&copy; {currentYear} <span class="brand-name">GIST POINT S.A.S.</span> — Calculadora de importaciones Argentina. Todos los derechos reservados.</p>
     </div>
   </div>
@@ -180,6 +187,26 @@ const currentYear = new Date().getFullYear();
 
   .footer-bottom p {
     font-size: 13px;
+  }
+
+  .footer-bottom .footer-disclosure {
+    max-width: 900px;
+    margin: 0 auto 12px;
+  }
+
+  .footer-bottom .footer-ai-note {
+    margin: 0 auto 14px;
+  }
+
+  .footer-bottom a {
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .footer-bottom code {
+    color: #8FE3D5;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   }
 
   @media (max-width: 800px) {

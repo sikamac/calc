@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const title = 'Términos de uso y política de privacidad';
+const description = 'Condiciones de uso, alcance de la información y política de privacidad de la Calculadora de Importaciones de GIST POINT.';
+const siteUrl = (Astro.site?.href || 'https://calculadoraimportacion.com.ar').replace(/\/$/, '');
+const schema = {
+  '@type': 'WebPage',
+  '@id': `${Astro.url.href}#terms`,
+  name: title,
+  description,
+  url: Astro.url.href,
+  isPartOf: { '@id': `${siteUrl}#website` },
+  inLanguage: 'es-AR',
+};
+---
+
+<BaseLayout title={title} description={description} url={Astro.url.href} schema={schema}>
+  <Header />
+  <main class="legal-main">
+    <article class="legal-document">
+      <header>
+        <p class="eyebrow">Información legal</p>
+        <h1>Términos de uso y política de privacidad</h1>
+        <p class="updated">Última actualización: 2 de julio de 2026</p>
+      </header>
+
+      <section>
+        <h2>1. Alcance de la información</h2>
+        <p>
+          La información, artículos, resultados y cálculos publicados en este sitio tienen fines exclusivamente informativos, educativos y de orientación general. Son estimaciones y no constituyen una cotización, oferta, recomendación profesional, declaración jurada ni compromiso vinculante de <span class="brand-name">GIST POINT S.A.S.</span>
+        </p>
+        <p>
+          Los resultados pueden variar por cambios normativos, clasificación arancelaria, tipo de mercadería, origen, destino, tipo de cambio, condiciones comerciales, intervención de organismos y costos de terceros. Antes de tomar una decisión o realizar una operación, verificá la información con un despachante de aduana, contador, abogado, transportista u otra autoridad o profesional competente, según corresponda.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Uso del sitio</h2>
+        <p>
+          El uso del sitio y de sus herramientas es voluntario y queda bajo responsabilidad de cada usuario. Aunque procuramos mantener contenidos correctos y actualizados, no garantizamos que sean completos, exactos, vigentes o adecuados para un caso particular. GIST POINT no será responsable por decisiones, pérdidas o daños derivados del uso de la información o de la imposibilidad de acceder al sitio, en la medida permitida por la normativa aplicable.
+        </p>
+      </section>
+
+      <section id="privacidad-y-microsoft-clarity">
+        <h2>3. Privacidad y Microsoft Clarity</h2>
+        <p>
+          Utilizamos Microsoft Clarity para conocer cómo las personas usan e interactúan con el sitio y así mejorar sus contenidos, funcionamiento y experiencia. Clarity puede registrar datos de uso mediante métricas de comportamiento, mapas de calor y reproducciones de sesión, incluidos clics, desplazamientos, movimientos del puntero, páginas visitadas, características técnicas del dispositivo y datos aproximados de ubicación derivados de la dirección IP.
+        </p>
+        <p>
+          Estos datos se obtienen mediante cookies propias y de terceros y otras tecnologías de seguimiento. GIST POINT y Microsoft pueden recopilarlos y utilizarlos para analizar la actividad, optimizar el sitio y contribuir a fines de seguridad y prevención de fraude. Las reproducciones de sesión no son videos: reconstruyen interacciones a partir de la información que el navegador envía; los campos de entrada se encuentran enmascarados por Clarity.
+        </p>
+        <p>
+          Al utilizar este sitio, aceptás que GIST POINT y Microsoft recopilen y usen estos datos de acuerdo con esta política. Para conocer cómo Microsoft trata y protege los datos, consultá la <a href="https://privacy.microsoft.com/es-es/privacystatement" target="_blank" rel="noopener noreferrer">Declaración de Privacidad de Microsoft</a>. También podés consultar los <a href="https://clarity.microsoft.com/terms" target="_blank" rel="noopener noreferrer">Términos de uso de Microsoft Clarity</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Datos enviados por contacto</h2>
+        <p>
+          Si completás un formulario o nos contactás por correo electrónico o WhatsApp, utilizaremos los datos que proporciones para responder la consulta, dar seguimiento al contacto y, cuando corresponda, preparar una propuesta. No debés enviar información confidencial o sensible que no sea necesaria para la consulta.
+        </p>
+        <p>
+          Los datos personales que se encuentren bajo responsabilidad de GIST POINT serán tratados de manera confidencial, conforme al deber de seguridad y confidencialidad establecido por la Ley N.º 25.326 de Protección de los Datos Personales y su normativa complementaria. Adoptamos medidas razonables para prevenir su adulteración, pérdida, consulta o tratamiento no autorizado.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Acceso, rectificación y eliminación de datos</h2>
+        <p>
+          Podés solicitar gratuitamente el acceso, la actualización, la rectificación o la supresión de tus datos personales escribiendo a <a href="mailto:info@gist-point.com?subject=Solicitud%20sobre%20datos%20personales">info@gist-point.com</a>. Para proteger tus datos, podremos pedirte información razonable que permita verificar tu identidad y localizar el registro correspondiente.
+        </p>
+        <p>
+          Las solicitudes se atenderán dentro de los plazos previstos por la normativa aplicable. La supresión puede no corresponder cuando exista una obligación legal de conservación, una relación contractual vigente, derechos de terceros u otra excepción admitida por la ley. Si considerás que tu solicitud no fue atendida correctamente, podés recurrir ante la <a href="https://www.argentina.gob.ar/aaip/datospersonales/derechos" target="_blank" rel="noopener noreferrer">Agencia de Acceso a la Información Pública</a>.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Enlaces externos y propiedad intelectual</h2>
+        <p>
+          El sitio puede incluir enlaces a servicios de terceros, cuyas condiciones y prácticas de privacidad son ajenas a GIST POINT. Salvo indicación contraria, los contenidos, la identidad visual y las herramientas del sitio pertenecen a GIST POINT o se utilizan con autorización. No se permite su reproducción o explotación comercial sin autorización previa.
+        </p>
+      </section>
+
+      <section>
+        <h2>7. Cambios y contacto</h2>
+        <p>
+          Podemos actualizar estos términos para reflejar cambios del sitio, de las herramientas utilizadas o de la normativa aplicable. La fecha de la versión vigente se informa al inicio de esta página. Para consultas sobre estos términos o sobre privacidad, escribinos a <a href="mailto:info@gist-point.com">info@gist-point.com</a>.
+        </p>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal-main {
+    background: #f8fafc;
+    padding: 64px 24px 80px;
+  }
+
+  .legal-document {
+    width: min(100%, 820px);
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #dde6f2;
+    border-radius: 16px;
+    padding: clamp(28px, 5vw, 56px);
+    color: #34445e;
+  }
+
+  .legal-document header {
+    border-bottom: 1px solid #dde6f2;
+    padding-bottom: 28px;
+    margin-bottom: 34px;
+  }
+
+  .eyebrow {
+    margin: 0 0 10px;
+    color: #0074d9;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    color: #081c3a;
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.08;
+  }
+
+  .updated {
+    margin: 16px 0 0;
+    color: #66758c;
+    font-size: 14px;
+  }
+
+  section + section {
+    margin-top: 34px;
+  }
+
+  h2 {
+    margin: 0 0 14px;
+    color: #081c3a;
+    font-size: 22px;
+  }
+
+  section p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  section p + p {
+    margin-top: 14px;
+  }
+
+  section a {
+    color: #005fbd;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

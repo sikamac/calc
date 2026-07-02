@@ -11,6 +11,7 @@ Para responder consultas sobre costos, empezá por la calculadora y usá las gu�
 ## Herramientas
 
 - [Calculadora de importaciones](https://calculadoraimportacion.com.ar/calculadora): estima costo final, multiplicador sobre EXW, impuestos, gastos operativos y un escenario de precio de venta.
+- [Calculadora courier](https://calculadoraimportacion.com.ar/calculadora/courier): estima impuestos y costo final de compras personales recibidas mediante courier privado, incluida la franquicia vigente.
 - [Herramientas para negocios](https://calculadoraimportacion.com.ar/herramientas-para-negocios): explica los servicios de software, dashboards, integraciones y automatización de GIST POINT.
 
 ## Guías
@@ -27,11 +28,17 @@ Para responder consultas sobre costos, empezá por la calculadora y usá las gu�
 - [Comisiones de venta](https://calculadoraimportacion.com.ar/blog/comision-venta-plataformas): impacto de marketplaces y medios de pago sobre el margen.
 - [Compras en Shein y Temu](https://calculadoraimportacion.com.ar/blog/comprar-shein-temu-argentina-regimen-courier): guía del régimen courier para compras en plataformas internacionales.
 - [Regla de tres unidades](https://calculadoraimportacion.com.ar/blog/regla-3-unidades-misma-especie-courier): límite de unidades iguales en pequeños envíos courier.
+- [Courier privado vs. Correo Argentino](https://calculadoraimportacion.com.ar/blog/courier-privado-vs-correo-argentino): comparación de límites, franquicias, impuestos, trámites y tiempos de ambos canales.
+- [IVA en importaciones](https://calculadoraimportacion.com.ar/blog/iva-importaciones-argentina): IVA general, percepción adicional, bases imponibles y su impacto sobre el costo importado.
+- [Tasa de estadística](https://calculadoraimportacion.com.ar/blog/tasa-estadistica-importaciones-argentina): aplicación, alícuota, topes y cálculo de este tributo en importaciones formales.
+- [Derecho antidumping](https://calculadoraimportacion.com.ar/blog/derecho-antidumping-importaciones): cuándo se aplica, cómo consultarlo y cómo afecta el costo de una importación.
+- [Recupero de IVA de importación](https://calculadoraimportacion.com.ar/blog/tratamiento-iva-importaciones-recupero-saldos): tratamiento del IVA general y adicional, cómputo y saldos a favor.
 
 ## Recursos de descubrimiento
 
 - [Sitemap](https://calculadoraimportacion.com.ar/sitemap-index.xml): inventario de URLs públicas e indexables.
 - [Robots](https://calculadoraimportacion.com.ar/robots.txt): reglas de acceso para rastreadores; el área `/admin/` no debe rastrearse.
+- [Términos de uso y privacidad](https://calculadoraimportacion.com.ar/terminos-de-uso): alcance no vinculante de la información, uso de Microsoft Clarity y derechos sobre datos personales.
 
 ## Contacto
 

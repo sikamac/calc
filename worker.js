@@ -21,6 +21,7 @@ export default {
       const canonicalUrl = new URL('/llms.txt', url);
       const assetResponse = await env.ASSETS.fetch(new Request(canonicalUrl, request));
       const headers = new Headers(assetResponse.headers);
+      headers.set('Content-Type', 'text/plain; charset=UTF-8');
       headers.set('Content-Location', '/llms.txt');
       headers.append('Link', '</llms.txt>; rel="canonical"');
 
@@ -74,6 +75,13 @@ function withStaticAssetHeaders(url, response) {
       'Link',
       '</llms.txt>; rel="help alternate"; type="text/markdown"; title="Guia del sitio para agentes de IA"'
     );
+  }
+
+  // Cloudflare infers text/plain for .txt assets but omits the charset.
+  // Declaring UTF-8 prevents browsers and clients from decoding Spanish
+  // characters as Windows-1252 (for example, "ñ" appearing as "Ã±").
+  if (pathname === '/llms.txt') {
+    headers.set('Content-Type', 'text/plain; charset=UTF-8');
   }
 
   if (pathname.startsWith('/assets/') || pathname.startsWith('/fonts/')) {
