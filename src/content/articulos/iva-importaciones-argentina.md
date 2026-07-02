@@ -3,7 +3,7 @@ title: "IVA en importaciones: por qué pagás más del 21% en Argentina"
 date: 2026-07-01
 category: "Impuestos"
 image: "../../assets/images/guides/iva-importaciones-argentina.png"
-description: "Al importar en Argentina pagás IVA del 21% más un IVA adicional del 10,5% o 20%. Entendé cómo se calcula la base imponible, qué es el IVA adicional y cuándo aplican las percepciones."
+description: "Al importar en Argentina pagás IVA del 21% más una percepción adicional del 10% o 20%. Entendé cómo se calcula la base imponible, qué es el IVA adicional y cuándo aplica."
 author: "Equipo de GIST POINT"
 tags: ["IVA importaciones", "IVA adicional", "percepciones", "aduana Argentina"]
 ---
@@ -48,15 +48,15 @@ La tasa del IVA adicional depende de la alícuota de IVA que corresponda al prod
 | Alícuota de IVA del producto | IVA adicional |
 |---|---|
 | 21% (alícuota general) | 20% |
-| 10,5% (alícuota reducida) | 10,5% |
+| 10,5% (alícuota reducida) | 10% |
 
-Se aplica sobre la misma base imponible que el IVA general (CIF + derechos + tasa estadística).
+La diferencia de medio punto no es un error: el IVA reducido surge de la Ley de IVA, mientras que la percepción fue fijada en el 10% por el artículo 7 de la [RG 2937, según la modificación de la RG 4461/2019](https://www.boletinoficial.gob.ar/detalleAviso/primera/205734/20190417). Se aplica sobre la misma base imponible que el IVA general (CIF + derechos + tasa estadística).
 
 ### Responsables inscriptos vs. no inscriptos
 
 El tratamiento del IVA adicional cambia según la categoría del importador:
 
-**Responsable inscripto ante ARCA:** Puede utilizar el IVA adicional abonado en aduana como crédito fiscal contra el IVA que cobra en sus ventas. No es un costo definitivo, pero implica inmovilización de capital hasta que se compensa en las declaraciones mensuales de IVA.
+**Responsable inscripto ante ARCA:** El IVA general computable integra el crédito fiscal técnico. La percepción adicional tiene carácter de impuesto ingresado y, si genera excedente, origina saldo de libre disponibilidad. No son el mismo tipo de saldo, aunque ambos puedan computarse en la declaración jurada.
 
 **Monotributista o consumidor final:** No puede recuperar el IVA adicional. Se convierte en un costo directo que impacta en el precio final del producto.
 
@@ -111,7 +111,7 @@ Supongamos una importación con las siguientes características:
 | **Total tributos** | **3.248,50** |
 | **Costo total (CIF + tributos)** | **8.248,50** |
 
-Para el responsable inscripto, el IVA (USD 1.228,50) y el IVA adicional (USD 1.170) son crédito fiscal recuperable. El costo definitivo son los derechos y la tasa estadística: USD 850.
+Para el responsable inscripto, el IVA general computable y la percepción adicional no son, en principio, costos tributarios definitivos. El primero integra el crédito fiscal técnico; la segunda se computa como impuesto ingresado. El costo definitivo incluye los derechos y la tasa estadística, mientras que ambos importes de IVA generan además un costo financiero hasta su utilización.
 
 Para el monotributista o consumidor final, todos los USD 3.248,50 son costos reales.
 
@@ -119,7 +119,7 @@ Para el monotributista o consumidor final, todos los USD 3.248,50 son costos rea
 
 En la [calculadora de importaciones](/calculadora) encontrás campos separados para ingresar el IVA y el IVA adicional. Esto te permite simular distintos escenarios:
 
-- Responsable inscripto que recupera ambos conceptos: usar los valores como crédito, no como costo.
+- Responsable inscripto: separar el crédito fiscal técnico del IVA general y el ingreso directo originado por la percepción.
 - Monotributista o consumidor final: incluir ambos conceptos como costo efectivo.
 - Productos con alícuota reducida (10,5%): cambiar las tasas según corresponda.
 
@@ -129,7 +129,7 @@ Cargar cada campo por separado facilita identificar cuánto pesa cada tributo en
 
 ### ¿El IVA adicional siempre es el 20%?
 
-No. La tasa del IVA adicional es del 20% cuando el producto tributa IVA al 21%. Si el bien está gravado a la alícuota reducida del 10,5% (por ejemplo, ciertos bienes de capital o productos del sector agropecuario), el IVA adicional es del 10,5%.
+No. La percepción es del 20% cuando el producto tributa IVA al 21%. Si el bien está gravado a la alícuota reducida del 10,5%, la percepción general es del 10%. Además, la RG 2937 contempla operaciones exceptuadas, por lo que debe revisarse el caso concreto.
 
 ### ¿Puedo evitar pagar el IVA adicional en aduana?
 
